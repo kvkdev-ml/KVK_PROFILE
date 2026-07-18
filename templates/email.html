@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AURA AI | Neural Spam Shield</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "surface-container-high": "#2a2a2b",
+                        "on-secondary-container": "#d6a9ff",
+                        "secondary-fixed": "#f0dbff",
+                        "tertiary-fixed": "#acedff",
+                        "inverse-surface": "#e5e2e3",
+                        "on-background": "#e5e2e3",
+                        "surface-tint": "#c0c1ff",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#3a393a",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "primary-container": "#8083ff",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#313031",
+                        "on-primary-container": "#0d0096",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#908fa0",
+                        "on-primary": "#1000a9",
+                        "inverse-primary": "#494bd6",
+                        "surface-container-low": "#1c1b1c",
+                        "background": "#131314",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "on-surface-variant": "#c7c4d7",
+                        "secondary": "#ddb7ff",
+                        "on-tertiary-container": "#002f38",
+                        "surface": "#131314",
+                        "primary": "#c0c1ff",
+                        "on-surface": "#e5e2e3",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "on-primary-fixed": "#07006c",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#353436",
+                        "surface-dim": "#131314",
+                        "surface-container": "#201f20",
+                        "secondary-container": "#6f00be",
+                        "on-tertiary": "#003640",
+                        "surface-container-lowest": "#0e0e0f",
+                        "tertiary": "#4cd7f6",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-container-highest": "#353436",
+                        "tertiary-container": "#009eb9",
+                        "on-secondary-fixed": "#2c0051",
+                        "outline-variant": "#464554",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary": "#490080"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-code": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A0A0B;
+            color: #e5e2e3;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-elevated {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(192, 193, 255, 0.2);
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 30px rgba(192, 193, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .mesh-thinking {
+            background: linear-gradient(90deg, transparent, rgba(192, 193, 255, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: mesh-flow 2s infinite linear;
+        }
+
+        @keyframes mesh-flow {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-[0_0_30px_rgba(192,193,255,0.1)]">
+        <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-20">
+            <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
+            <div class="hidden md:flex items-center gap-gutter">
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="/projects/ML">Projects</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="/download_resume">Resume</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="/">Home</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">GitHub</button>
+                <button
+                    class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-sm text-label-sm glow-button active:scale-95 duration-200">Connect</button>
+            </div>
+        </div>
+    </nav>
+    <main class="relative pt-20">
+        <!-- Hero Section -->
+        <section
+            class="relative min-h-[716px] flex items-center justify-center overflow-hidden px-margin-mobile md:px-margin-desktop">
+            <!-- STITCH_SHADER_START:ANIMATION_1 class="absolute inset-0 w-full h-full opacity-60" -->
+            <div class="absolute inset-0 w-full h-full opacity-60" style="display:block;">
+                <canvas id="shader-canvas-ANIMATION_1" style="display:block;width:100%;height:100%"></canvas>
+                <script>
+                        (function () {
+                            const canvas = document.getElementById('shader-canvas-ANIMATION_1');
+
+                            // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+                            // This fires on initial layout and whenever the element is resized.
+                            function syncSize() {
+                                const w = canvas.clientWidth || 1280;
+                                const h = canvas.clientHeight || 720;
+                                if (canvas.width !== w || canvas.height !== h) {
+                                    canvas.width = w;
+                                    canvas.height = h;
+                                }
+                            }
+                            if (typeof ResizeObserver !== 'undefined') {
+                                new ResizeObserver(syncSize).observe(canvas);
+                            }
+                            syncSize();
+
+                            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                            if (!gl) return;
+                            const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+                            const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Slow moving organic gradient
+    float t = u_time * 0.1;
+    
+    vec3 color1 = vec3(0.04, 0.04, 0.15); // Deep Blue
+    vec3 color2 = vec3(0.12, 0.05, 0.25); // Deep Purple
+    vec3 color3 = vec3(0.05, 0.08, 0.18); // Navy
+    
+    float n1 = sin(uv.x * 3.0 + t) * 0.5 + 0.5;
+    float n2 = sin(uv.y * 2.0 - t * 1.2) * 0.5 + 0.5;
+    
+    vec3 finalColor = mix(color1, color2, n1);
+    finalColor = mix(finalColor, color3, n2);
+    
+    // Subtle noise
+    float noise = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
+    finalColor += noise * 0.02;
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+                            function cs(type, src) {
+                                const s = gl.createShader(type);
+                                gl.shaderSource(s, src);
+                                gl.compileShader(s);
+                                return s;
+                            }
+                            const prog = gl.createProgram();
+                            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+                            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+                            gl.linkProgram(prog);
+                            gl.useProgram(prog);
+                            const buf = gl.createBuffer();
+                            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+                            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+                            const pos = gl.getAttribLocation(prog, 'a_position');
+                            gl.enableVertexAttribArray(pos);
+                            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+                            const uTime = gl.getUniformLocation(prog, 'u_time');
+                            const uRes = gl.getUniformLocation(prog, 'u_resolution');
+                            const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+                            // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+                            // Shaders that need normalized coords should use: u_mouse / u_resolution.
+                            let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+                            window.addEventListener('mousemove', (event) => {
+                                const rect = canvas.getBoundingClientRect();
+                                if (rect.width && rect.height) {
+                                    const nx = (event.clientX - rect.left) / rect.width;
+                                    const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                                    mouse.x = nx * canvas.width;
+                                    mouse.y = ny * canvas.height;
+                                }
+                            });
+
+                            function render(t) {
+                                if (typeof ResizeObserver === 'undefined') syncSize();
+                                gl.viewport(0, 0, canvas.width, canvas.height);
+                                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                                requestAnimationFrame(render);
+                            }
+                            render(0);
+                        })();
+                </script>
+            </div>
+            <!-- STITCH_SHADER_END:ANIMATION_1 -->
+            <div class="relative z-10 max-w-4xl text-center">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-8 animate-pulse">
+                    <span class="material-symbols-outlined text-[18px]">security</span>
+                    <span class="font-label-sm text-label-sm tracking-widest uppercase">NLP Neural System v2.0</span>
+                </div>
+                <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 tracking-tight">Neural Spam
+                    Shield</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                    Filtering communication with deep linguistic analysis. Leveraging advanced transformer architectures
+                    to intercept sophisticated phishing and spam threats in real-time.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span
+                        class="px-4 py-1.5 rounded-full glass-panel font-mono-code text-mono-code text-tertiary flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                        NLTK
+                    </span>
+                    <span
+                        class="px-4 py-1.5 rounded-full glass-panel font-mono-code text-mono-code text-primary flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        TensorFlow
+                    </span>
+                    <span
+                        class="px-4 py-1.5 rounded-full glass-panel font-mono-code text-mono-code text-secondary flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        Python
+                    </span>
+                </div>
+            </div>
+        </section>
+        <!-- Prediction Interface -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+                <!-- Input Area -->
+                <div class="lg:col-span-8 glass-panel rounded-xl p-8 space-y-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-headline-md text-headline-md text-on-surface">Email Content Analysis</h3>
+                        <span class="text-on-surface-variant font-label-sm text-label-sm">Tokens: <span
+                                id="token-count">0</span>/512</span>
+                    </div>
+                    <div class="relative">
+                        <textarea
+                            class="w-full h-80 bg-surface-container-lowest border border-white/10 rounded-lg p-6 font-mono-code text-mono-code text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
+                            id="email-input"
+                            placeholder="Paste the email content here for neural classification..."></textarea>
+                        <div class="absolute bottom-4 right-4 flex gap-2">
+                            <button class="p-2 hover:bg-white/5 rounded-lg text-on-surface-variant transition-colors"
+                                onclick="clearText()">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full py-5 rounded-xl bg-gradient-to-r from-primary to-secondary text-on-primary font-headline-md text-headline-md flex items-center justify-center gap-3 glow-button"
+                        id="analyze-btn" onclick="runAnalysis()">
+                        <span class="material-symbols-outlined">psychology</span>
+                        Analyze Email
+                    </button>
+                </div>
+                <!-- Results Area -->
+                <div class="lg:col-span-4 flex flex-col gap-gutter">
+                    <!-- Result Card -->
+                    <div class="glass-card-elevated rounded-xl p-8 relative overflow-hidden hidden" id="result-card">
+                        <div class="absolute inset-0 mesh-thinking z-10 hidden" id="thinking-overlay"></div>
+                        <div class="relative z-20 space-y-8">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Classification</span>
+                                <span class="material-symbols-outlined text-primary">verified_user</span>
+                            </div>
+                            <div class="space-y-2">
+                                <p class="font-body-md text-body-md text-on-surface-variant">Status</p>
+                                <h4 class="font-display-lg text-display-lg text-primary tracking-tight"
+                                    id="status-text">Genuine</h4>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end">
+                                    <p class="font-body-md text-body-md text-on-surface-variant">Analysis Confidence</p>
+                                    <p class="font-headline-md text-headline-md text-secondary" id="confidence-val">
+                                        99.7%</p>
+                                </div>
+                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-secondary" id="confidence-bar" style="width: 99.7%"></div>
+                                </div>
+                            </div>
+                            <div class="pt-6 border-t border-white/5">
+                                <div
+                                    class="flex items-center gap-3 text-on-surface-variant font-label-sm text-label-sm">
+                                    <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></span>
+                                    Linguistic markers within safety bounds.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder/Empty State -->
+                    <div class="glass-panel rounded-xl p-8 flex flex-col items-center justify-center text-center space-y-4 min-h-[300px]"
+                        id="empty-state">
+                        <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-2">
+                            <span class="material-symbols-outlined text-outline text-[32px]">analytics</span>
+                        </div>
+                        <h4 class="font-headline-md text-headline-md text-on-surface">Awaiting Input</h4>
+                        <p class="text-on-surface-variant font-body-md text-body-md">Submit content to generate a neural
+                            classification report.</p>
+                    </div>
+                    <!-- Quick Stats -->
+                    <div class="glass-panel rounded-xl p-6 grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <p class="text-outline font-label-sm text-label-sm uppercase">Latency</p>
+                            <p class="text-primary font-mono-code text-mono-code">24ms</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-outline font-label-sm text-label-sm uppercase">Architecture</p>
+                            <p class="text-secondary font-mono-code text-mono-code">Bi-LSTM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Technical Deep Dive (Bento Grid) -->
+        <section
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 border-t border-white/5">
+            <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-12 text-center">Neural Architecture
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                <div
+                    class="md:col-span-2 glass-panel rounded-xl p-8 h-80 relative overflow-hidden flex flex-col justify-end">
+                    <div class="absolute inset-0 opacity-20">
+                        <div class="w-full h-full bg-cover bg-center"
+                            data-alt="A macro close-up of a digital mesh network representing a neural pathway, with glowing nodes and flowing data lines in deep blues and purples. Cinematic lighting highlighting the complexity of artificial intelligence connections."
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByXSCuXbb46EN7kO4PAKBKJwjrPaKVZqsv6k9VTroC1wrv7mD54UEJMg9Q5xSbuz7gWXiDr90akNpd30OEbB2Nljab6SENNDCoxpvW57rIQfHLstVlPxUzHx1fGuv-DovLtPrdRefuPDfuonMM04lGOV8z3PJUYun7ZyZ802yh4bs6mFGdCQwoT4IcePSjyTNFybYWOYSXyZtn_Tv2bXALGQyl4j9WztJPzx2zAUykWesXt9im_MmS95sKsfIijjrGVafTZ7ZL')">
+                        </div>
+                    </div>
+                    <div class="relative z-10">
+                        <h4 class="font-headline-md text-headline-md text-primary mb-2">Deep Linguistic Analysis</h4>
+                        <p class="text-on-surface-variant max-w-lg">The model goes beyond simple keyword matching,
+                            analyzing syntactic structures and semantic intent to detect elusive social engineering
+                            patterns.</p>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-xl p-8 flex flex-col justify-center gap-6">
+                    <div class="p-4 rounded-xl bg-tertiary/10 border border-tertiary/20 self-start">
+                        <span class="material-symbols-outlined text-tertiary text-[40px]">dataset</span>
+                    </div>
+                    <div>
+                        <h4 class="font-headline-md text-headline-md text-on-surface mb-2">Dataset</h4>
+                        <p class="text-on-surface-variant">Trained on 500k+ anonymized enterprise communication logs for
+                            high generalization.</p>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-xl p-8 flex flex-col gap-4">
+                    <span class="text-primary font-mono-code text-mono-code">Accuracy</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-6xl font-bold tracking-tighter">99.7</span>
+                        <span class="text-2xl text-on-surface-variant">%</span>
+                    </div>
+                    <div class="w-full h-2 bg-white/5 rounded-full overflow-hidden mt-4">
+                        <div class="w-[99.7%] h-full bg-primary shadow-[0_0_15px_#c0c1ff]"></div>
+                    </div>
+                </div>
+                <div class="md:col-span-2 glass-panel rounded-xl p-8 flex items-center gap-8">
+                    <div
+                        class="hidden sm:block w-32 h-32 shrink-0 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[64px] text-secondary">security_update_good</span>
+                    </div>
+                    <div>
+                        <h4 class="font-headline-md text-headline-md text-on-surface mb-2">Enterprise Ready</h4>
+                        <p class="text-on-surface-variant">Ready for API integration with major email providers. Secure,
+                            localized processing ensures data privacy compliance while maintaining peak performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-white/5 bg-surface-container-lowest mt-24">
+        <div
+            class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter">
+            <div class="font-headline-md text-headline-md text-on-surface">AURA AI</div>
+            <p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 AURA AI Portfolio. Built with Neural
+                Precision.</p>
+            <div class="flex gap-6">
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors hover:underline decoration-tertiary underline-offset-4 font-label-sm text-label-sm"
+                    href="/projects/ML">Back to Projects</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors hover:underline decoration-tertiary underline-offset-4 font-label-sm text-label-sm"
+                    href="https://github.com/kvkdev-ml" target="_blank">View GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const emailInput = document.getElementById('email-input');
+        const tokenCount = document.getElementById('token-count');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const emptyState = document.getElementById('empty-state');
+        const resultCard = document.getElementById('result-card');
+        const thinkingOverlay = document.getElementById('thinking-overlay');
+        const statusText = document.getElementById('status-text');
+        const confidenceVal = document.getElementById('confidence-val');
+        const confidenceBar = document.getElementById('confidence-bar');
+
+        emailInput.addEventListener('input', (e) => {
+            const count = e.target.value.split(/\s+/).filter(x => x.length > 0).length;
+            tokenCount.textContent = count;
+        });
+
+        function clearText() {
+            emailInput.value = '';
+            tokenCount.textContent = '0';
+        }
+
+        async function runAnalysis() {
+
+            const text = emailInput.value.trim();
+
+            if (!text) return;
+
+            // UI State Change
+            emptyState.classList.add("hidden");
+            resultCard.classList.remove("hidden");
+            thinkingOverlay.classList.remove("hidden");
+            analyzeBtn.disabled = true;
+            analyzeBtn.innerHTML = `
+        <span class="material-symbols-outlined animate-spin">sync</span>
+        Processing...
+    `;
+
+            try {
+
+                const response = await fetch("http://127.0.0.1:5000/api/spam", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: text
+                    })
+                });
+
+                const data = await response.json();
+
+                thinkingOverlay.classList.add("hidden");
+                analyzeBtn.disabled = false;
+                analyzeBtn.innerHTML = `
+            <span class="material-symbols-outlined">psychology</span>
+            Analyze Email
+        `;
+
+                const isSpam = data.prediction == 1;
+                const confidence = data.confidence || 100;
+
+                if (isSpam) {
+                    statusText.textContent = "Spam Detected";
+                    statusText.className =
+                        "font-display-lg text-display-lg text-error tracking-tight";
+                    confidenceBar.className = "h-full bg-error";
+                } else {
+                    statusText.textContent = "Genuine";
+                    statusText.className =
+                        "font-display-lg text-display-lg text-primary tracking-tight";
+                    confidenceBar.className = "h-full bg-secondary";
+                }
+
+                confidenceVal.textContent = `${confidence}%`;
+                confidenceBar.style.width = `${confidence}%`;
+
+            } catch (err) {
+
+                thinkingOverlay.classList.add("hidden");
+                analyzeBtn.disabled = false;
+                analyzeBtn.innerHTML = `
+            <span class="material-symbols-outlined">psychology</span>
+            Analyze Email
+        `;
+
+                statusText.textContent = "Error";
+                statusText.className =
+                    "font-display-lg text-display-lg text-error tracking-tight";
+                confidenceVal.textContent = "API Error";
+                confidenceBar.style.width = "0%";
+
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+
+</html>

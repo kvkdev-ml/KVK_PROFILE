@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AURA AI | Neural Wound Diagnostic</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#acedff",
+                        "surface-container": "#201f20",
+                        "on-secondary": "#490080",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "surface-tint": "#c0c1ff",
+                        "tertiary": "#4cd7f6",
+                        "secondary-fixed": "#f0dbff",
+                        "surface-container-highest": "#353436",
+                        "outline": "#908fa0",
+                        "on-primary-fixed": "#07006c",
+                        "on-background": "#e5e2e3",
+                        "on-secondary-container": "#d6a9ff",
+                        "inverse-primary": "#494bd6",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "background": "#131314",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-secondary-fixed": "#2c0051",
+                        "primary-container": "#8083ff",
+                        "primary": "#c0c1ff",
+                        "outline-variant": "#464554",
+                        "secondary-container": "#6f00be",
+                        "surface-container-lowest": "#0e0e0f",
+                        "on-primary-container": "#0d0096",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-container-high": "#2a2a2b",
+                        "surface-dim": "#131314",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#313031",
+                        "surface-container-low": "#1c1b1c",
+                        "surface": "#131314",
+                        "on-error": "#690005",
+                        "tertiary-container": "#009eb9",
+                        "on-tertiary-container": "#002f38",
+                        "error-container": "#93000a",
+                        "surface-variant": "#353436",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "on-tertiary": "#003640",
+                        "inverse-surface": "#e5e2e3",
+                        "surface-bright": "#3a393a",
+                        "secondary": "#ddb7ff",
+                        "on-tertiary-fixed": "#001f26",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-primary": "#1000a9",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#2f2ebe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "mono-code": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "mono-code": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-border-gradient {
+            border-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), transparent) 1;
+        }
+
+        .ai-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .5;
+                transform: scale(1.05);
+            }
+        }
+
+        .mesh-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(192, 193, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+    <!-- Navigation Shell -->
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-[0_0_30px_rgba(192,193,255,0.1)]">
+        <div
+            class="max-w-container-max mx-auto flex items-center justify-between px-margin-mobile md:px-margin-desktop h-20">
+            <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md" href="#">Projects</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Resume</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">About</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="text-on-surface-variant hover:text-primary transition-colors font-label-sm uppercase tracking-wider">GitHub</button>
+                <button
+                    class="bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-container px-6 py-2.5 rounded-full font-label-sm font-bold shadow-[0_0_20px_rgba(128,131,255,0.3)] hover:scale-105 active:scale-95 transition-all">Connect</button>
+            </div>
+        </div>
+    </nav>
+    <main class="relative pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+        <!-- Ambient Background Glow -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+        <div class="absolute top-1/2 -left-24 w-80 h-80 bg-secondary/10 blur-[100px] rounded-full"></div>
+        <!-- Hero Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-24 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+                    <span class="w-2 h-2 rounded-full bg-primary ai-pulse"></span>
+                    <span class="text-primary font-label-sm uppercase tracking-widest">Neural Diagnostic v4.0</span>
+                </div>
+                <h1
+                    class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-tighter text-on-surface leading-tight">
+                    Neural Wound <span
+                        class="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">Diagnostic</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Advanced computer vision for clinical wound assessment and monitoring. Our proprietary deep learning
+                    architecture enables rapid classification with laboratory-grade precision.
+                </p>
+                <div class="flex flex-wrap gap-3 pt-4">
+                    <span
+                        class="px-4 py-1.5 glass-panel rounded-lg text-primary border border-primary/20 font-mono-code text-mono-code">Python</span>
+                    <span
+                        class="px-4 py-1.5 glass-panel rounded-lg text-secondary border border-secondary/20 font-mono-code text-mono-code">TensorFlow</span>
+                    <span
+                        class="px-4 py-1.5 glass-panel rounded-lg text-tertiary border border-tertiary/20 font-mono-code text-mono-code">OpenCV</span>
+                    <span
+                        class="px-4 py-1.5 glass-panel rounded-lg text-on-surface-variant border border-white/10 font-mono-code text-mono-code">Keras</span>
+                </div>
+            </div>
+            <div class="lg:col-span-5 relative group">
+                <div
+                    class="absolute inset-0 bg-primary/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div class="relative glass-panel rounded-3xl overflow-hidden aspect-square border border-white/10 p-4">
+                    <div class="w-full h-full rounded-2xl relative overflow-hidden bg-surface-container-lowest">
+
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="relative w-48 h-48">
+                                <div class="absolute inset-0 border-2 border-primary/30 rounded-full animate-ping">
+                                </div>
+                                <div
+                                    class="absolute inset-4 border border-secondary/40 rounded-full animate-spin [animation-duration:8s]">
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-6xl text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">biotech</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Main Workspace: Bento Grid Style -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+            <!-- Upload Portal -->
+            <section class="md:col-span-8 flex flex-col gap-gutter">
+                <div
+                    class="glass-panel rounded-3xl p-8 border border-white/10 shadow-2xl relative overflow-hidden min-h-[400px] flex flex-col">
+                    <div class="flex items-center justify-between mb-8">
+                        <h2 class="font-headline-md text-headline-md">Analysis Portal</h2>
+                        <span class="text-on-surface-variant text-label-sm font-mono-code">SECURE_LINK: ACTIVE</span>
+                    </div>
+                    <div class="flex-grow border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center transition-all hover:bg-white/5 hover:border-primary/50 group cursor-pointer"
+                        id="dropzone">
+                        <div
+                            class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-4xl text-primary">cloud_upload</span>
+                        </div>
+                        <p class="font-body-lg text-body-lg text-on-surface mb-2">Drag and drop clinical imagery</p>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant">Supports DICOM, JPEG, PNG (Max
+                            50MB)</p>
+                        <button
+                            class="mt-8 bg-white/10 hover:bg-white/20 text-on-surface px-8 py-3 rounded-xl font-label-sm transition-all border border-white/10 active:scale-95">
+                            Browse Local Storage
+                        </button>
+                    </div>
+                    <div class="hidden mt-8 p-4 glass-panel rounded-xl border border-primary/30 animate-in fade-in slide-in-from-bottom-4 duration-500"
+                        id="preview">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="A close-up, high-definition clinical photograph of a skin wound, presented within a professional medical software interface. The image is captured with neutral clinical lighting and features a sterile, surgical background. The interface includes subtle digital overlays like measurement rulers and color calibration bars, maintaining a dark-mode medical laboratory aesthetic with deep charcoal and indigo tones."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_U3A8s6XbayhBfvxcnAn1HnjWYU9O8I41ZYrderI_qU6fLfHwPJyKXVCaq3slf4V5-TC_f7NVQnGu7s7ipca4CHp2ZLG11Lxb4OgwU-PVTAbe6uXvzekkImhEWX3wkXvoWwQ-7jSNd2YyUnKMANbe17uuOQZDOn16t-X0zWmRgEXTMcm1gBS6b_LWncT9jpCa-zPfwLqoRzex2lOM5ET1ZnHGnAgTlrlOgZXdvHlvUOVMwAn_fH270NxQ7HwEgfIA1RI99Me3" />
+                            </div>
+                            <div class="flex-grow">
+                                <p class="font-label-sm text-on-surface">Patient_ID_0921.png</p>
+                                <p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">Ready for
+                                    Neural Assessment</p>
+                            </div>
+                            <button class="text-error hover:bg-error/10 p-2 rounded-lg transition-colors">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Features Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div
+                        class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-primary/20 transition-all">
+                        <span class="material-symbols-outlined text-primary mb-4">bolt</span>
+                        <h3 class="font-label-sm font-bold mb-2">Real-time Analysis</h3>
+                        <p class="text-sm text-on-surface-variant">Inference speeds under 200ms per high-res frame.</p>
+                    </div>
+                    <div
+                        class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-tertiary/20 transition-all">
+                        <span class="material-symbols-outlined text-tertiary mb-4">verified_user</span>
+                        <h3 class="font-label-sm font-bold mb-2">Clinical Accuracy</h3>
+                        <p class="text-sm text-on-surface-variant">98.4% F1-score on validated clinical datasets.</p>
+                    </div>
+                    <div
+                        class="glass-panel p-6 rounded-2xl border border-white/5 hover:border-secondary/20 transition-all">
+                        <span class="material-symbols-outlined text-secondary mb-4">encrypted</span>
+                        <h3 class="font-label-sm font-bold mb-2">Secure Data</h3>
+                        <p class="text-sm text-on-surface-variant">HIPAA-compliant end-to-end encryption protocols.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Results Sidebar -->
+            <aside class="md:col-span-4 flex flex-col gap-gutter">
+                <div
+                    class="glass-panel rounded-3xl p-8 border border-primary/20 shadow-[0_0_50px_rgba(192,193,255,0.05)] h-full">
+                    <div class="flex items-center gap-3 mb-10">
+                        <div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary"
+                                style="font-variation-settings: 'FILL' 1;">analytics</span>
+                        </div>
+                        <h2 class="font-headline-md text-headline-md">Diagnostic Feed</h2>
+                    </div>
+                    <!-- Result Card -->
+                    <div class="space-y-8">
+                        <div class="p-6 rounded-2xl bg-surface-container-low border border-white/5">
+                            <p class="text-on-surface-variant font-label-sm uppercase tracking-widest mb-4">Current
+                                Prediction</p>
+                            <div class="space-y-1">
+                                <h3 class="text-2xl font-bold text-on-surface">Diabetic Foot Ulcer</h3>
+                                <div class="flex items-center gap-2">
+                                    <div class="h-2 flex-grow bg-white/5 rounded-full overflow-hidden">
+                                        <div
+                                            class="h-full bg-gradient-to-r from-primary to-secondary w-[98%] shadow-[0_0_10px_rgba(192,193,255,0.5)]">
+                                        </div>
+                                    </div>
+                                    <span class="text-primary font-mono-code font-bold">98%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Class probabilities -->
+                        <div class="space-y-4">
+                            <p class="text-on-surface-variant font-label-sm uppercase tracking-widest">Classification
+                                Probabilities</p>
+                            <div class="space-y-4">
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-on-surface">Venous Ulcer</span>
+                                        <span class="text-on-surface-variant">1.2%</span>
+                                    </div>
+                                    <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                                        <div class="h-full bg-white/20 w-[1.2%]"></div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-on-surface">Pressure Injury</span>
+                                        <span class="text-on-surface-variant">0.5%</span>
+                                    </div>
+                                    <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                                        <div class="h-full bg-white/20 w-[0.5%]"></div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-on-surface">Surgical Wound</span>
+                                        <span class="text-on-surface-variant">0.3%</span>
+                                    </div>
+                                    <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                                        <div class="h-full bg-white/20 w-[0.3%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-4 rounded-2xl bg-primary text-on-primary font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
+                            Download Clinical Report
+                        </button>
+                    </div>
+                    <!-- Neural Monitor -->
+                    <div class="mt-12 pt-8 border-t border-white/5">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs text-on-surface-variant font-mono-code">NETWORK_STABILITY</span>
+                            <span class="text-xs text-tertiary font-mono-code">OPTIMAL</span>
+                        </div>
+                        <div class="flex gap-1">
+                            <div class="h-8 flex-grow bg-white/5 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-white/5 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-white/10 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-primary/40 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-white/5 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-white/5 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-white/10 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-primary/60 rounded-sm"></div>
+                            <div class="h-8 flex-grow bg-white/5 rounded-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-white/5 bg-surface-container-lowest">
+        <div
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="font-headline-md text-headline-md text-on-surface font-bold">AURA AI</div>
+                <p class="text-on-surface-variant font-label-sm text-label-sm">© 2024 AURA AI Portfolio. Built with
+                    Neural Precision.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Back to Projects</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">View GitHub</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Live Demo</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Micro-interactions for the upload portal
+        const dropzone = document.getElementById('dropzone');
+        const preview = document.getElementById('preview');
+
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('border-primary', 'bg-white/10');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('border-primary', 'bg-white/10');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('border-primary', 'bg-white/10');
+            // Simulate upload success
+            preview.classList.remove('hidden');
+        });
+
+        dropzone.addEventListener('click', () => {
+            // Simulate file picker and selection
+            setTimeout(() => {
+                preview.classList.remove('hidden');
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

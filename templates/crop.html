@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SmartAgra | AI Crop Advisor</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "surface-container-high": "#2a2a2b",
+                        "on-secondary-container": "#d6a9ff",
+                        "secondary-fixed": "#f0dbff",
+                        "tertiary-fixed": "#acedff",
+                        "inverse-surface": "#e5e2e3",
+                        "on-background": "#e5e2e3",
+                        "surface-tint": "#c0c1ff",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#3a393a",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "primary-container": "#8083ff",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#313031",
+                        "on-primary-container": "#0d0096",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#908fa0",
+                        "on-primary": "#1000a9",
+                        "inverse-primary": "#494bd6",
+                        "surface-container-low": "#1c1b1c",
+                        "background": "#131314",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "on-surface-variant": "#c7c4d7",
+                        "secondary": "#ddb7ff",
+                        "on-tertiary-container": "#002f38",
+                        "surface": "#131314",
+                        "primary": "#c0c1ff",
+                        "on-surface": "#e5e2e3",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "on-primary-fixed": "#07006c",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#353436",
+                        "surface-dim": "#131314",
+                        "surface-container": "#201f20",
+                        "secondary-container": "#6f00be",
+                        "on-tertiary": "#003640",
+                        "surface-container-lowest": "#0e0e0f",
+                        "tertiary": "#4cd7f6",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-container-highest": "#353436",
+                        "tertiary-container": "#009eb9",
+                        "on-secondary-fixed": "#2c0051",
+                        "outline-variant": "#464554",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary": "#490080"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-code": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A0A0B;
+            color: #e5e2e3;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-border-gradient {
+            border: 1px solid transparent;
+            background: linear-gradient(#131314, #131314) padding-box,
+                linear-gradient(to bottom right, rgba(192, 193, 255, 0.2), transparent) border-box;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
+            }
+        }
+
+        .mesh-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(192, 193, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md bg-background">
+    <!-- Top Navigation Bar -->
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-[0_0_30px_rgba(192,193,255,0.1)] h-20">
+        <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-full">
+            <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Projects</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="#">Resume</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="#">About</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="text-on-surface-variant hover:text-primary transition-colors px-4 py-2 font-label-sm text-label-sm">GitHub</button>
+                <button
+                    class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-sm text-label-sm active:scale-95 duration-200 transition-all">Connect</button>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section
+            class="relative min-h-[716px] flex items-center justify-center overflow-hidden px-margin-mobile md:px-margin-desktop">
+            <!-- STITCH_SHADER_START:ANIMATION_1 class="absolute inset-0 w-full h-full opacity-60" -->
+            <div class="absolute inset-0 w-full h-full opacity-60" style="display:block;">
+                <canvas id="shader-canvas-ANIMATION_1" style="display:block;width:100%;height:100%"></canvas>
+                <script>
+                        (function () {
+                            const canvas = document.getElementById('shader-canvas-ANIMATION_1');
+
+                            // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+                            // This fires on initial layout and whenever the element is resized.
+                            function syncSize() {
+                                const w = canvas.clientWidth || 1280;
+                                const h = canvas.clientHeight || 720;
+                                if (canvas.width !== w || canvas.height !== h) {
+                                    canvas.width = w;
+                                    canvas.height = h;
+                                }
+                            }
+                            if (typeof ResizeObserver !== 'undefined') {
+                                new ResizeObserver(syncSize).observe(canvas);
+                            }
+                            syncSize();
+
+                            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                            if (!gl) return;
+                            const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+                            const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Slow moving organic gradient
+    float t = u_time * 0.1;
+    
+    vec3 color1 = vec3(0.04, 0.04, 0.15); // Deep Blue
+    vec3 color2 = vec3(0.12, 0.05, 0.25); // Deep Purple
+    vec3 color3 = vec3(0.05, 0.08, 0.18); // Navy
+    
+    float n1 = sin(uv.x * 3.0 + t) * 0.5 + 0.5;
+    float n2 = sin(uv.y * 2.0 - t * 1.2) * 0.5 + 0.5;
+    
+    vec3 finalColor = mix(color1, color2, n1);
+    finalColor = mix(finalColor, color3, n2);
+    
+    // Subtle noise
+    float noise = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
+    finalColor += noise * 0.02;
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+                            function cs(type, src) {
+                                const s = gl.createShader(type);
+                                gl.shaderSource(s, src);
+                                gl.compileShader(s);
+                                return s;
+                            }
+                            const prog = gl.createProgram();
+                            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+                            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+                            gl.linkProgram(prog);
+                            gl.useProgram(prog);
+                            const buf = gl.createBuffer();
+                            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+                            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+                            const pos = gl.getAttribLocation(prog, 'a_position');
+                            gl.enableVertexAttribArray(pos);
+                            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+                            const uTime = gl.getUniformLocation(prog, 'u_time');
+                            const uRes = gl.getUniformLocation(prog, 'u_resolution');
+                            const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+                            // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+                            // Shaders that need normalized coords should use: u_mouse / u_resolution.
+                            let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+                            window.addEventListener('mousemove', (event) => {
+                                const rect = canvas.getBoundingClientRect();
+                                if (rect.width && rect.height) {
+                                    const nx = (event.clientX - rect.left) / rect.width;
+                                    const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                                    mouse.x = nx * canvas.width;
+                                    mouse.y = ny * canvas.height;
+                                }
+                            });
+
+                            function render(t) {
+                                if (typeof ResizeObserver === 'undefined') syncSize();
+                                gl.viewport(0, 0, canvas.width, canvas.height);
+                                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                                requestAnimationFrame(render);
+                            }
+                            render(0);
+                        })();
+                </script>
+            </div>
+            <!-- STITCH_SHADER_END:ANIMATION_1 -->
+            <div class="relative z-10 text-center max-w-4xl">
+                <div class="flex justify-center gap-3 mb-8">
+                    <span
+                        class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary pulse-dot"></span>
+                        Neural Engine Active
+                    </span>
+                    <span
+                        class="px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-sm text-label-sm">v2.4.0
+                        Stable</span>
+                </div>
+                <h1
+                    class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 bg-gradient-to-r from-primary via-tertiary to-secondary bg-clip-text text-transparent">
+                    SmartAgra: Crop Advisor
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                    AI-driven agricultural optimization for maximizing yield. Leverage advanced machine learning to
+                    identify the perfect crop for your specific soil and climatic conditions.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-white/5 font-mono-code text-mono-code">
+                        <span class="text-primary">Python</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-white/5 font-mono-code text-mono-code">
+                        <span class="text-secondary">NumPy</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-white/5 font-mono-code text-mono-code">
+                        <span class="text-tertiary">Scikit-learn</span>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent"></div>
+        </section>
+        <!-- Interface Section -->
+        <section class="py-24 px-margin-mobile md:px-margin-desktop relative">
+            <div class="mesh-glow -top-20 -left-20"></div>
+            <div class="mesh-glow bottom-0 right-0"
+                style="background: radial-gradient(circle, rgba(172, 237, 255, 0.05) 0%, transparent 70%);"></div>
+            <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <!-- Prediction Form -->
+                <div class="lg:col-span-7 glass-panel glass-border-gradient p-8 rounded-xl relative">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h2 class="font-headline-md text-headline-md text-on-surface">Soil Analysis &amp; Metrics
+                            </h2>
+                            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Provide environmental
+                                parameters for prediction</p>
+                        </div>
+                        <span class="material-symbols-outlined text-primary text-3xl">analytics</span>
+                    </div>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="recommend-form">
+                        <div class="space-y-2">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Nitrogen
+                                (N)</label>
+                            <input
+                                class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
+                                placeholder="Ratio of Nitrogen content" type="number" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Phosphorus
+                                (P)</label>
+                            <input
+                                class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
+                                placeholder="Ratio of Phosphorus content" type="number" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Potassium
+                                (K)</label>
+                            <input
+                                class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
+                                placeholder="Ratio of Potassium content" type="number" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Temperature
+                                (°C)</label>
+                            <input
+                                class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
+                                placeholder="Ambient temperature" type="number" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Humidity
+                                (%)</label>
+                            <input
+                                class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
+                                placeholder="Relative humidity" type="number" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Soil
+                                pH</label>
+                            <input
+                                class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
+                                placeholder="Soil acidity/alkalinity" step="0.1" type="number" />
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Rainfall
+                                (mm)</label>
+                            <input
+                                class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
+                                placeholder="Average annual rainfall" type="number" />
+                        </div>
+                        <div class="md:col-span-2 pt-4">
+                            <button
+                                class="w-full py-4 rounded-lg bg-gradient-to-r from-primary to-secondary text-on-primary font-headline-md text-headline-md font-bold shadow-[0_0_30px_rgba(192,193,255,0.2)] hover:shadow-[0_0_40px_rgba(192,193,255,0.4)] hover:scale-[1.01] active:scale-95 transition-all duration-300"
+                                onclick="showResult()" type="button">
+                                Recommend Crop
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Result Card -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-panel glass-border-gradient p-12 rounded-xl flex flex-col items-center justify-center text-center min-h-[400px]"
+                        id="result-placeholder">
+                        <div
+                            class="w-20 h-20 rounded-full bg-surface-container-highest flex items-center justify-center mb-6 border border-white/5">
+                            <span class="material-symbols-outlined text-4xl text-outline-variant">query_stats</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Ready for Prediction</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Fill in the soil metrics to
+                            generate a neural recommendation.</p>
+                    </div>
+                    <div class="hidden glass-panel glass-border-gradient p-8 rounded-xl relative overflow-hidden transition-all duration-700 translate-y-4 opacity-0"
+                        id="result-card">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary">verified</span>
+                                </div>
+                                <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Model
+                                    Prediction Output</span>
+                            </div>
+                            <div class="space-y-8">
+                                <div>
+                                    <span
+                                        class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Recommended
+                                        Crop:</span>
+                                    <span
+                                        class="font-display-lg-mobile text-display-lg-mobile text-on-surface font-bold">Rice</span>
+                                </div>
+                                <div class="p-6 bg-surface-container-highest/50 rounded-xl border border-white/5">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-label-sm text-label-sm text-on-surface-variant">Success
+                                            Probability</span>
+                                        <span class="font-label-sm text-label-sm text-tertiary font-bold">98%</span>
+                                    </div>
+                                    <div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden">
+                                        <div class="bg-tertiary h-full rounded-full" style="width: 98%"></div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="p-4 rounded-lg bg-white/5 border border-white/5">
+                                        <span class="font-label-sm text-label-sm text-on-surface-variant block">Yield
+                                            Index</span>
+                                        <span class="font-headline-md text-headline-md text-primary">High</span>
+                                    </div>
+                                    <div class="p-4 rounded-lg bg-white/5 border border-white/5">
+                                        <span class="font-label-sm text-label-sm text-on-surface-variant block">Risk
+                                            Factor</span>
+                                        <span class="font-headline-md text-headline-md text-secondary">Minimal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Visual Tech Card -->
+                    <div
+                        class="glass-panel p-6 rounded-xl border border-white/5 group hover:border-primary/30 transition-all duration-300">
+                        <div class="flex gap-4">
+                            <div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+                                <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                                    data-alt="A highly detailed cinematic macro photography shot of lush vibrant green rice seedlings growing in a futuristic hydroponic farm with purple and blue LED bioluminescent lighting. The composition is sharp and modern, highlighting the intersection of nature and advanced agricultural technology."
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCeoJfHz8KS70qGpI8-mciRgsmG4i2AzpqVPzt5sxg5tBNMNbsEzzN6YbcK8rENoKxukLs6RlS4VQc3BbuZODUhptw5G7hmIj4whN22M5DxF5_tZ5e63Xn5RE7rqDLrzXplUgg8LPafk9FW5SNAtBqo7-0_uonZHrLCtpr5wYnKLsFxwGKzysR70KdbRijmLlEIcFEoz4R4TgWAY2RfqCDn8_TJw_YbAvGfavRv60O8nyvPhTM5NmMg51SpnYwqArq4dipf0y4a')">
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-label-sm text-label-sm text-on-surface font-bold mb-1">Model
+                                    Architecture</h4>
+                                <p class="text-[12px] text-on-surface-variant leading-relaxed">
+                                    Our system utilizes a Random Forest Classifier trained on 2,200+ global soil samples
+                                    to ensure maximum precision in variable climate conditions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Technical Deep Dive (Bento Grid) -->
+        <section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
+            <div class="max-w-container-max mx-auto">
+                <div class="mb-16">
+                    <h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-4">Neural Precision
+                        Agriculture</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">How SmartAgra bridges the gap
+                        between raw data and harvest optimization.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+                    <!-- Feature 1 -->
+                    <div
+                        class="md:col-span-8 glass-panel p-8 rounded-xl border border-white/5 relative overflow-hidden group">
+                        <div class="flex flex-col md:flex-row gap-8 items-center">
+                            <div class="flex-1">
+                                <span class="material-symbols-outlined text-tertiary mb-4">memory</span>
+                                <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Scikit-learn
+                                    Integration</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                                    Utilizing enterprise-grade machine learning pipelines for real-time inference. Our
+                                    Random Forest implementation ensures robust predictions against soil variance and
+                                    sensor noise.
+                                </p>
+                                <ul class="space-y-2">
+                                    <li
+                                        class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                        Hyperparameter optimized
+                                    </li>
+                                    <li
+                                        class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                        Multi-class classification
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-full md:w-1/3 aspect-square rounded-lg overflow-hidden glass-border-gradient">
+                                <div class="w-full h-full bg-cover bg-center"
+                                    data-alt="A sophisticated abstract 3D visualization of a neural network glowing with blue and violet light against a deep black background. Elegant light trails represent data flow, connecting various nodes. The style is clean, technological, and premium, suggesting high-speed AI processing."
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbfgJOq54OjZ2HwT4yiMy3sNaUIOoKUmKZYeMRM3A_rmGED1Fy5ItI7NCiF6w6T-uJ05ULDqpdq6uEiyoy8whglZdaN0auwL73FueVP0E7LnW-xVzAlcr2vyl7jIddYS7AhPbBRQYrf07cX5AJCZPEiwozC2njCEpg2PiTTPD_t08rTbmV6fkz3z_TGGpZxPPLuifmigmPXaFHrJJgiJuMsr5whmLhVh3OD9-qRBDnbIhQzwQWuNgZMAwjWufkE1-4L4oYwrwc')">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="md:col-span-4 bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between">
+                        <div>
+                            <span class="material-symbols-outlined text-3xl mb-4">precision_manufacturing</span>
+                            <h3 class="font-headline-md text-headline-md font-bold mb-3">98.4% Accuracy</h3>
+                            <p class="font-label-sm text-label-sm opacity-80 leading-relaxed">
+                                Tested against historical harvest data across 12 climatic zones with exceptional
+                                validation scores.
+                            </p>
+                        </div>
+                        <div class="mt-8 font-mono-code text-mono-code bg-black/20 p-4 rounded-lg">
+                            accuracy_score(y_test, y_pred)
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div
+                        class="md:col-span-4 glass-panel p-8 rounded-xl border border-white/5 flex flex-col justify-center">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-headline-md text-headline-md text-on-surface">Data Processing</h3>
+                            <span class="material-symbols-outlined text-secondary">grid_view</span>
+                        </div>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant">
+                            Leveraging NumPy for vectorized operations, processing multi-dimensional environmental
+                            arrays in milliseconds.
+                        </p>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div
+                        class="md:col-span-8 glass-panel p-8 rounded-xl border border-white/5 flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Environmental Modeling
+                            </h3>
+                            <p class="font-label-sm text-label-sm text-on-surface-variant">
+                                Analyzing rainfall, humidity, and temperature trends to forecast long-term crop
+                                viability and sustainability.
+                            </p>
+                        </div>
+                        <div class="w-full md:w-1/2 h-32 rounded-lg bg-surface-container-high relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
+                            <div class="flex items-end justify-between px-6 h-full pb-4">
+                                <div class="w-3 bg-primary/40 h-1/2 rounded-t"></div>
+                                <div class="w-3 bg-primary/60 h-3/4 rounded-t"></div>
+                                <div class="w-3 bg-primary h-full rounded-t"></div>
+                                <div class="w-3 bg-primary/80 h-2/3 rounded-t"></div>
+                                <div class="w-3 bg-primary/50 h-4/5 rounded-t"></div>
+                                <div class="w-3 bg-primary/70 h-3/5 rounded-t"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-white/5 bg-surface-container-lowest">
+        <div
+            class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="font-headline-md text-headline-md text-on-surface">AURA AI</div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 AURA AI Portfolio. Built with
+                    Neural Precision.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Back to Projects</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
+                    href="#">View GitHub</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Live Demo</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function showResult() {
+            const placeholder = document.getElementById('result-placeholder');
+            const resultCard = document.getElementById('result-card');
+            const button = event.currentTarget;
+
+            // Interaction Feedback
+            button.classList.add('opacity-80');
+            button.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="animate-spin material-symbols-outlined">sync</span> Processing...</span>';
+
+            setTimeout(() => {
+                placeholder.classList.add('hidden');
+                resultCard.classList.remove('hidden');
+
+                // Trigger animation
+                setTimeout(() => {
+                    resultCard.classList.remove('translate-y-4', 'opacity-0');
+                }, 50);
+
+                button.classList.remove('opacity-80');
+                button.innerHTML = 'Recommend Crop';
+            }, 1200);
+        }
+
+        // Simple parallax for background glows
+        document.addEventListener('mousemove', (e) => {
+            const glows = document.querySelectorAll('.mesh-glow');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            glows.forEach((glow, index) => {
+                const speed = (index + 1) * 20;
+                glow.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+
+</html>

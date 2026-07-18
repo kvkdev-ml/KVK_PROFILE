@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AURA AI | Dog vs Cat Classifier</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "surface-container-high": "#2a2a2b",
+                        "on-secondary-container": "#d6a9ff",
+                        "secondary-fixed": "#f0dbff",
+                        "tertiary-fixed": "#acedff",
+                        "inverse-surface": "#e5e2e3",
+                        "on-background": "#e5e2e3",
+                        "surface-tint": "#c0c1ff",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#3a393a",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "primary-container": "#8083ff",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#313031",
+                        "on-primary-container": "#0d0096",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#908fa0",
+                        "on-primary": "#1000a9",
+                        "inverse-primary": "#494bd6",
+                        "surface-container-low": "#1c1b1c",
+                        "background": "#131314",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "on-surface-variant": "#c7c4d7",
+                        "secondary": "#ddb7ff",
+                        "on-tertiary-container": "#002f38",
+                        "surface": "#131314",
+                        "primary": "#c0c1ff",
+                        "on-surface": "#e5e2e3",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "on-primary-fixed": "#07006c",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#353436",
+                        "surface-dim": "#131314",
+                        "surface-container": "#201f20",
+                        "secondary-container": "#6f00be",
+                        "on-tertiary": "#003640",
+                        "surface-container-lowest": "#0e0e0f",
+                        "tertiary": "#4cd7f6",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-container-highest": "#353436",
+                        "tertiary-container": "#009eb9",
+                        "on-secondary-fixed": "#2c0051",
+                        "outline-variant": "#464554",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary": "#490080"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-code": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-border-gradient {
+            border: 1px solid;
+            border-image-source: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+            border-image-slice: 1;
+        }
+
+        .glow-primary:hover {
+            box-shadow: 0 0 30px rgba(192, 193, 255, 0.3);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .status-pulse {
+            animation: pulse-slow 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopNavBar -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-[0_0_30px_rgba(192,193,255,0.1)] h-20">
+        <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-full">
+            <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
+            <nav class="hidden md:flex items-center gap-gutter">
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Projects</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="#">Resume</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="#">About</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button
+                    class="hidden md:block text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">GitHub</button>
+                <button
+                    class="bg-primary text-on-primary px-6 py-2 rounded-lg font-bold hover:bg-primary-container transition-all active:scale-95 duration-200">Connect</button>
+            </div>
+        </div>
+    </header>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative h-[819px] flex items-center justify-center overflow-hidden">
+            <!-- STITCH_SHADER_START:ANIMATION_1 class="absolute inset-0 w-full h-full opacity-60" -->
+            <div class="absolute inset-0 w-full h-full opacity-60" style="display:block;">
+                <canvas id="shader-canvas-ANIMATION_1" style="display:block;width:100%;height:100%"></canvas>
+                <script>
+                        (function () {
+                            const canvas = document.getElementById('shader-canvas-ANIMATION_1');
+
+                            // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+                            // This fires on initial layout and whenever the element is resized.
+                            function syncSize() {
+                                const w = canvas.clientWidth || 1280;
+                                const h = canvas.clientHeight || 720;
+                                if (canvas.width !== w || canvas.height !== h) {
+                                    canvas.width = w;
+                                    canvas.height = h;
+                                }
+                            }
+                            if (typeof ResizeObserver !== 'undefined') {
+                                new ResizeObserver(syncSize).observe(canvas);
+                            }
+                            syncSize();
+
+                            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                            if (!gl) return;
+                            const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+                            const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Slow moving organic gradient
+    float t = u_time * 0.1;
+    
+    vec3 color1 = vec3(0.04, 0.04, 0.15); // Deep Blue
+    vec3 color2 = vec3(0.12, 0.05, 0.25); // Deep Purple
+    vec3 color3 = vec3(0.05, 0.08, 0.18); // Navy
+    
+    float n1 = sin(uv.x * 3.0 + t) * 0.5 + 0.5;
+    float n2 = sin(uv.y * 2.0 - t * 1.2) * 0.5 + 0.5;
+    
+    vec3 finalColor = mix(color1, color2, n1);
+    finalColor = mix(finalColor, color3, n2);
+    
+    // Subtle noise
+    float noise = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
+    finalColor += noise * 0.02;
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+                            function cs(type, src) {
+                                const s = gl.createShader(type);
+                                gl.shaderSource(s, src);
+                                gl.compileShader(s);
+                                return s;
+                            }
+                            const prog = gl.createProgram();
+                            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+                            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+                            gl.linkProgram(prog);
+                            gl.useProgram(prog);
+                            const buf = gl.createBuffer();
+                            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+                            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+                            const pos = gl.getAttribLocation(prog, 'a_position');
+                            gl.enableVertexAttribArray(pos);
+                            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+                            const uTime = gl.getUniformLocation(prog, 'u_time');
+                            const uRes = gl.getUniformLocation(prog, 'u_resolution');
+                            const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+                            // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+                            // Shaders that need normalized coords should use: u_mouse / u_resolution.
+                            let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+                            window.addEventListener('mousemove', (event) => {
+                                const rect = canvas.getBoundingClientRect();
+                                if (rect.width && rect.height) {
+                                    const nx = (event.clientX - rect.left) / rect.width;
+                                    const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                                    mouse.x = nx * canvas.width;
+                                    mouse.y = ny * canvas.height;
+                                }
+                            });
+
+                            function render(t) {
+                                if (typeof ResizeObserver === 'undefined') syncSize();
+                                gl.viewport(0, 0, canvas.width, canvas.height);
+                                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                                requestAnimationFrame(render);
+                            }
+                            render(0);
+                        })();
+                </script>
+            </div>
+            <!-- STITCH_SHADER_END:ANIMATION_1 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+            <div class="relative z-10 max-w-4xl px-margin-mobile md:px-margin-desktop text-center space-y-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm">
+                    <span class="w-2 h-2 rounded-full bg-primary status-pulse"></span>
+                    NEURAL ENGINE v4.2
+                </div>
+                <h1
+                    class="font-display-lg text-display-lg md:font-display-lg text-display-lg text-primary tracking-tighter leading-tight">
+                    Dog vs Cat Classifier
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Advanced Computer Vision model for precise domestic animal classification. Built for speed,
+                    accuracy, and real-world robustness.
+                </p>
+                <div class="pt-8 flex flex-wrap justify-center gap-4">
+                    <button
+                        class="bg-gradient-to-r from-primary to-secondary text-on-primary px-8 py-4 rounded-xl font-bold glow-primary transition-all active:scale-95">
+                        Launch Demo
+                    </button>
+                    <button
+                        class="glass-panel px-8 py-4 rounded-xl font-bold border border-white/10 hover:bg-white/10 transition-all active:scale-95">
+                        View Paper
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Bento Layout: About & Tech -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+                <!-- About Card -->
+                <div class="md:col-span-8 glass-panel p-10 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <h2 class="font-headline-md text-headline-md text-primary mb-6">Neural Architecture</h2>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">
+                            This project explores the boundaries of convolutional neural networks (CNNs) in
+                            distinguishing morphologically similar domestic species. By leveraging transfer learning on
+                            ImageNet-pre-trained architectures, the model identifies subtle breed-specific features
+                            beyond simple silhouettes.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div class="space-y-2">
+                                <span class="material-symbols-outlined text-tertiary"
+                                    data-icon="visibility">visibility</span>
+                                <h3 class="font-bold text-on-surface">Feature Mapping</h3>
+                                <p class="text-on-surface-variant text-label-sm">High-dimensional feature extraction
+                                    across 512 channels.</p>
+                            </div>
+                            <div class="space-y-2">
+                                <span class="material-symbols-outlined text-tertiary" data-icon="pets">pets</span>
+                                <h3 class="font-bold text-on-surface">Species Agnostic</h3>
+                                <p class="text-on-surface-variant text-label-sm">Trained on 25,000+ diverse pet
+                                    datasets.</p>
+                            </div>
+                            <div class="space-y-2">
+                                <span class="material-symbols-outlined text-tertiary"
+                                    data-icon="psychology">psychology</span>
+                                <h3 class="font-bold text-on-surface">Logical Inference</h3>
+                                <p class="text-on-surface-variant text-label-sm">Contextual reasoning for background
+                                    occlusion.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tech Stack Card -->
+                <div class="md:col-span-4 glass-panel p-10 rounded-3xl flex flex-col">
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-8">Core Engine</h3>
+                    <div class="flex flex-col gap-4 flex-grow">
+                        <div class="flex items-center justify-between p-4 bg-black/40 rounded-xl border border-white/5">
+                            <span class="font-mono-code text-mono-code text-primary">TensorFlow</span>
+                            <div class="w-12 h-1 bg-primary/20 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full w-[85%]"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-black/40 rounded-xl border border-white/5">
+                            <span class="font-mono-code text-mono-code text-secondary">Keras</span>
+                            <div class="w-12 h-1 bg-secondary/20 rounded-full overflow-hidden">
+                                <div class="bg-secondary h-full w-[90%]"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-black/40 rounded-xl border border-white/5">
+                            <span class="font-mono-code text-mono-code text-tertiary">OpenCV</span>
+                            <div class="w-12 h-1 bg-tertiary/20 rounded-full overflow-hidden">
+                                <div class="bg-tertiary h-full w-[75%]"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-black/40 rounded-xl border border-white/5">
+                            <span class="font-mono-code text-mono-code text-primary">Python</span>
+                            <div class="w-12 h-1 bg-primary/20 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full w-[95%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-white/5">
+                        <p class="text-label-sm text-on-surface-variant italic">"Optimized for inference latency &lt;
+                            200ms on mobile edge devices."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Prediction Interface -->
+        <section
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 bg-surface-container-lowest/50 rounded-[4rem]">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="font-display-lg text-display-lg text-primary tracking-tight">Real-time Inference</h2>
+                <p class="text-on-surface-variant font-body-lg">Upload an image to trigger the generative prediction
+                    sequence.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Upload Area -->
+                <div
+                    class="glass-panel p-8 rounded-3xl border-dashed border-2 border-primary/30 relative group cursor-pointer overflow-hidden transition-all hover:border-primary/60">
+                    <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="relative z-10 flex flex-col items-center justify-center py-20 text-center">
+                        <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-primary text-4xl"
+                                data-icon="cloud_upload">cloud_upload</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Drag &amp; Drop Image</h3>
+                        <p class="text-on-surface-variant mb-8">Supports JPG, PNG, WEBP (Max 10MB)</p>
+                        <button
+                            class="bg-white/10 hover:bg-white/20 text-on-surface px-8 py-3 rounded-xl border border-white/10 transition-colors font-bold">
+                            Browse Files
+                        </button>
+                    </div>
+                </div>
+                <!-- Prediction Card -->
+                <div class="space-y-8">
+                    <div class="glass-panel p-8 rounded-3xl border border-white/10 relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-tertiary"
+                                        data-icon="analytics">analytics</span>
+                                </div>
+                                <h3 class="font-bold text-xl">Classification Result</h3>
+                            </div>
+                            <span class="text-label-sm font-mono-code text-on-surface-variant">ID: #AI-9932</span>
+                        </div>
+                        <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-8 relative">
+                            <img class="w-full h-full object-cover opacity-60"
+                                data-alt="A cinematic, high-detail macro shot of a sleek domestic animal with vibrant fur textures, set against a dark futuristic background with blue and purple neon rim lighting. The image captures the essence of a high-tech AI detection interface, with sharp focus and professional studio lighting that emphasizes species characteristics for an AI training dataset style."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQFfgJ49wQhkWlpC0YTKw65AaSj9YxsU3yr7rxoN2AdX_7m4K4X7hkg1H6miY6Pk9oXbxz5QOm1MkyGkIDkMOdDFIsZ3xxnuvNiJ9wL3zjILj6du7vw2drak15m56Anhu-OEcJ3J2n5VnSp2IbE7uN1b_PZCwnjTgT1vFRLWcYkCBC3c8ezoGfz9Zzv3scWXW4E124-tWGmaAGvjAm_QNlqxRCYhgxb1cWjKprV6csMYStK6ioiTjhx6M4U8uoJKd2ulMZKNqZ" />
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    class="w-16 h-16 border-2 border-primary border-t-transparent rounded-full animate-spin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-6 bg-primary/10 border border-primary/20 rounded-2xl">
+                                <p class="text-label-sm text-primary mb-1">PREDICTION</p>
+                                <p class="font-display-lg text-3xl text-primary font-bold">DOG</p>
+                            </div>
+                            <div class="p-6 bg-secondary/10 border border-secondary/20 rounded-2xl">
+                                <p class="text-label-sm text-secondary mb-1">CONFIDENCE</p>
+                                <p class="font-display-lg text-3xl text-secondary font-bold">99.2%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full bg-gradient-to-r from-primary via-primary-container to-secondary text-on-primary py-6 rounded-2xl font-extrabold text-xl glow-primary transition-all active:scale-95 shadow-[0_10px_40px_rgba(192,193,255,0.2)]">
+                        Classify Image
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Features -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                <div
+                    class="p-10 glass-panel rounded-3xl border border-white/5 hover:bg-white/5 transition-all duration-300">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Real-time Analysis</h3>
+                    <p class="text-on-surface-variant font-body-md">Low-latency prediction pipelines capable of
+                        processing video streams at 60 FPS on modern hardware.</p>
+                </div>
+                <div
+                    class="p-10 glass-panel rounded-3xl border border-white/5 hover:bg-white/5 transition-all duration-300">
+                    <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-secondary" data-icon="layers">layers</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Deep Learning</h3>
+                    <p class="text-on-surface-variant font-body-md">Utilizing multi-layered convolutional blocks with
+                        residual connections for superior accuracy.</p>
+                </div>
+                <div
+                    class="p-10 glass-panel rounded-3xl border border-white/5 hover:bg-white/5 transition-all duration-300">
+                    <div class="w-12 h-12 bg-tertiary/10 rounded-xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-tertiary"
+                            data-icon="verified_user">verified_user</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Secure</h3>
+                    <p class="text-on-surface-variant font-body-md">End-to-end encrypted inference ensures that your
+                        personal pet photos remain private and localized.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-white/5 bg-surface-container-lowest">
+        <div
+            class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter">
+            <div class="font-headline-md text-headline-md text-on-surface font-bold tracking-tighter">AURA AI</div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Back to Projects</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">View GitHub</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Live Demo</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Privacy Policy</a>
+            </div>
+            <p class="text-on-surface-variant font-label-sm text-label-sm">
+                © 2024 AURA AI Portfolio. Built with Neural Precision.
+            </p>
+        </div>
+    </footer>
+    <script>
+        // Micro-interactions for the upload area
+        const dropZone = document.querySelector('.glass-panel.border-dashed');
+        if (dropZone) {
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('border-primary');
+                dropZone.classList.remove('border-primary/30');
+            });
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('border-primary');
+                dropZone.classList.add('border-primary/30');
+            });
+        }
+
+        // Atmosphere: Subtle mouse glow effect
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            document.body.style.setProperty('--mouse-x', x);
+            document.body.style.setProperty('--mouse-y', y);
+        });
+    </script>
+</body>
+
+</html>

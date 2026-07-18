@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AgriVision | Crop Disease Classification</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background-color: #131314;
+            color: #e5e2e3;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-surface {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(192, 193, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .agri-gradient-text {
+            background: linear-gradient(135deg, #c0c1ff 0%, #4cd7f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pulse-dot {
+            box-shadow: 0 0 0 0 rgba(76, 215, 246, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(76, 215, 246, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(76, 215, 246, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(76, 215, 246, 0);
+            }
+        }
+
+        .mesh-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(192, 193, 255, 0.08) 0%, rgba(76, 215, 246, 0.05) 50%, transparent 100%);
+            filter: blur(80px);
+            z-index: -1;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#acedff",
+                        "surface-container": "#201f20",
+                        "on-secondary": "#490080",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "surface-tint": "#c0c1ff",
+                        "tertiary": "#4cd7f6",
+                        "secondary-fixed": "#f0dbff",
+                        "surface-container-highest": "#353436",
+                        "outline": "#908fa0",
+                        "on-primary-fixed": "#07006c",
+                        "on-background": "#e5e2e3",
+                        "on-secondary-container": "#d6a9ff",
+                        "inverse-primary": "#494bd6",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "background": "#131314",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-secondary-fixed": "#2c0051",
+                        "primary-container": "#8083ff",
+                        "primary": "#c0c1ff",
+                        "outline-variant": "#464554",
+                        "secondary-container": "#6f00be",
+                        "surface-container-lowest": "#0e0e0f",
+                        "on-primary-container": "#0d0096",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-container-high": "#2a2a2b",
+                        "surface-dim": "#131314",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#313031",
+                        "surface-container-low": "#1c1b1c",
+                        "surface": "#131314",
+                        "on-error": "#690005",
+                        "tertiary-container": "#009eb9",
+                        "on-tertiary-container": "#002f38",
+                        "error-container": "#93000a",
+                        "surface-variant": "#353436",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "on-tertiary": "#003640",
+                        "inverse-surface": "#e5e2e3",
+                        "surface-bright": "#3a393a",
+                        "secondary": "#ddb7ff",
+                        "on-tertiary-fixed": "#001f26",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-primary": "#1000a9",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#2f2ebe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "mono-code": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "mono-code": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="antialiased">
+    <!-- Header -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-[0_0_30px_rgba(192,193,255,0.1)]">
+        <nav class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-20">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-tertiary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary-container text-[20px]"
+                        style="font-variation-settings: 'FILL' 1;">eco</span>
+                </div>
+                <span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 font-body-md text-body-md">
+                <a class="text-primary border-b-2 border-primary pb-1" href="#">Projects</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Resume</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="px-5 py-2 rounded-full border border-white/10 font-label-sm text-label-sm text-on-surface-variant hover:bg-white/5 transition-all">GitHub</button>
+                <button
+                    class="px-6 py-2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm hover:opacity-90 active:scale-95 duration-200">Connect</button>
+            </div>
+        </nav>
+    </header>
+    <main class="pt-32 pb-20 relative px-4">
+        <div class="mesh-glow top-0 right-[-10%]"></div>
+        <div class="mesh-glow bottom-[10%] left-[-10%] opacity-50"></div>
+        <!-- Hero Section -->
+        <section class="max-w-container-max mx-auto px-margin-desktop grid md:grid-cols-2 gap-16 items-center mb-24">
+            <div class="space-y-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-sm text-label-sm uppercase tracking-wider">
+                    <span class="pulse-dot w-2 h-2 rounded-full bg-tertiary"></span>
+                    Neural Diagnostic Core
+                </div>
+                <h1 class="font-display-lg text-display-lg agri-gradient-text leading-tight">
+                    AgriVision: Disease Classifier
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg leading-relaxed">
+                    Identifying botanical pathogens with neural precision to protect global yields. Our deep learning
+                    model analyzes cellular patterns in crops to prevent outbreak cycles.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span
+                        class="px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant font-mono-code text-mono-code">Python</span>
+                    <span
+                        class="px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant font-mono-code text-mono-code">TensorFlow</span>
+                    <span
+                        class="px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant font-mono-code text-mono-code">NumPy</span>
+                    <span
+                        class="px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant font-mono-code text-mono-code">Scikit-learn</span>
+                </div>
+            </div>
+            <div class="relative group">
+                <div
+                    class="absolute -inset-1 bg-gradient-to-r from-primary to-tertiary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000">
+                </div>
+                <div
+                    class="relative h-[400px] rounded-2xl overflow-hidden glass-surface flex items-center justify-center">
+                    <img class="w-full h-full object-cover opacity-80"
+                        data-alt="A futuristic agricultural AI illustration showing a close-up of a digital translucent leaf with microscopic neural network nodes highlighting different sections. The scene is set in a dark laboratory with glowing green and cyan light accents. High-tech holographic data overlays float around the leaf showing DNA sequences and classification metrics in a premium glassmorphic UI style."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbJAjkHGai8QoDdoNTxw-cNpuTb563Bdn2d_f97ILMz3rHPmWaj_5PQ8U-ZKEhCbAO-1xNY89rjDE_KZJNoswABZiE2OjNqZTRFuTPT7SQjloN4_AZ8p01bP3fBrfZOzlkDEtbYaK3-HUNv6tQkxCa35OXyyPZyOmP6kKuFR3A5mSTh7_rzmikQH3iwpJwH8oE52ltXXX5PJIfw4lLbBUlDyy6JN_xzsSWeUeWiQYvaat8EKJnH7L1tciuQ6ob-ty3B9-Lacsp" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 flex items-center gap-4">
+                        <div class="p-3 rounded-xl glass-surface">
+                            <span class="material-symbols-outlined text-tertiary">biotech</span>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-white">Pathogen Scan v4.2</p>
+                            <p class="font-mono-code text-[10px] text-on-surface-variant">Active Monitoring Enabled</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Main Upload & Results Portal -->
+        <section class="max-w-container-max mx-auto px-margin-desktop grid lg:grid-cols-12 gap-gutter items-start">
+            <!-- Analysis Engine (Left) -->
+            <div class="lg:col-span-7 space-y-gutter">
+                <div class="glass-surface p-8 rounded-2xl border-t border-l border-white/10">
+                    <h2 class="font-headline-md text-headline-md mb-6 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">upload_file</span>
+                        Upload Portal
+                    </h2>
+                    <!-- Drag & Drop Zone -->
+                    <div class="relative group cursor-pointer border-2 border-dashed border-outline-variant rounded-2xl p-12 text-center hover:border-primary/50 transition-all bg-black/20"
+                        id="dropzone">
+                        <input class="absolute inset-0 opacity-0 cursor-pointer" id="fileInput" type="file" />
+                        <div class="space-y-4">
+                            <div
+                                class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto transition-transform group-hover:scale-110">
+                                <span class="material-symbols-outlined text-primary text-[32px]">photo_library</span>
+                            </div>
+                            <div>
+                                <p class="font-body-lg text-body-lg text-on-surface">Drop image here or <span
+                                        class="text-primary font-bold">browse</span></p>
+                                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Supports: JPG, PNG,
+                                    WEBP (Max 10MB)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Action Area -->
+                    <div class="mt-8 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center">
+                                <span class="material-symbols-outlined text-on-surface-variant">help</span>
+                            </div>
+                            <p class="font-label-sm text-label-sm text-on-surface-variant max-w-[200px]">Ensure the leaf
+                                is flat and well-lit for optimal accuracy.</p>
+                        </div>
+                        <button
+                            class="px-8 py-3 rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-headline-md font-bold flex items-center gap-2 hover:shadow-[0_0_20px_rgba(192,193,255,0.4)] transition-all">
+                            Analyze Leaf
+                            <span class="material-symbols-outlined">bolt</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Features Grid -->
+                <div class="grid grid-cols-3 gap-gutter">
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <span class="material-symbols-outlined text-tertiary mb-3">speed</span>
+                        <h4 class="font-label-sm text-label-sm font-bold text-on-surface">Real-time Analysis</h4>
+                        <p class="font-label-sm text-[11px] text-on-surface-variant mt-1">Sub-second inference times.
+                        </p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <span class="material-symbols-outlined text-tertiary mb-3">verified</span>
+                        <h4 class="font-label-sm text-label-sm font-bold text-on-surface">High Accuracy</h4>
+                        <p class="font-label-sm text-[11px] text-on-surface-variant mt-1">96%+ Confidence threshold.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <span class="material-symbols-outlined text-tertiary mb-3">satellite_alt</span>
+                        <h4 class="font-label-sm text-label-sm font-bold text-on-surface">Field Ready</h4>
+                        <p class="font-label-sm text-[11px] text-on-surface-variant mt-1">Optimized for mobile use.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Diagnostics & Prediction (Right) -->
+            <div class="lg:col-span-5 space-y-gutter">
+                <div class="glass-surface p-8 rounded-2xl border-t border-l border-white/10 h-full">
+                    <h3 class="font-headline-md text-headline-md mb-8">Classification Results</h3>
+                    <!-- Prediction Card -->
+                    <div class="space-y-8">
+                        <div class="relative p-6 rounded-2xl bg-black/40 border border-white/5 overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="px-3 py-1 rounded-full bg-error-container/20 border border-error-container/40 text-error text-[10px] uppercase font-bold tracking-widest">Infection
+                                    Detected</span>
+                            </div>
+                            <div class="flex items-start gap-6">
+                                <div
+                                    class="w-32 h-32 rounded-xl overflow-hidden border border-white/10 bg-surface-container">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="A close up detailed macro shot of a potato leaf showing circular brown spots typical of early blight disease. The lighting is focused and scientific, highlighting the texture of the fungal infection against the green leaf structure. Dark background with subtle UI grid overlays."
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmnxAV2q4f0V5WrjDz4EHXRmrrkbBSuJ7AjYZ-SsEdsoWpdml6JXe7ixFBzlzN0uwsuyhI7t6kJauU0UHUQ6PHJh3OtGTJgfb8T-6wOYB7u_HtXHrLixbKb2Dj8mXjxG5FcKMcdu1nBODCH4bWHCwcfOoXnP0ivuUzOA0iH39Deb0OdJrJT4E8nzEPsSTshpYrlli1pjbUPLRwqQr56Br-UpkC390jRw2IYUQosLLw-MjAwYCjaH28T98vg5D_SkEoRf1olmJl" />
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Identified
+                                        Pathogen</p>
+                                    <h4 class="font-headline-md text-headline-md text-error mb-2">Early Blight Detected
+                                    </h4>
+                                    <div class="flex items-center gap-2">
+                                        <div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                                            <div class="h-full bg-error w-[96%]"></div>
+                                        </div>
+                                        <span class="font-mono-code text-mono-code text-error">96%</span>
+                                    </div>
+                                    <p class="font-label-sm text-[12px] text-on-surface-variant mt-3">Suggested:
+                                        Copper-based fungicide application.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Secondary Predictions -->
+                        <div class="space-y-4">
+                            <h5 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">
+                                Probability Mapping</h5>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center glass-card p-3 rounded-xl px-4">
+                                    <span class="font-body-md text-body-md">Healthy Leaf</span>
+                                    <span class="font-mono-code text-mono-code text-on-surface-variant">3.2%</span>
+                                </div>
+                                <div class="flex justify-between items-center glass-card p-3 rounded-xl px-4">
+                                    <span class="font-body-md text-body-md">Late Blight</span>
+                                    <span class="font-mono-code text-mono-code text-on-surface-variant">0.8%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Technical Meta -->
+                        <div class="pt-8 border-t border-white/5 space-y-2">
+                            <div class="flex justify-between font-mono-code text-[12px] text-on-surface-variant">
+                                <span>Processing Time</span>
+                                <span>142ms</span>
+                            </div>
+                            <div class="flex justify-between font-mono-code text-[12px] text-on-surface-variant">
+                                <span>Model Architecture</span>
+                                <span>ResNet-50-V2</span>
+                            </div>
+                            <div class="flex justify-between font-mono-code text-[12px] text-on-surface-variant">
+                                <span>Input Dim</span>
+                                <span>224 x 224 x 3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 bg-surface-container-lowest border-t border-white/5">
+        <div
+            class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter">
+            <div class="space-y-2">
+                <span class="font-headline-md text-headline-md text-on-surface">AURA AI</span>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 AURA AI Portfolio. Built with
+                    Neural Precision.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Back to Projects</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors hover:underline decoration-tertiary underline-offset-4"
+                    href="#">View GitHub</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Live Demo</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors hover:underline decoration-tertiary underline-offset-4"
+                    href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Micro-interactions for File Upload
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('border-primary', 'bg-primary/5');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('border-primary', 'bg-primary/5');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('border-primary', 'bg-primary/5');
+            // Mock handle file
+            console.log("File dropped:", e.dataTransfer.files[0].name);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                console.log("File selected:", e.target.files[0].name);
+            }
+        });
+    </script>
+</body>
+
+</html>

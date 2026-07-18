@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Technical Arsenal | AI Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-primary: rgba(173, 198, 255, 0.5);
+            --neon-secondary: rgba(221, 183, 255, 0.5);
+            --neon-tertiary: rgba(76, 215, 246, 0.5);
+        }
+
+        body {
+            background-color: #050505;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(12px);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .neon-border-blue:hover {
+            border-color: #adc6ff;
+            box-shadow: 0 0 20px rgba(173, 198, 255, 0.2);
+        }
+
+        .neon-border-purple:hover {
+            border-color: #ddb7ff;
+            box-shadow: 0 0 20px rgba(221, 183, 255, 0.2);
+        }
+
+        .neon-border-cyan:hover {
+            border-color: #4cd7f6;
+            box-shadow: 0 0 20px rgba(76, 215, 246, 0.2);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.3;
+            animation: float 20s infinite alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 100px) scale(1.2);
+            }
+        }
+
+        .circular-progress {
+            --size: 120px;
+            --half-size: calc(var(--size) / 2);
+            --stroke-width: 8px;
+            --radius: calc(var(--half-size) - (var(--stroke-width) / 2));
+            --circumference: calc(2 * pi * var(--radius));
+            width: var(--size);
+            height: var(--size);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: var(--stroke-width);
+        }
+
+        .circle-fg {
+            fill: none;
+            stroke-width: var(--stroke-width);
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease-out;
+        }
+
+        .progress-bar-container {
+            background: rgba(255, 255, 255, 0.05);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.1, 0, 0.1, 1);
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#009eb9",
+                        "surface-variant": "#353534",
+                        "surface-container": "#201f1f",
+                        "error-container": "#93000a",
+                        "tertiary": "#4cd7f6",
+                        "on-secondary-fixed": "#2c0051",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#005ac2",
+                        "surface-tint": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "secondary": "#ddb7ff",
+                        "on-primary-fixed-variant": "#004395",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "outline": "#8c909f",
+                        "secondary-container": "#6f00be",
+                        "inverse-surface": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-container": "#002f38",
+                        "primary-container": "#4d8eff",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "surface": "#131313",
+                        "on-primary-container": "#00285d",
+                        "tertiary-fixed": "#acedff",
+                        "surface-dim": "#131313",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary": "#adc6ff",
+                        "background": "#131313",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "on-tertiary": "#003640",
+                        "on-secondary-container": "#d6a9ff",
+                        "on-background": "#e5e2e1",
+                        "on-primary": "#002e6a",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline-variant": "#424754",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary-fixed": "#f0dbff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary": "#490080",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#004e5c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "headline-sm": ["Sora"],
+                        "headline-xl": ["Sora"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["40px", { "lineHeight": "1.1", "fontWeight": "700" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="antialiased">
+    <!-- Background Atmospheric Elements -->
+    <div class="blob bg-primary w-[400px] h-[400px] top-[-100px] left-[-100px]"></div>
+    <div class="blob bg-secondary w-[500px] h-[500px] bottom-[10%] right-[-100px]"></div>
+    <div class="blob bg-tertiary w-[300px] h-[300px] top-[40%] left-[20%]"></div>
+    <!-- Navigation Shell -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(173,198,255,0.1)]">
+        <div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+            <span class="font-headline-sm text-headline-sm font-bold text-primary">AI Engineer</span>
+            <div class="hidden md:flex gap-8">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md"
+                    href="/">Home</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md"
+                    href="/profile">Profile</a>
+                <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md"
+                    href="/skills">Skills</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md"
+                    href="/contacts">Contact</a>
+            </div>
+            <a href="/download_resume">
+                <button
+                    class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:bg-white/10 transition-all duration-300 active:scale-95">
+                    Download Resume
+                </button>
+            </a>
+        </div>
+    </nav>
+    <main class="pt-32">
+        <!-- Hero Section -->
+        <section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap text-center">
+            <h1 class="font-headline-xl text-headline-xl mb-4 tracking-tight">Technical Arsenal</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                A masterclass in modern AI and backend architecture. Crafting intelligent systems with precision,
+                scalability, and high-performance engineering.
+            </p>
+        </section>
+        <!-- Skills Grid -->
+        <section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                <!-- Backend Development Card -->
+                <div class="glass-card rounded-lg p-8 neon-border-blue flex flex-col items-center text-center">
+                    <div class="mb-6 relative">
+                        <svg class="circular-progress" viewbox="0 0 120 120">
+                            <circle class="circle-bg" cx="60" cy="60" r="54"></circle>
+                            <circle class="circle-fg stroke-primary" cx="60" cy="60" r="54"
+                                style="stroke-dasharray: 339.29; stroke-dashoffset: 16.96;"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="font-headline-sm text-headline-sm text-primary">95%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm mb-4">Backend Development</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Building robust server-side
+                        infrastructures that power enterprise-level applications.</p>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span
+                            class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-label-md text-label-md">Flask</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-label-md text-label-md">REST
+                            APIs</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-label-md text-label-md">JWT</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-label-md text-label-md">PostgreSQL</span>
+                    </div>
+                </div>
+                <!-- Machine Learning & DL Card -->
+                <div class="glass-card rounded-lg p-8 neon-border-purple">
+                    <div
+                        class="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center mb-6 border border-secondary/20">
+                        <span class="material-symbols-outlined text-secondary text-4xl">neurology</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm mb-4">Machine Learning &amp; DL</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-8">Implementing complex neural
+                        networks and predictive models for high-stakes decision making.</p>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-label-md text-label-md text-on-surface-variant">Model Accuracy</span>
+                                <span class="font-label-md text-label-md text-secondary">90%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill bg-secondary" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-label-md text-label-md">Scikit-learn</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-label-md text-label-md">TensorFlow</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-label-md text-label-md">Keras</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-label-md text-label-md">OpenCV</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Generative AI Card -->
+                <div class="glass-card rounded-lg p-8 neon-border-cyan flex flex-col">
+                    <div
+                        class="w-full h-40 rounded-xl overflow-hidden mb-6 border border-white/5 bg-surface-container relative">
+                        <img src="{{url_for('static',filename='/image.png')}}" alt="">
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm mb-4">Generative AI</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-8">Harnessing LLMs and Vector Search
+                        to build the next generation of intuitive AI agents.</p>
+                    <div class="mt-auto grid grid-cols-2 gap-3">
+                        <div
+                            class="flex items-center gap-2 px-4 py-3 rounded-lg bg-tertiary/10 border border-tertiary/20 shadow-[0_0_15px_rgba(76,215,246,0.1)]">
+                            <span class="material-symbols-outlined text-tertiary text-lg">auto_awesome</span>
+                            <span class="font-label-md text-label-md text-tertiary">LangChain</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-4 py-3 rounded-lg bg-tertiary/10 border border-tertiary/20">
+                            <span class="material-symbols-outlined text-tertiary text-lg">database</span>
+                            <span class="font-label-md text-label-md text-tertiary">Pinecone</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-4 py-3 rounded-lg bg-tertiary/10 border border-tertiary/20">
+                            <span class="material-symbols-outlined text-tertiary text-lg">schema</span>
+                            <span class="font-label-md text-label-md text-tertiary">Vector DBs</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-4 py-3 rounded-lg bg-tertiary/10 border border-tertiary/20">
+                            <span class="material-symbols-outlined text-tertiary text-lg">robot</span>
+                            <span class="font-label-md text-label-md text-tertiary">RAG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Advanced Capabilities (Bento Style) -->
+        <section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+            <h2 class="font-headline-md text-headline-md mb-12">Core Competencies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-gutter h-auto md:h-[600px]">
+                <div class="md:col-span-2 md:row-span-2 glass-card rounded-lg p-10 flex flex-col justify-end group">
+                    <div class="mb-auto">
+                        <span class="material-symbols-outlined text-primary text-5xl mb-4">cloud_done</span>
+                        <h3 class="font-headline-lg text-headline-lg leading-tight mb-4">Scalable Projects Done
+                        </h3>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant">Deploying highly available systems
+                            on Render,Python Anywhere and Vercel with Github/Git.</p>
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-white/5">
+                            <span class="material-symbols-outlined text-primary">terminal</span>
+                        </div>
+                        <div
+                            class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-white/5">
+                            <span class="material-symbols-outlined text-secondary">monitoring</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-2 glass-card rounded-lg p-8 flex items-center gap-8 neon-border-cyan">
+                    <div class="flex-1">
+                        <h4 class="font-headline-sm text-headline-sm mb-2">Performance Optimization</h4>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Reducing inference latency by 40%
+                            through model quantization and caching strategies.</p>
+                    </div>
+                    <div
+                        class="w-24 h-24 shrink-0 rounded-full bg-tertiary/5 border border-tertiary/20 flex items-center justify-center overflow-hidden">
+
+                    </div>
+                </div>
+                <div
+                    class="md:col-span-1 glass-card rounded-lg p-6 flex flex-col justify-center text-center bg-primary/5 border-primary/20">
+                    <span class="font-headline-lg text-headline-lg text-primary">500k+</span>
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-2">API
+                        Calls/Day</span>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+            <div class="glass-card rounded-xl p-12 text-center relative overflow-hidden">
+                <div class="absolute inset-0 pointer-events-none opacity-20">
+
+                </div>
+                <div class="relative z-10">
+                    <h2 class="font-headline-lg text-headline-lg mb-6">Ready to build the future?</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl mx-auto">
+                        Let's collaborate on your next AI breakthrough. I'm available for technical consultation and
+                        architecture design.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/contacts">
+                            <button
+                                class="bg-primary text-on-primary px-10 py-4 rounded-full font-label-md text-label-md font-bold transition-all hover:shadow-[0_0_30px_rgba(173,198,255,0.4)] active:scale-95">
+                                Start a Project
+                            </button>
+                        </a>
+                        <a href="/">
+                            <button
+                                class="px-10 py-4 rounded-full border border-white/20 glass-card font-label-md text-label-md font-bold hover:bg-white/10 active:scale-95">
+                                View Work
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Shell -->
+    <footer class="w-full py-16 bg-background border-t border-outline-variant/20">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-gutter">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="font-headline-sm text-headline-sm text-primary font-bold">AI Engineer</span>
+                <p class="font-body-md text-body-md text-on-surface-variant">© 2024 AI Engineer Portfolio. Built with
+                    precision.</p>
+            </div>
+            <div class="flex gap-12">
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-md text-label-md transition-opacity hover:opacity-80"
+                    href="https://github.com/kvkdev-ml" target="_blank">GitHub</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-md text-label-md transition-opacity hover:opacity-80"
+                    href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">LinkedIn</a>
+                <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-md text-label-md transition-opacity hover:opacity-80"
+                    href="#">kvkwork05@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Micro-interactions for skill cards appearance
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>

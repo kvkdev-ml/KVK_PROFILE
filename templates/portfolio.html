@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KVK | Architecting Intelligent Systems</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-fixed": "#d8e2ff",
+                        "on-tertiary": "#003640",
+                        "on-primary-container": "#00285d",
+                        "outline-variant": "#424754",
+                        "on-secondary-container": "#d6a9ff",
+                        "tertiary": "#4cd7f6",
+                        "primary": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#acedff",
+                        "inverse-on-surface": "#313030",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-container-highest": "#353534",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#2c0051",
+                        "on-secondary": "#490080",
+                        "on-tertiary-container": "#002f38",
+                        "outline": "#8c909f",
+                        "surface-variant": "#353534",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "surface-bright": "#3a3939",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#005ac2",
+                        "on-primary": "#002e6a",
+                        "error": "#ffb4ab",
+                        "primary-container": "#4d8eff",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "secondary": "#ddb7ff",
+                        "tertiary-container": "#009eb9",
+                        "secondary-container": "#6f00be",
+                        "background": "#131313",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container": "#201f1f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-fixed": "#f0dbff",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#001f26",
+                        "tertiary-fixed-dim": "#4cd7f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "headline-xl": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "headline-xl-mobile": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-xl-mobile": ["40px", { "lineHeight": "1.1", "fontWeight": "700" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-8px) scale(1.01);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .neon-blue:hover {
+            box-shadow: 0 20px 40px -10px rgba(173, 198, 255, 0.15);
+        }
+
+        .neon-purple:hover {
+            box-shadow: 0 20px 40px -10px rgba(221, 183, 255, 0.15);
+        }
+
+        .neon-cyan:hover {
+            box-shadow: 0 20px 40px -10px rgba(76, 215, 246, 0.15);
+        }
+
+        .light-leak {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md">
+    <!-- Background Shader -->
+    <div class="fixed inset-0 z-[-2] pointer-events-none">
+        <!-- STITCH_SHADER_START:ANIMATION_3 class="absolute inset-0 w-full h-full opacity-40" -->
+        <div class="absolute inset-0 w-full h-full opacity-40" style="display:block;">
+            <canvas id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%"></canvas>
+            <script>
+                    (function () {
+                        const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+
+                        // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+                        // This fires on initial layout and whenever the element is resized.
+                        function syncSize() {
+                            const w = canvas.clientWidth || 1280;
+                            const h = canvas.clientHeight || 720;
+                            if (canvas.width !== w || canvas.height !== h) {
+                                canvas.width = w;
+                                canvas.height = h;
+                            }
+                        }
+                        if (typeof ResizeObserver !== 'undefined') {
+                            new ResizeObserver(syncSize).observe(canvas);
+                        }
+                        syncSize();
+
+                        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                        if (!gl) return;
+                        const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+                        const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec3 color1 = vec3(0.02, 0.05, 0.1); // Deep Dark
+    vec3 color2 = vec3(0.2, 0.1, 0.4); // Purple
+    vec3 color3 = vec3(0.1, 0.3, 0.5); // Blue
+    
+    float noise1 = sin(uv.x * 10.0 + u_time * 0.5) * cos(uv.y * 10.0 + u_time * 0.5);
+    float noise2 = sin(uv.x * 5.0 - u_time * 0.3) * sin(uv.y * 8.0 + u_time * 0.2);
+    
+    vec3 finalColor = mix(color1, color2, noise1 * 0.5 + 0.5);
+    finalColor = mix(finalColor, color3, noise2 * 0.5 + 0.5);
+    
+    // Add subtle vignetting
+    float dist = distance(uv, vec2(0.5));
+    finalColor *= 1.0 - dist * 0.5;
+    
+    gl_FragColor = vec4(finalColor * 0.4, 1.0);
+}`;
+                        function cs(type, src) {
+                            const s = gl.createShader(type);
+                            gl.shaderSource(s, src);
+                            gl.compileShader(s);
+                            return s;
+                        }
+                        const prog = gl.createProgram();
+                        gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+                        gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+                        gl.linkProgram(prog);
+                        gl.useProgram(prog);
+                        const buf = gl.createBuffer();
+                        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+                        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+                        const pos = gl.getAttribLocation(prog, 'a_position');
+                        gl.enableVertexAttribArray(pos);
+                        gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+                        const uTime = gl.getUniformLocation(prog, 'u_time');
+                        const uRes = gl.getUniformLocation(prog, 'u_resolution');
+                        const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+                        // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+                        // Shaders that need normalized coords should use: u_mouse / u_resolution.
+                        let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+                        window.addEventListener('mousemove', (event) => {
+                            const rect = canvas.getBoundingClientRect();
+                            if (rect.width && rect.height) {
+                                const nx = (event.clientX - rect.left) / rect.width;
+                                const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                                mouse.x = nx * canvas.width;
+                                mouse.y = ny * canvas.height;
+                            }
+                        });
+
+                        function render(t) {
+                            if (typeof ResizeObserver === 'undefined') syncSize();
+                            gl.viewport(0, 0, canvas.width, canvas.height);
+                            if (uTime) gl.uniform1f(uTime, t * 0.001);
+                            if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                            if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                            requestAnimationFrame(render);
+                        }
+                        render(0);
+                    })();
+            </script>
+        </div>
+        <!-- STITCH_SHADER_END:ANIMATION_3 -->
+    </div>
+    <!-- Decorative Blobs -->
+    <div class="light-leak bg-primary top-[-10%] left-[-10%]"></div>
+    <div class="light-leak bg-secondary bottom-[-10%] right-[-10%]"></div>
+    <div class="light-leak bg-tertiary top-[40%] right-[10%] opacity-20"></div>
+    <!-- Top Navigation Bar -->
+    <nav
+        class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1200px] rounded-full border border-white/10 bg-surface/30 bg-white/5 backdrop-blur-xl shadow-[0_0_30px_rgba(173,198,255,0.1)] flex justify-between items-center px-8 py-3 z-50">
+        <div class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">K Vishal Kumar</div>
+        <div class="hidden md:flex items-center space-x-8">
+            <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-all duration-300 hover:scale-105"
+                href="/">Home</a>
+            <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 hover:scale-105"
+                href="/profile">Profile</a>
+            <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 hover:scale-105"
+                href="/skills">Skills</a>
+            <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 hover:scale-105"
+                href="/contacts">Contact</a>
+        </div>
+        <a href="/download_resume">
+            <button
+                class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-md text-label-md font-bold hover:scale-105 active:scale-95 transition-all duration-200">
+                Download Resume
+            </button>
+        </a>
+    </nav>
+    <main class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop pt-40">
+        <!-- Hero Section -->
+        <section class="flex flex-col items-center text-center mb-section-gap relative">
+            <div
+                class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/20 blur-[120px] pointer-events-none">
+            </div>
+            <h1
+                class="font-headline-xl text-headline-xl mb-6 tracking-tighter bg-gradient-to-br from-primary via-white to-secondary bg-clip-text text-transparent drop-shadow-sm md:font-headline-xl font-headline-xl-mobile md:text-headline-xl text-headline-xl-mobile">
+                K Vishal Kumar
+            </h1>
+            <p
+                class="font-headline-md text-headline-md text-on-surface-variant max-w-2xl leading-tight font-medium md:font-headline-md font-headline-md text-headline-md">
+                Architecting Intelligent Systems. <br />
+                <span class="text-primary">Engineering the Future of AI.</span>
+            </p>
+            <div class="mt-12 flex space-x-4">
+                <div class="animate-float">
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary opacity-50">keyboard_double_arrow_down</span>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Grid Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-section-gap">
+            <!-- ML Projects Card -->
+            <div class="glass-card neon-blue p-10 rounded-xl flex flex-col h-full group" id="ml-card">
+                <div
+                    class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-8 border border-primary/20">
+                    <span class="material-symbols-outlined text-primary">analytics</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm mb-4">Machine Learning Projects</h3>
+                <p class="text-on-surface-variant mb-8 font-body-md text-body-md opacity-80">Traditional Machine
+                    Learning applications built using Scikit-learn and Flask.</p>
+                <ul class="space-y-4 mb-auto">
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        <span class="font-label-md text-label-md">Diabetic Prediction</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        <span class="font-label-md text-label-md">Heart Disease Prediction</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        <span class="font-label-md text-label-md">Crop Recommendation</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        <span class="font-label-md text-label-md">Email Spam Classification</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        <span class="font-label-md text-label-md">Sentiment Analysis</span>
+                    </li>
+                </ul>
+                <a class="mt-12 flex items-center justify-between group/btn text-primary font-bold font-label-md text-label-md"
+                    href="/projects/ML">
+                    <span>Explore ML Projects</span>
+                    <span
+                        class="material-symbols-outlined transition-transform group-hover/btn:translate-x-2">arrow_forward</span>
+                </a>
+            </div>
+            <!-- DL Projects Card -->
+            <div class="glass-card neon-purple p-10 rounded-xl flex flex-col h-full group" id="dl-card">
+                <div
+                    class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-8 border border-secondary/20">
+                    <span class="material-symbols-outlined text-secondary">visibility</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm mb-4">Deep Learning Projects</h3>
+                <p class="text-on-surface-variant mb-8 font-body-md text-body-md opacity-80">Computer Vision and
+                    CNN-based intelligent image classification systems.</p>
+                <ul class="space-y-4 mb-auto">
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        <span class="font-label-md text-label-md">Dog vs Cat</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        <span class="font-label-md text-label-md">Wound Classification</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                        <span class="font-label-md text-label-md">Crop Disease</span>
+                    </li>
+                </ul>
+                <a class="mt-12 flex items-center justify-between group/btn text-secondary font-bold font-label-md text-label-md"
+                    href="/projects/DL">
+                    <span>Explore DL Projects</span>
+                    <span
+                        class="material-symbols-outlined transition-transform group-hover/btn:translate-x-2">arrow_forward</span>
+                </a>
+            </div>
+            <!-- GenAI Projects Card -->
+            <div class="glass-card neon-cyan p-10 rounded-xl flex flex-col h-full group" id="genai-card">
+                <div
+                    class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center mb-8 border border-tertiary/20">
+                    <span class="material-symbols-outlined text-tertiary">psychology</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm mb-4">Generative AI Projects</h3>
+                <p class="text-on-surface-variant mb-8 font-body-md text-body-md opacity-80">Modern LLM-powered
+                    applications using RAG, Vector Databases, and AI Agents.</p>
+                <ul class="space-y-4 mb-auto">
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        <span class="font-label-md text-label-md">AI Health Companion</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        <span class="font-label-md text-label-md">Ayurvedic RAG Assistant</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        <span class="font-label-md text-label-md">Intelligent Document QA</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        <span class="font-label-md text-label-md">AI Code Debugger</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-on-surface/90">
+                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        <span class="font-label-md text-label-md">Multi-Agent AI Assistant</span>
+                    </li>
+                </ul>
+                <a class="mt-12 flex items-center justify-between group/btn text-tertiary font-bold font-label-md text-label-md"
+                    href="genai-projects.html">
+                    <span>Explore GenAI Projects</span>
+                    <span
+                        class="material-symbols-outlined transition-transform group-hover/btn:translate-x-2">arrow_forward</span>
+                </a>
+            </div>
+        </section>
+        <!-- Stats / Proof Bento Mini -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-section-gap">
+            <div
+                class="md:col-span-8 glass-card p-12 rounded-xl flex items-center justify-between overflow-hidden relative">
+                <div class="relative z-10">
+                    <h4 class="font-headline-sm text-headline-sm mb-2">Systems Engineered</h4>
+                    <p class="text-on-surface-variant font-body-md text-body-md max-w-sm">From simple classifiers to
+                        complex multi-agent frameworks, I build for scale and precision.</p>
+                </div>
+                <div class="text-right relative z-10">
+                    <span class="font-headline-lg text-headline-lg text-primary block">15+</span>
+                    <span
+                        class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">End-to-End
+                        Projects</span>
+                </div>
+                <div
+                    class="absolute right-0 top-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_right,rgba(173,198,255,0.4),transparent)]">
+                </div>
+            </div>
+            <div class="md:col-span-4 glass-card p-12 rounded-xl flex flex-col justify-center items-center text-center">
+                <span class="material-symbols-outlined text-4xl text-secondary mb-4"
+                    style="font-variation-settings: 'FILL' 1;">terminal</span>
+                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Stack
+                    Expertise</span>
+                <p class="font-headline-sm text-headline-sm mt-2 text-on-surface">Backend • AIML • Python</p>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="border-t border-white/5 mt-section-gap w-full max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center py-12 px-margin-mobile md:px-margin-desktop bg-transparent">
+        <div class="font-headline-sm text-headline-sm text-on-surface mb-6 md:mb-0">KVK</div>
+        <div class="flex flex-col items-center md:items-end">
+            <div class="flex space-x-8 mb-4">
+                <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors"
+                    href="https://github.com/kvkdev-ml" target="_blank">GitHub</a>
+                <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors"
+                    href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">LinkedIn</a>
+                <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors"
+                    href="">kvkwork05@gmail.com</a>
+            </div>
+            <p class="text-tertiary font-body-md text-body-md opacity-60">© 2024 KVK. Engineered for Performance.</p>
+        </div>
+    </footer>
+    <script>
+        // Mouse Parallax for cards
+        const cards = document.querySelectorAll('.glass-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+
+                // Dynamic border glow effect
+                const xPct = (x / rect.width) * 100;
+                const yPct = (y / rect.height) * 100;
+                card.style.borderImage = `radial-gradient(circle at ${xPct}% ${yPct}%, rgba(255,255,255,0.4), transparent) 1`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+                card.style.borderImage = 'none';
+                card.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+            });
+        });
+
+        // Smooth scroll revealing
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section, .glass-card').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

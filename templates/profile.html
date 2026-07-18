@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Profile | KVK Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Sora:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-fixed": "#d8e2ff",
+                        "on-tertiary": "#003640",
+                        "on-primary-container": "#00285d",
+                        "outline-variant": "#424754",
+                        "on-secondary-container": "#d6a9ff",
+                        "tertiary": "#4cd7f6",
+                        "primary": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#acedff",
+                        "inverse-on-surface": "#313030",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-container-highest": "#353534",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#2c0051",
+                        "on-secondary": "#490080",
+                        "on-tertiary-container": "#002f38",
+                        "outline": "#8c909f",
+                        "surface-variant": "#353534",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "surface-bright": "#3a3939",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#005ac2",
+                        "on-primary": "#002e6a",
+                        "error": "#ffb4ab",
+                        "primary-container": "#4d8eff",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "secondary": "#ddb7ff",
+                        "tertiary-container": "#009eb9",
+                        "secondary-container": "#6f00be",
+                        "background": "#131313",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container": "#201f1f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-fixed": "#f0dbff",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#001f26",
+                        "tertiary-fixed-dim": "#4cd7f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "headline-xl": ["Sora"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(173, 198, 255, 0.4);
+            box-shadow: 0 0 30px rgba(173, 198, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .neon-border {
+            position: relative;
+        }
+
+        .neon-border::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typewriter::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .circular-progress {
+            --size: 120px;
+            --thickness: 8px;
+            --percent: 0;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(closest-side, #131313 75%, transparent 0 99.9%, #131313 0),
+                conic-gradient(var(--tw-color-primary) calc(var(--percent) * 1%), #2a2a2a 0);
+            transition: --percent 1s ease-in-out;
+        }
+
+        @property --percent {
+            syntax: '<number>';
+            inherits: false;
+            initial-value: 0;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md antialiased">
+    <!-- Background Shader -->
+    <div class="fixed inset-0 z-[-1] opacity-40">
+
+    </div>
+    <!-- Navigation (Shell) -->
+    <nav
+        class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1200px] rounded-full bg-white/5 backdrop-blur-xl border border-white/10 bg-surface/30 shadow-[0_0_30px_rgba(173,198,255,0.1)] flex justify-between items-center px-8 py-3 z-50">
+        <div class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">KVK</div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300 hover:scale-105"
+                href="/">Home</a>
+            <a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300 hover:scale-105"
+                href="/profile">Profile</a>
+            <a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300 hover:scale-105"
+                href="/skills">Skills</a>
+            <a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300 hover:scale-105"
+                href="/contact">Contact</a>
+        </div>
+        <a href="/download_resume">
+            <button
+                class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md font-bold hover:scale-105 transition-all active:scale-95 shadow-[0_0_20px_rgba(173,198,255,0.3)]">
+                Download Resume
+            </button>
+        </a>
+    </nav>
+    <main class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop pt-40 pb-section-gap overflow-hidden">
+        <!-- Hero Section -->
+        <section class="flex flex-col items-center text-center reveal">
+            <div class="relative mb-8">
+                <div
+                    class="w-48 h-48 md:w-64 md:h-64 rounded-full p-1 bg-gradient-to-tr from-primary via-secondary to-tertiary animate-pulse">
+                    <div
+                        class="w-full h-full rounded-full bg-surface-container-lowest overflow-hidden border-4 border-surface">
+                        <img class="w-full h-full object-cover" src="{{url_for('static',filename='/image.png')}}">
+                    </div>
+                </div>
+                <div
+                    class="absolute -bottom-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/20">
+                    <span class="material-symbols-outlined text-on-primary">verified</span>
+                </div>
+            </div>
+            <h1 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface mb-4">K Vishal Kumar
+            </h1>
+            <div class="h-12">
+                <p class="typewriter font-headline-md text-headline-sm md:text-headline-md text-primary tracking-tight"
+                    id="typewriter"></p>
+            </div>
+        </section>
+        <!-- Statistics Section -->
+        <section class="mt-section-gap grid grid-cols-2 md:grid-cols-5 gap-6 reveal">
+            <div class="glass-card p-6 rounded-lg text-center">
+                <div class="font-headline-lg text-headline-md text-primary counter" data-target="10">0</div>
+                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Projects
+                </div>
+            </div>
+            <div class="glass-card p-6 rounded-lg text-center">
+                <div class="font-headline-lg text-headline-md text-secondary counter" data-target="25">0</div>
+                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">ML
+                    Models</div>
+            </div>
+            <div class="glass-card p-6 rounded-lg text-center">
+                <div class="font-headline-lg text-headline-md text-tertiary counter" data-target="10">0</div>
+                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Tech
+                    Stack</div>
+            </div>
+            <div class="glass-card p-6 rounded-lg text-center">
+                <div class="font-headline-lg text-headline-md text-primary-container counter" data-target="5">0</div>
+                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Repos
+                </div>
+            </div>
+            <div class="glass-card p-6 rounded-lg text-center col-span-2 md:col-span-1">
+                <div class="font-headline-lg text-headline-md text-on-surface counter" data-target="3">0</div>
+                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Years
+                    Exp</div>
+            </div>
+        </section>
+        <!-- About & Skills Bento -->
+        <section class="mt-section-gap grid grid-cols-1 md:grid-cols-12 gap-8 reveal">
+            <!-- About Me -->
+            <div class="md:col-span-7 glass-card p-10 rounded-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
+                <h2 class="font-headline-lg text-headline-md text-on-surface mb-6 flex items-center gap-4">
+                    <span class="material-symbols-outlined text-primary">person</span>
+                    About Me
+                </h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    I am a dedicated Backend AI Engineer focused on architecting intelligent systems that bridge the gap
+                    between raw data and actionable insights. With a deep mastery in <span
+                        class="text-primary font-semibold">LLM orchestration</span> and <span
+                        class="text-secondary font-semibold">Generative AI</span>, I build scalable infrastructures
+                    using Flask and modern RAG (Retrieval-Augmented Generation) pipelines.
+                    <br /><br />
+                    My philosophy revolves around precision engineering and performance optimization, ensuring that
+                    every model deployed contributes meaningfully to the user experience while maintaining
+                    enterprise-grade reliability.
+                </p>
+            </div>
+            <!-- Core Skills (Circular Indicators) -->
+            <div class="md:col-span-5 glass-card p-10 rounded-xl">
+                <h2 class="font-headline-lg text-headline-md text-on-surface mb-8">Core Skills</h2>
+                <div class="grid grid-cols-2 gap-y-10">
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="circular-progress" data-percent="95" style="--percent: 95">
+                            <span class="font-label-md text-label-md font-bold">95%</span>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">Backend
+                            Dev</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="circular-progress" data-percent="90" style="--percent: 90">
+                            <span class="font-label-md text-label-md font-bold">90%</span>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">ML
+                            / DL</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="circular-progress" data-percent="85" style="--percent: 85">
+                            <span class="font-label-md text-label-md font-bold">85%</span>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">GenAI
+                            / RAG</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="circular-progress" data-percent="88" style="--percent: 88">
+                            <span class="font-label-md text-label-md font-bold">88%</span>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">Computer
+                            Vision</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Tech Stack -->
+        <section class="mt-section-gap reveal">
+            <h2 class="font-headline-lg text-headline-md text-on-surface mb-12 text-center">Technical Arsenal</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Languages & Core -->
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="font-headline-sm text-headline-sm text-primary mb-6 flex items-center gap-3">
+                        <span class="material-symbols-outlined">code</span>
+                        Core Languages
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">Python</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">JavaScript</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">HTML5</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">CSS3</span>
+                    </div>
+                </div>
+                <!-- AI & ML -->
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="font-headline-sm text-headline-sm text-secondary mb-6 flex items-center gap-3">
+                        <span class="material-symbols-outlined">psychology</span>
+                        Intelligence
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Scikit-learn</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">TensorFlow</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Keras</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">OpenCV</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">LangChain</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Pinecone</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Google
+                            Gemini</span>
+                    </div>
+                </div>
+                <!-- Backend & DevOps -->
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="font-headline-sm text-headline-sm text-tertiary mb-6 flex items-center gap-3">
+                        <span class="material-symbols-outlined">lan</span>
+                        Infrastructure
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Flask</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">REST
+                            APIs</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">RAG</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Git</span>
+                        <span
+                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">VS
+                            Code</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Experience Timeline -->
+        <section class="mt-section-gap reveal">
+            <h2 class="font-headline-lg text-headline-md text-on-surface mb-16 text-center">Professional Timeline</h2>
+            <div class="max-w-4xl mx-auto relative px-6">
+                <!-- Vertical Line -->
+                <div
+                    class="absolute left-[31px] top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-transparent">
+                </div>
+                <div class="space-y-12">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative pl-16 group">
+                        <div
+                            class="absolute left-0 top-1 w-16 h-16 rounded-full bg-surface border border-white/10 flex items-center justify-center z-10 transition-colors group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(173,198,255,0.4)]">
+                            <span class="material-symbols-outlined text-primary">work</span>
+                        </div>
+                        <div class="glass-card p-8 rounded-xl">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-2">
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface">Senior AI Developer</h3>
+                                <span
+                                    class="px-4 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-white/5">2023
+                                    - Present</span>
+                            </div>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Leading the development of a
+                                proprietary RAG framework for enterprise documentation, reducing response latency by 40%
+                                and improving accuracy using custom LangChain wrappers and Pinecone vector stores.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="relative pl-16 group">
+                        <div
+                            class="absolute left-0 top-1 w-16 h-16 rounded-full bg-surface border border-white/10 flex items-center justify-center z-10 transition-colors group-hover:border-secondary group-hover:shadow-[0_0_15px_rgba(221,183,255,0.4)]">
+                            <span class="material-symbols-outlined text-secondary">terminal</span>
+                        </div>
+                        <div class="glass-card p-8 rounded-xl">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-2">
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface">Backend Engineer
+                                    (Freelance)</h3>
+                                <span
+                                    class="px-4 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-white/5">2021
+                                    - 2023</span>
+                            </div>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Architected multiple
+                                Flask-based REST APIs for startups. Specialized in complex database schemas and
+                                integrating real-time ML inference engines into production environments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="mt-section-gap reveal">
+            <h2 class="font-headline-lg text-headline-md text-on-surface mb-12 text-center">Get In Touch</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <a class="glass-card p-8 flex flex-col items-center gap-4 text-center group" href="#">
+                    <div
+                        class="w-16 h-16 rounded-full bg-on-surface/5 flex items-center justify-center group-hover:bg-primary/20 transition-all">
+                        <span class="material-symbols-outlined text-primary scale-125">alternate_email</span>
+                    </div>
+                    <span class="font-headline-sm text-headline-sm text-on-surface">Email</span>
+                    <span class="font-label-md text-label-md text-on-surface-variant">kvkwork05@gmail.com</span>
+                </a>
+                <a class="glass-card p-8 flex flex-col items-center gap-4 text-center group"
+                    href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">
+                    <div
+                        class="w-16 h-16 rounded-full bg-on-surface/5 flex items-center justify-center group-hover:bg-secondary/20 transition-all">
+                        <span class="material-symbols-outlined text-secondary scale-125">share</span>
+                    </div>
+                    <span class="font-headline-sm text-headline-sm text-on-surface">LinkedIn</span>
+                    <span
+                        class="font-label-md text-label-md text-on-surface-variant">https://www.linkedin.com/in/vishal-kumar-95b269390</span>
+                </a>
+                <a class="glass-card p-8 flex flex-col items-center gap-4 text-center group"
+                    href="https://github.com/kvkdev-ml" target="_blank">
+                    <div
+                        class="w-16 h-16 rounded-full bg-on-surface/5 flex items-center justify-center group-hover:bg-tertiary/20 transition-all">
+                        <span class="material-symbols-outlined text-tertiary scale-125">hub</span>
+                    </div>
+                    <span class="font-headline-sm text-headline-sm text-on-surface">GitHub</span>
+                    <span
+                        class="font-label-md text-label-md text-on-surface-variant">https://github.com/kvkdev-ml</span>
+                </a>
+                <a class="glass-card p-8 flex flex-col items-center gap-4 text-center group" href=/dowmload_resume"
+                    target="_blank">
+                    <span class="font-headline-sm text-headline-sm text-on-surface">Download Resume</span>
+                    <span class="font-label-md text-label-md text-on-surface-variant">Click to know more about me</span>
+                </a>
+            </div>
+        </section>
+    </main>
+    <!-- Footer (Shell) -->
+    <footer
+        class="w-full max-w-[1200px] mx-auto border-t border-white/5 mt-section-gap bg-transparent flex flex-col md:flex-row justify-between items-center py-12 px-margin-mobile md:px-margin-desktop">
+        <div class="font-headline-sm text-headline-sm text-on-surface mb-6 md:mb-0">KVK</div>
+        <div class="flex flex-col items-center md:items-end gap-4">
+            <div class="flex gap-8">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md"
+                    href="https://github.com/kvkdev-ml" target="_blank">GitHub</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md"
+                    href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">LinkedIn</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md"
+                    href="#">kvkwork05@gmail.com</a>
+            </div>
+            <p class="text-on-surface-variant font-body-md text-body-md opacity-50">© 2024 KVK. Engineered for
+                Performance.</p>
+        </div>
+    </footer>
+    <script>
+        // Typewriter Effect
+        const phrases = ['Backend AI Engineer', 'Machine Learning Enthusiast', 'GenAI Developer', 'Flask Developer', 'RAG Developer'];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const waitTime = 2000;
+        const typewriterElement = document.getElementById('typewriter');
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let delta = isDeleting ? deletingSpeed : typingSpeed;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                delta = waitTime;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                delta = 500;
+            }
+
+            setTimeout(type, delta);
+        }
+        type();
+
+        // Reveal Animation on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            revealElements.forEach(el => {
+                const elTop = el.getBoundingClientRect().top;
+                if (elTop < triggerBottom) {
+                    el.classList.add('active');
+                    // Trigger counters if they exist in this element
+                    const counters = el.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        if (!counter.dataset.started) {
+                            animateCounter(counter);
+                            counter.dataset.started = "true";
+                        }
+                    });
+                }
+            });
+        };
+
+        // Counters Animation
+        function animateCounter(el) {
+            const target = +el.getAttribute('data-target');
+            const duration = 2000;
+            const startTime = performance.now();
+
+            const update = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                el.innerText = Math.floor(easedProgress * target) + (target > 5 ? '+' : '');
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            };
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+    </script>
+</body>
+
+</html>

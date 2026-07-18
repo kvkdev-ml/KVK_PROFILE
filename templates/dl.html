@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Projects — Deep Learning Portfolio</title>
+    <meta name="description"
+        content="A portfolio of applied Deep Learning projects: dog vs cat classification, wound classification, and crop disease classification." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../static/style.css" />
+</head>
+
+<body>
+    <div class="loader" data-loader>
+        <div class="loader__ring" role="status" aria-label="Loading page"></div>
+    </div>
+
+    <!-- Decorative animated background: gradient wash + floating glow orbs -->
+    <div class="bg-layer" aria-hidden="true">
+        <span class="orb orb--1"></span>
+        <span class="orb orb--2"></span>
+        <span class="orb orb--3"></span>
+    </div>
+
+    <!-- ============================ NAVBAR ============================ -->
+    <header class="navbar" data-navbar>
+        <div class="container nav-inner">
+            <a href="index.html#top" class="nav-logo">
+                <span class="nav-logo__mark" aria-hidden="true">🤖</span>
+                AI Projects
+            </a>
+
+            <nav class="nav-links" data-nav-links aria-label="Primary navigation">
+                <a href="index.html#top" class="nav-link">Home</a>
+                <a href="index.html#ml-projects" class="nav-link">ML Projects</a>
+                <a href="deep-learning.html" class="nav-link">DL Projects</a>
+            </nav>
+
+            <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ========================= PAGE HEADER ========================= -->
+        <section class="page-header" id="top">
+            <div class="container page-header__inner">
+                <p class="eyebrow eyebrow--center fade-in-up">Page 02</p>
+                <h1 class="page-header__title fade-in-up delay-1">
+                    Deep Learning <span class="gradient-text">Projects</span>
+                </h1>
+                <p class="page-header__subtitle fade-in-up delay-2">
+                    Computer vision systems trained with convolutional neural networks —
+                    built for image classification tasks across everyday objects, medical
+                    imagery, and agriculture.
+                </p>
+            </div>
+        </section>
+
+        <!-- ====================== DL PROJECTS SECTION ====================== -->
+        <section class="section" id="dl-projects">
+            <div class="container">
+                <div class="project-grid">
+
+                    <!-- Card 1: Dog vs Cat Classification -->
+                    <article class="project-card project-card--cyan" data-reveal>
+                        <div class="project-card__top">
+                            <div class="project-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4.5 12.5c-1-1-1-3 .5-4s3 0 3.5 1" />
+                                    <path d="M19.5 12.5c1-1 1-3-.5-4s-3 0-3.5 1" />
+                                    <path d="M6 11c0-3 2.7-6 6-6s6 3 6 6c0 4-2 8-6 8s-6-4-6-8Z" />
+                                    <path d="M9.5 12.5h.01M14.5 12.5h.01" stroke-width="2.6" />
+                                    <path d="M10.5 15.5c.6.5 2.4.5 3 0" />
+                                </svg>
+                            </div>
+                            <span class="badge badge--accuracy">96% Accuracy</span>
+                        </div>
+                        <h3 class="project-card__title">Dog vs Cat Classification</h3>
+                        <p class="project-card__desc">
+                            A convolutional neural network that classifies uploaded images as either a
+                            dog or a cat, trained with data augmentation and transfer learning for
+                            robust real-world accuracy.
+                        </p>
+                        <div class="project-card__stack">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <button class="btn btn--card" data-ripple>
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M13 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </article>
+
+                    <!-- Card 2: Wound Classification -->
+                    <article class="project-card project-card--pink" data-reveal>
+                        <div class="project-card__top">
+                            <div class="project-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="9" width="18" height="6" rx="3" />
+                                    <path d="M7 9v6M11 9v6M15 9v6M17.5 9v6" />
+                                    <path d="M9 12h.01" stroke-width="2.6" />
+                                </svg>
+                            </div>
+                            <span class="badge badge--accuracy">94% Accuracy</span>
+                        </div>
+                        <h3 class="project-card__title">Wound Classification</h3>
+                        <p class="project-card__desc">
+                            A medical imaging CNN that classifies wound images into categories to
+                            support faster triage, trained on an augmented clinical image dataset.
+                        </p>
+                        <div class="project-card__stack">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <button class="btn btn--card" data-ripple>
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M13 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </article>
+
+                    <!-- Card 3: Crop Disease Classification -->
+                    <article class="project-card project-card--green" data-reveal>
+                        <div class="project-card__top">
+                            <div class="project-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 21c-4-1-7-4.5-7-9a7 7 0 0 1 14 0c0 4.5-3 8-7 9Z" />
+                                    <path d="M12 12v9" />
+                                    <path d="M9.5 9.5h.01M14.5 9.5h.01" stroke-width="2.6" />
+                                </svg>
+                            </div>
+                            <span class="badge badge--accuracy">97% Accuracy</span>
+                        </div>
+                        <h3 class="project-card__title">Crop Disease Classification</h3>
+                        <p class="project-card__desc">
+                            A leaf-image classifier that detects and identifies plant diseases early,
+                            helping farmers intervene before a disease spreads across a field.
+                        </p>
+                        <div class="project-card__stack">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <button class="btn btn--card" data-ripple>
+                            View Project
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M13 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <span class="footer__brand-name">AI Projects</span>
+                <span class="footer__copy">&copy; <span data-year>2026</span> All rights reserved.</span>
+            </div>
+
+            <div class="footer__socials">
+                <a href="#" class="footer__social" aria-label="GitHub profile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
+                    </svg>
+                </a>
+                <a href="#" class="footer__social" aria-label="LinkedIn profile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5 5 0 0 1 16 8Z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../static/script.js"></script>
+</body>
+
+</html>
