@@ -1,2 +1,4 @@
 flask
 gunicorn
+scikit-learn
+pandas
