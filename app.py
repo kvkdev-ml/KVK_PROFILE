@@ -1,6 +1,8 @@
 from flask import Flask, render_template,request,jsonify
+from flask_cors import CORS
 import pickle as pk
 app = Flask(__name__)
+CORS(app=app)
 route_dict = {
     "/": "portfolio.html",
     "/KVK": "portfolio.html",
