@@ -547,8 +547,8 @@ void main() {
 
                 console.log(response.status);
 
-                const text = await response.text();
-                console.log(text);
+                const data = await response.json();
+                console.log(data);
 
                 const isHighRisk = data.prediction == 1;
                 const confidence = data.confidence || 100;
