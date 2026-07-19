@@ -25,7 +25,7 @@ def page(path):
 def api_function(name):
     data = request.get_json()
     if name == "diabetes":
-        with open(r"C:\Users\KVKDEV\Desktop\KVK_CODESPACE\KVK_Project\KVK_PROFILE\diabetes_model.pkl", "rb") as f:
+        with open("diabetes_model.pkl", "rb") as f:
             model = pk.load(f)
         prediction = int(model.predict([[
             data["pregnancies"],
@@ -44,9 +44,9 @@ def api_function(name):
         })
     elif name == "spam":
         email = data["email"]
-        with open(r'C:\Users\KVKDEV\Desktop\KVK_CODESPACE\KVK_Project\KVK_PROFILE\transform_model.pkl','rb') as mf:
+        with open('transform_model.pkl','rb') as mf:
             vectorizer=pk.load(mf)
-        with open(r"C:\Users\KVKDEV\Desktop\KVK_CODESPACE\KVK_Project\KVK_PROFILE\email_model.pkl", "rb") as f:
+        with open("email_model.pkl", "rb") as f:
             model = pk.load(f)
         ip = vectorizer.transform([email])
         prediction = 1 if model.predict(ip)[0]=='spam' else 0

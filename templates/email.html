@@ -164,17 +164,20 @@
         <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-20">
             <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
             <div class="hidden md:flex items-center gap-gutter">
-                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="/projects/ML">Projects</a>
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md"
+                    href="/projects/ML">Projects</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
                     href="/download_resume">Resume</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
                     href="/">Home</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="/projects/DL">DL Projects</a>
             </div>
             <div class="flex items-center gap-4">
-                <button
-                    class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">GitHub</button>
-                <button
-                    class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-sm text-label-sm glow-button active:scale-95 duration-200">Connect</button>
+                <a href="https://github.com/kvkdev-ml">
+                    <button
+                        class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">GitHub</button>
+                </a>
             </div>
         </div>
     </nav>
@@ -182,7 +185,8 @@
         <!-- Hero Section -->
         <section
             class="relative min-h-[716px] flex items-center justify-center overflow-hidden px-margin-mobile md:px-margin-desktop">
-            <!-- STITCH_SHADER_START:ANIMATION_1 class="absolute inset-0 w-full h-full opacity-60" -->
+            <!-- STITCH_SHADER_START:ANIMATION_1 class="
+             absolute inset-0 w-full h-full opacity-60" -->
             <div class="absolute inset-0 w-full h-full opacity-60" style="display:block;">
                 <canvas id="shader-canvas-ANIMATION_1" style="display:block;width:100%;height:100%"></canvas>
                 <script>
@@ -516,7 +520,7 @@ void main() {
 
             try {
 
-                const response = await fetch("http://127.0.0.1:5000/api/spam", {
+                const response = await fetch("https://kvk-profile-nu.vercel.app/api/spam", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
