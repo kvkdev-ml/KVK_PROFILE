@@ -154,17 +154,18 @@
         <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-full">
             <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
             <nav class="hidden md:flex items-center gap-gutter">
-                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Projects</a>
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md"
+                    href="/projects/DL">Projects</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
-                    href="#">Resume</a>
+                    href="/">Home</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
-                    href="#">About</a>
+                    href="/projects/ML">ML Projects</a>
             </nav>
             <div class="flex items-center gap-4">
-                <button
-                    class="hidden md:block text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">GitHub</button>
-                <button
-                    class="bg-primary text-on-primary px-6 py-2 rounded-lg font-bold hover:bg-primary-container transition-all active:scale-95 duration-200">Connect</button>
+                <a href="https://github.com/kvkdev-ml" target="_blank"><button
+                        class="hidden md:block text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">GitHub</button></a>
+                <a href="/download_resume" target="_blank"><button
+                        class="bg-primary text-on-primary px-6 py-2 rounded-lg font-bold hover:bg-primary-container transition-all active:scale-95 duration-200">Resume</button></a>
             </div>
         </div>
     </header>
@@ -292,14 +293,72 @@ void main() {
                     Advanced Computer Vision model for precise domestic animal classification. Built for speed,
                     accuracy, and real-world robustness.
                 </p>
-                <div class="pt-8 flex flex-wrap justify-center gap-4">
+            </div>
+        </section>
+        <!-- Prediction Interface -->
+        <section
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 bg-surface-container-lowest/50 rounded-[4rem]">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="font-display-lg text-display-lg text-primary tracking-tight">Real-time Inference</h2>
+                <p class="text-on-surface-variant font-body-lg">Upload an image to trigger the generative prediction
+                    sequence.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Upload Area -->
+                <div
+                    class="glass-panel p-8 rounded-3xl border-dashed border-2 border-primary/30 relative group cursor-pointer overflow-hidden transition-all hover:border-primary/60">
+                    <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="relative z-10 flex flex-col items-center justify-center py-20 text-center">
+                        <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-primary text-4xl"
+                                data-icon="cloud_upload">cloud_upload</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Drag &amp; Drop Image</h3>
+                        <p class="text-on-surface-variant mb-8">Supports JPG, PNG, WEBP (Max 10MB)</p>
+                        <button
+                            class="bg-white/10 hover:bg-white/20 text-on-surface px-8 py-3 rounded-xl border border-white/10 transition-colors font-bold">
+                            Browse Files
+                        </button>
+                    </div>
+                </div>
+                <!-- Prediction Card -->
+                <div class="space-y-8">
+                    <div class="glass-panel p-8 rounded-3xl border border-white/10 relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-tertiary"
+                                        data-icon="analytics">analytics</span>
+                                </div>
+                                <h3 class="font-bold text-xl">Classification Result</h3>
+                            </div>
+                            <span class="text-label-sm font-mono-code text-on-surface-variant">ID: #AI-9932</span>
+                        </div>
+                        <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-8 relative">
+                            <img class="w-full h-full object-cover opacity-60"
+                                data-alt="A cinematic, high-detail macro shot of a sleek domestic animal with vibrant fur textures, set against a dark futuristic background with blue and purple neon rim lighting. The image captures the essence of a high-tech AI detection interface, with sharp focus and professional studio lighting that emphasizes species characteristics for an AI training dataset style."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQFfgJ49wQhkWlpC0YTKw65AaSj9YxsU3yr7rxoN2AdX_7m4K4X7hkg1H6miY6Pk9oXbxz5QOm1MkyGkIDkMOdDFIsZ3xxnuvNiJ9wL3zjILj6du7vw2drak15m56Anhu-OEcJ3J2n5VnSp2IbE7uN1b_PZCwnjTgT1vFRLWcYkCBC3c8ezoGfz9Zzv3scWXW4E124-tWGmaAGvjAm_QNlqxRCYhgxb1cWjKprV6csMYStK6ioiTjhx6M4U8uoJKd2ulMZKNqZ" />
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    class="w-16 h-16 border-2 border-primary border-t-transparent rounded-full animate-spin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-6 bg-primary/10 border border-primary/20 rounded-2xl">
+                                <p class="text-label-sm text-primary mb-1">PREDICTION</p>
+                                <p class="font-display-lg text-3xl text-primary font-bold">DOG</p>
+                            </div>
+                            <div class="p-6 bg-secondary/10 border border-secondary/20 rounded-2xl">
+                                <p class="text-label-sm text-secondary mb-1">CONFIDENCE</p>
+                                <p class="font-display-lg text-3xl text-secondary font-bold">99.2%</p>
+                            </div>
+                        </div>
+                    </div>
                     <button
-                        class="bg-gradient-to-r from-primary to-secondary text-on-primary px-8 py-4 rounded-xl font-bold glow-primary transition-all active:scale-95">
-                        Launch Demo
-                    </button>
-                    <button
-                        class="glass-panel px-8 py-4 rounded-xl font-bold border border-white/10 hover:bg-white/10 transition-all active:scale-95">
-                        View Paper
+                        class="w-full bg-gradient-to-r from-primary via-primary-container to-secondary text-on-primary py-6 rounded-2xl font-extrabold text-xl glow-primary transition-all active:scale-95 shadow-[0_10px_40px_rgba(192,193,255,0.2)]">
+                        Classify Image
                     </button>
                 </div>
             </div>
@@ -377,74 +436,6 @@ void main() {
                 </div>
             </div>
         </section>
-        <!-- Prediction Interface -->
-        <section
-            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 bg-surface-container-lowest/50 rounded-[4rem]">
-            <div class="text-center mb-16 space-y-4">
-                <h2 class="font-display-lg text-display-lg text-primary tracking-tight">Real-time Inference</h2>
-                <p class="text-on-surface-variant font-body-lg">Upload an image to trigger the generative prediction
-                    sequence.</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <!-- Upload Area -->
-                <div
-                    class="glass-panel p-8 rounded-3xl border-dashed border-2 border-primary/30 relative group cursor-pointer overflow-hidden transition-all hover:border-primary/60">
-                    <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="relative z-10 flex flex-col items-center justify-center py-20 text-center">
-                        <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                            <span class="material-symbols-outlined text-primary text-4xl"
-                                data-icon="cloud_upload">cloud_upload</span>
-                        </div>
-                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Drag &amp; Drop Image</h3>
-                        <p class="text-on-surface-variant mb-8">Supports JPG, PNG, WEBP (Max 10MB)</p>
-                        <button
-                            class="bg-white/10 hover:bg-white/20 text-on-surface px-8 py-3 rounded-xl border border-white/10 transition-colors font-bold">
-                            Browse Files
-                        </button>
-                    </div>
-                </div>
-                <!-- Prediction Card -->
-                <div class="space-y-8">
-                    <div class="glass-panel p-8 rounded-3xl border border-white/10 relative overflow-hidden">
-                        <div class="flex items-center justify-between mb-8">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-tertiary"
-                                        data-icon="analytics">analytics</span>
-                                </div>
-                                <h3 class="font-bold text-xl">Classification Result</h3>
-                            </div>
-                            <span class="text-label-sm font-mono-code text-on-surface-variant">ID: #AI-9932</span>
-                        </div>
-                        <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-8 relative">
-                            <img class="w-full h-full object-cover opacity-60"
-                                data-alt="A cinematic, high-detail macro shot of a sleek domestic animal with vibrant fur textures, set against a dark futuristic background with blue and purple neon rim lighting. The image captures the essence of a high-tech AI detection interface, with sharp focus and professional studio lighting that emphasizes species characteristics for an AI training dataset style."
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQFfgJ49wQhkWlpC0YTKw65AaSj9YxsU3yr7rxoN2AdX_7m4K4X7hkg1H6miY6Pk9oXbxz5QOm1MkyGkIDkMOdDFIsZ3xxnuvNiJ9wL3zjILj6du7vw2drak15m56Anhu-OEcJ3J2n5VnSp2IbE7uN1b_PZCwnjTgT1vFRLWcYkCBC3c8ezoGfz9Zzv3scWXW4E124-tWGmaAGvjAm_QNlqxRCYhgxb1cWjKprV6csMYStK6ioiTjhx6M4U8uoJKd2ulMZKNqZ" />
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div
-                                    class="w-16 h-16 border-2 border-primary border-t-transparent rounded-full animate-spin">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-6 bg-primary/10 border border-primary/20 rounded-2xl">
-                                <p class="text-label-sm text-primary mb-1">PREDICTION</p>
-                                <p class="font-display-lg text-3xl text-primary font-bold">DOG</p>
-                            </div>
-                            <div class="p-6 bg-secondary/10 border border-secondary/20 rounded-2xl">
-                                <p class="text-label-sm text-secondary mb-1">CONFIDENCE</p>
-                                <p class="font-display-lg text-3xl text-secondary font-bold">99.2%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button
-                        class="w-full bg-gradient-to-r from-primary via-primary-container to-secondary text-on-primary py-6 rounded-2xl font-extrabold text-xl glow-primary transition-all active:scale-95 shadow-[0_10px_40px_rgba(192,193,255,0.2)]">
-                        Classify Image
-                    </button>
-                </div>
-            </div>
-        </section>
         <!-- Features -->
         <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
@@ -486,13 +477,13 @@ void main() {
             <div class="font-headline-md text-headline-md text-on-surface font-bold tracking-tighter">AURA AI</div>
             <div class="flex flex-wrap justify-center gap-8">
                 <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
-                    href="#">Back to Projects</a>
+                    href="/projects/DL">Back to Projects</a>
                 <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
-                    href="#">View GitHub</a>
+                    href="https://github.com/kvkdev-ml" target="_blank">View GitHub</a>
                 <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
-                    href="#">Live Demo</a>
+                    href="/projects/ML">ML Projects</a>
                 <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-sm text-label-sm hover:underline decoration-tertiary underline-offset-4"
-                    href="#">Privacy Policy</a>
+                    href="/download_resume" target="_blank">Resume</a>
             </div>
             <p class="text-on-surface-variant font-label-sm text-label-sm">
                 © 2024 AURA AI Portfolio. Built with Neural Precision.
