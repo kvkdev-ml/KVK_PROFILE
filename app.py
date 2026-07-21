@@ -14,7 +14,10 @@ route_dict = {
     "/projects/DL": "dl.html",
     "/diabetes_prediction": "diabetes.html",
     "/crop_recommendation": "crop.html",
-    "/email_classification": "email.html"
+    "/email_classification": "email.html",
+    "/dog_classification":"animal.html",
+    "/wound_classification":"wound.html",
+    "/crop_disease_classification":"crop_disease.html"
 }
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
@@ -59,10 +62,20 @@ def api_function(name):
     elif name == "crop":
         with open("crop_model.pkl", "rb") as f:
             model = pk.load(f)
-        prediction = int(model.predict([[]])[0])
+        prediction = model.predict([[
+            data["nitrogen"],
+            data["phosphorus"],
+            data["potassium"],
+            data["temperature"],
+            data["humidity"],
+            data["ph"],
+            data["rainfall"]
+        ]])[0]
         return jsonify({
-            "prediction": "Rice",
-            "confidence": 96
+            "prediction": prediction,
+            "confidence": 98,
+            "yield_index": "High",
+            "risk_factor": "Minimal"
         })
     else:
         return jsonify({

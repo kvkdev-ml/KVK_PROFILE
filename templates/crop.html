@@ -162,12 +162,14 @@
         <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-full">
             <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
             <div class="hidden md:flex items-center gap-8">
-                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="/projects/ML">Projects</a>
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md"
+                    href="/projects/ML">Projects</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
                     href="/download_resume">Resume</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
                     href="/">Home</a>
-                    <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="/projects/DL">DL Projects</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
+                    href="/projects/DL">DL Projects</a>
             </div>
             <div class="flex items-center gap-4">
                 <button
@@ -597,29 +599,63 @@ void main() {
         </div>
     </footer>
     <script>
-        function showResult() {
-            const placeholder = document.getElementById('result-placeholder');
-            const resultCard = document.getElementById('result-card');
-            const button = event.currentTarget;
+        async function showResult() {
 
-            // Interaction Feedback
-            button.classList.add('opacity-80');
-            button.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="animate-spin material-symbols-outlined">sync</span> Processing...</span>';
+            const data = {
+                nitrogen: Number(document.getElementById("nitrogen").value),
+                phosphorus: Number(document.getElementById("phosphorus").value),
+                potassium: Number(document.getElementById("potassium").value),
+                temperature: Number(document.getElementById("temperature").value),
+                humidity: Number(document.getElementById("humidity").value),
+                ph: Number(document.getElementById("ph").value),
+                rainfall: Number(document.getElementById("rainfall").value)
+            };
 
-            setTimeout(() => {
-                placeholder.classList.add('hidden');
-                resultCard.classList.remove('hidden');
+            try {
+                const response = await fetch("/api/crop", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
 
-                // Trigger animation
-                setTimeout(() => {
-                    resultCard.classList.remove('translate-y-4', 'opacity-0');
-                }, 50);
+                if (!response.ok) {
+                    throw new Error("Prediction failed");
+                }
 
-                button.classList.remove('opacity-80');
-                button.innerHTML = 'Recommend Crop';
-            }, 1200);
+                const result = await response.json();
+
+                // Hide placeholder
+                document.getElementById("result-placeholder").classList.add("hidden");
+
+                // Show result card
+                const resultCard = document.getElementById("result-card");
+                resultCard.classList.remove("hidden");
+                resultCard.classList.remove("translate-y-4", "opacity-0");
+
+                // Update values
+                resultCard.querySelector(".text-display-lg-mobile").textContent = result.prediction;
+
+                resultCard.querySelector(".text-tertiary").textContent =
+                    `${result.confidence}%`;
+
+                resultCard.querySelector(".bg-tertiary").style.width =
+                    `${result.confidence}%`;
+
+                const stats = resultCard.querySelectorAll(".font-headline-md");
+
+                // Yield Index
+                stats[1].textContent = result.yield_index || "High";
+
+                // Risk Factor
+                stats[2].textContent = result.risk_factor || "Minimal";
+
+            } catch (error) {
+                console.error(error);
+                alert("Unable to get prediction.");
+            }
         }
-
         // Simple parallax for background glows
         document.addEventListener('mousemove', (e) => {
             const glows = document.querySelectorAll('.mesh-glow');
