@@ -28,7 +28,7 @@ def page(path):
     return render_template("error.html"), 404
 @app.route('/download_resume')
 def resume():
-    return send_file(path_or_file=r'KVK Resume.pdf',download_name='K Vishal Kumar.pdf')
+    return send_file(path_or_file=r'/static/KVK Resume.pdf',download_name='K Vishal Kumar.pdf')
 @app.route('/api/<name>', methods=['POST'])
 def api_function(name):
     data = request.get_json()
