@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,jsonify
+from flask import Flask, render_template,request,jsonify,send_file
 from flask_cors import CORS
 import pickle as pk
 app = Flask(__name__)
@@ -26,6 +26,9 @@ def page(path):
     if route in route_dict:
         return render_template(route_dict[route])
     return render_template("error.html"), 404
+@app.route('/download_resume')
+def resume():
+    return send_file(path_or_file=r'KVK Resume.pdf',download_name='K Vishal Kumar.pdf')
 @app.route('/api/<name>', methods=['POST'])
 def api_function(name):
     data = request.get_json()
