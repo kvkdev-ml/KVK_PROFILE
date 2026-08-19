@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Projects — Generative AI Portfolio</title>
+    <meta name="description"
+        content="A portfolio of applied Generative AI projects: diabetes and heart disease prediction, crop recommendation, spam detection, and sentiment analysis." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="../static/style.css" />
+</head>
+
+<body>
+
+    <!-- Full-screen loader shown until the page has finished loading -->
+    <div class="loader" data-loader>
+        <div class="loader__ring" role="status" aria-label="Loading page"></div>
+    </div>
+
+    <!-- Decorative animated background: gradient wash + floating glow orbs -->
+    <div class="bg-layer" aria-hidden="true">
+        <span class="orb orb--1"></span>
+        <span class="orb orb--2"></span>
+        <span class="orb orb--3"></span>
+    </div>
+
+    <!-- ============================ NAVBAR ============================ -->
+    <header class="navbar" data-navbar>
+        <div class="container nav-inner">
+            <a href="index.html#top" class="nav-logo">
+                <span class="nav-logo__mark" aria-hidden="true">🤖</span>
+                AI Projects
+            </a>
+
+            <nav class="nav-links" data-nav-links aria-label="Primary navigation">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/projects/ML" class="nav-link">ML Projects</a>
+                <a href="/projects/DL" class="nav-link">DL Projects</a>
+                <a href="/projects/genai" class="nav-link">GenAI Projects</a>
+            </nav>
+
+            <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ============================ HERO ============================ -->
+        <section class="hero" id="top">
+            <div class="container hero__inner">
+                <p class="eyebrow hero__eyebrow fade-in-up">Applied ML &amp; Deep Learning Portfolio</p>
+
+                <h1 class="hero__title fade-in-up delay-1">
+                    AI &amp; Generative AI<br />
+                    <span class="gradient-text">Projects</span>
+                </h1>
+                <div class="fade-in-up delay-3">
+                    <a href="#ml-projects" class="btn btn--primary" data-ripple>
+                        Explore Projects
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M19 12l-7 7-7-7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="hero__stats fade-in-up delay-3">
+                    <div class="hero__stat">
+                        <span class="hero__stat-number">100%</span>
+                        <span class="hero__stat-label">Deployed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================== ML PROJECTS SECTION ====================== -->
+        <section class="section" id="ml-projects">
+            <div class="container">
+                <div class="section__header" data-reveal>
+                    <p class="eyebrow eyebrow--center">Page 01</p>
+                    <h2 class="section__title">Generative AI Projects</h2>
+                </div>
+
+                <div class="project-grid">
+
+                    <!-- Card 1: Diabetic Prediction System -->
+                    <article class="project-card project-card--cyan" data-reveal>
+                        <div class="project-card__top">
+                            <div class="project-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2s6 7.2 6 11.5A6 6 0 0 1 6 13.5C6 9.2 12 2 12 2Z" />
+                                    <path d="M9.5 15.5c.4 1 1.4 1.8 2.5 1.8" />
+                                </svg>
+                            </div>
+                            <span class="badge badge--status">Completed</span>
+                        </div>
+                        <h3 class="project-card__title">AI Code Morpher-Rosetta AI</h3>
+                        <p class="project-card__desc">
+                            LLM Based Code Analyser and Morpher System which analyses user given code
+                            and transforms the given code into another language
+                        </p>
+                        <div class="project-card__stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Google GenAI API</span>
+                            <span class="tech-tag">LLM's</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <a href="https://rosetta-ai-six.vercel.app/" target="_blank">
+                            <button class="btn btn--card" data-ripple>
+                                View Project
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M13 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </a>
+                    </article>
+                    <!-- Card 4: Email Spam Classification -->
+                    <article class="project-card project-card--amber" data-reveal>
+                        <div class="project-card__top">
+                            <div class="project-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <path d="m3 7 9 6 9-6" />
+                                    <path d="M17 14.5 19 17" stroke-width="2.4" />
+                                </svg>
+                            </div>
+                            <span class="badge badge--status">Completed</span>
+                        </div>
+                        <h3 class="project-card__title">AYUR-AI:Personal Ayurvedic AI Agent</h3>
+                        <p class="project-card__desc">
+                            An NLP text classifier that separates spam from legitimate email using
+                            TF-IDF vectorization and a Naive Bayes model, tuned for high precision.
+                        </p>
+                        <div class="project-card__stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">NLTK</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <a href="#">
+                            <button class="btn btn--card" data-ripple>
+                                View Project
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M13 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <span class="footer__brand-name">AI Projects</span>
+                <span class="footer__copy">&copy; <span data-year>2026</span> All rights reserved.</span>
+            </div>
+
+            <div class="footer__socials">
+                <a href="https://github.com/kvkdev-ml" class="footer__social" aria-label="GitHub profile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/vishal-kumar-95b269390" class="footer__social"
+                    aria-label="LinkedIn profile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5 5 0 0 1 16 8Z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../static/script.js"></script>
+</body>
+
+</html>

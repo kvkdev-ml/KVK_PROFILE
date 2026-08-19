@@ -18,7 +18,8 @@ route_dict = {
     "/email_classification": "email.html",
     "/dog_classification":"animal.html",
     "/wound_classification":"wound.html",
-    "/crop_disease_classification":"crop_disease.html"
+    "/crop_disease_classification":"crop_disease.html",
+    "/projects/genai":"genai.html"
 }
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
@@ -29,7 +30,7 @@ def page(path):
     return render_template("error.html"), 404
 @app.route('/download_resume')
 def resume():
-    return send_file(path_or_file=rf'{os.getcwd()}/static/KVK Resume.pdf',download_name='K Vishal Kumar.pdf')
+    return send_file(path_or_file=rf'{os.getcwd()}/static/K Vishal Kumar.pdf',download_name='K Vishal Kumar.pdf')
 @app.route('/api/<name>', methods=['POST'])
 def api_function(name):
     data = request.get_json()
