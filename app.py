@@ -12,7 +12,6 @@ route_dict = {
     "/contacts": "error.html",
     "/download_resume": "error.html",
     "/projects/ML": "ml.html",
-    "/projects/DL": "dl.html",
     "/diabetes_prediction": "diabetes.html",
     "/crop_recommendation": "crop.html",
     "/email_classification": "email.html",

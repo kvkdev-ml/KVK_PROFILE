@@ -135,11 +135,6 @@ function initButtonRipple() {
     });
   });
 }
-
-/**
- * Marks the nav link matching the current page as active, so people can
- * see at a glance whether they're on the ML or DL projects page.
- */
 function initActiveNavHighlight() {
   const links = document.querySelectorAll('[data-nav-links] .nav-link');
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
