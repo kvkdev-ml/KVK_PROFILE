@@ -1,256 +1,373 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AI Projects — Machine Learning Portfolio</title>
-    <meta name="description"
-        content="A portfolio of applied Machine Learning projects: diabetes and heart disease prediction, crop recommendation, spam detection, and sentiment analysis." />
-
+    <meta
+        content="A portfolio of applied Machine Learning projects: diabetes and heart disease prediction, crop recommendation, spam detection, and sentiment analysis."
+        name="description" />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet" />
-
-    <link rel="stylesheet" href="../static/style.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#acedff",
+                        "tertiary-container": "#4cd7f6",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "on-primary-container": "#385283",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#f0dbff",
+                        "on-secondary": "#40215e",
+                        "glass-bg": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "outline": "#8e909a",
+                        "inverse-primary": "#455e90",
+                        "surface-bright": "#3a3939",
+                        "on-background": "#e5e2e1",
+                        "primary": "#d8e2ff",
+                        "outline-variant": "#44474f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface-variant": "#c4c6d0",
+                        "text-high-emphasis": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary-container": "#005b6b",
+                        "on-primary": "#122f5f",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary": "#003640",
+                        "surface-dim": "#131313",
+                        "error-container": "#93000a",
+                        "secondary": "#ddb7ff",
+                        "primary-fixed": "#d8e2ff",
+                        "text-medium-emphasis": "#c2c6d6",
+                        "on-tertiary-fixed": "#001f26",
+                        "tertiary-fixed": "#acedff",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "on-secondary-fixed-variant": "#583876",
+                        "on-secondary-container": "#cba6ed",
+                        "on-primary-fixed-variant": "#2c4677",
+                        "primary-fixed-dim": "#adc6ff",
+                        "secondary-container": "#583876",
+                        "background": "#131313",
+                        "on-secondary-fixed": "#2a0848",
+                        "surface-variant": "#353534",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#adc6ff",
+                        "primary-container": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-xl": ["Sora", "sans-serif"],
+                        "headline-md": ["Sora", "sans-serif"],
+                        "headline-xl-mobile": ["Sora", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Sora", "sans-serif"],
+                        "headline-sm": ["Sora", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
 
-<body>
-
-    <!-- Full-screen loader shown until the page has finished loading -->
-    <div class="loader" data-loader>
-        <div class="loader__ring" role="status" aria-label="Loading page"></div>
-    </div>
-
+<body
+    class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container relative min-h-screen">
     <!-- Decorative animated background: gradient wash + floating glow orbs -->
-    <div class="bg-layer" aria-hidden="true">
-        <span class="orb orb--1"></span>
-        <span class="orb orb--2"></span>
-        <span class="orb orb--3"></span>
+    <div aria-hidden="true" class="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-container/10 rounded-full blur-[120px]">
+        </div>
+        <div
+            class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-container/10 rounded-full blur-[150px]">
+        </div>
+        <div class="absolute top-[40%] left-[60%] w-[30%] h-[30%] bg-tertiary-container/10 rounded-full blur-[100px]">
+        </div>
     </div>
-
     <!-- ============================ NAVBAR ============================ -->
-    <header class="navbar" data-navbar>
-        <div class="container nav-inner">
-            <a href="index.html#top" class="nav-logo">
-                <span class="nav-logo__mark" aria-hidden="true">🤖</span>
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-x-0 border-t-0 border-b-glass-border">
+        <div class="max-w-[1200px] mx-auto px-[24px] h-[72px] flex items-center justify-between">
+            <a class="flex items-center gap-2 font-headline-sm text-[20px] font-semibold text-text-high-emphasis tracking-tight hover:text-primary-container transition-colors"
+                href="index.html#top">
+                <span aria-hidden="true">🤖</span>
                 AI Projects
             </a>
-
-            <nav class="nav-links" data-nav-links aria-label="Primary navigation">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/projects/ML" class="nav-link">ML Projects</a>
-                <a href="/projects/DL" class="nav-link">DL Projects</a>
-                <a href="/projects/genai" class="nav-link">GenAI Projects</a>
+            <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-8">
+                <a class="text-text-medium-emphasis hover:text-primary-container transition-colors font-medium"
+                    href="/">Home</a>
+                <a class="text-primary-container font-medium" href="/projects/ML">ML Projects</a>
+                <a class="text-text-medium-emphasis hover:text-primary-container transition-colors font-medium"
+                    href="/projects/DL">DL Projects</a>
+                <a class="text-text-medium-emphasis hover:text-primary-container transition-colors font-medium"
+                    href="/projects/genai">GenAI Projects</a>
             </nav>
-
-            <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">
-                <span></span><span></span><span></span>
+            <button aria-expanded="false" aria-label="Toggle navigation menu"
+                class="md:hidden flex flex-col justify-center gap-[6px] w-8 h-8 text-text-high-emphasis">
+                <span class="block w-full h-[2px] bg-current rounded-full"></span>
+                <span class="block w-full h-[2px] bg-current rounded-full"></span>
+                <span class="block w-full h-[2px] bg-current rounded-full"></span>
             </button>
         </div>
     </header>
-
-    <main>
+    <main class="pt-[104px]">
         <!-- ============================ HERO ============================ -->
-        <section class="hero" id="top">
-            <div class="container hero__inner">
-                <p class="eyebrow hero__eyebrow fade-in-up">Applied ML &amp; Deep Learning Portfolio</p>
-
-                <h1 class="hero__title fade-in-up delay-1">
+        <section class="py-[120px]" id="top">
+            <div class="max-w-[1200px] mx-auto px-[24px]">
+                <p class="text-secondary font-label-md uppercase tracking-wider mb-4">Applied ML &amp; Deep Learning
+                    Portfolio</p>
+                <h1
+                    class="font-headline-xl text-[40px] md:text-[64px] font-bold leading-[1.1] tracking-[-0.02em] text-text-high-emphasis mb-6">
                     AI &amp; Machine Learning<br />
-                    <span class="gradient-text">Projects</span>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container via-secondary to-tertiary-container">Projects</span>
                 </h1>
-
-                <p class="hero__subtitle fade-in-up delay-2">
+                <p class="max-w-2xl text-[18px] leading-[1.6] text-text-medium-emphasis mb-10">
                     A collection of end-to-end AI applications — from classical Machine Learning
                     models trained on structured health and agricultural data, to Deep Learning
                     systems built for computer vision and image classification. Each project is
                     built, trained, and deployed as a working application.
                 </p>
-
-                <div class="fade-in-up delay-3">
-                    <a href="#ml-projects" class="btn btn--primary" data-ripple>
+                <div class="mb-16">
+                    <a class="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-primary text-on-primary-container px-6 py-3 rounded-lg font-medium transition-colors"
+                        href="#ml-projects">
                         Explore Projects
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 5v14M19 12l-7 7-7-7" />
+                        <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+                            <path d="M12 5v14M19 12l-7 7-7-7"></path>
                         </svg>
                     </a>
                 </div>
-
-                <div class="hero__stats fade-in-up delay-3">
-                    <div class="hero__stat">
-                        <span class="hero__stat-number">5</span>
-                        <span class="hero__stat-label">ML Models</span>
+                <div class="flex flex-wrap items-center gap-8 md:gap-16 pt-8 border-t border-glass-border">
+                    <div>
+                        <span
+                            class="block font-headline-md text-[32px] font-semibold text-text-high-emphasis mb-1">5</span>
+                        <span class="text-text-medium-emphasis font-label-md">ML Models</span>
                     </div>
-                    <div class="hero__stat">
-                        <span class="hero__stat-number">3</span>
-                        <span class="hero__stat-label">DL Models</span>
+                    <div>
+                        <span
+                            class="block font-headline-md text-[32px] font-semibold text-text-high-emphasis mb-1">3</span>
+                        <span class="text-text-medium-emphasis font-label-md">DL Models</span>
                     </div>
-                    <div class="hero__stat">
-                        <span class="hero__stat-number">100%</span>
-                        <span class="hero__stat-label">Deployed</span>
+                    <div>
+                        <span
+                            class="block font-headline-md text-[32px] font-semibold text-text-high-emphasis mb-1">100%</span>
+                        <span class="text-text-medium-emphasis font-label-md">Deployed</span>
                     </div>
                 </div>
             </div>
         </section>
-
         <!-- ====================== ML PROJECTS SECTION ====================== -->
-        <section class="section" id="ml-projects">
-            <div class="container">
-                <div class="section__header" data-reveal>
-                    <p class="eyebrow eyebrow--center">Page 01</p>
-                    <h2 class="section__title">Machine Learning Projects</h2>
-                    <p class="section__subtitle">
+        <section class="py-[120px]" id="ml-projects">
+            <div class="max-w-[1200px] mx-auto px-[24px]">
+                <div class="mb-16 text-center max-w-2xl mx-auto">
+                    <p class="text-tertiary-container font-label-md uppercase tracking-wider mb-4">Page 01</p>
+                    <h2
+                        class="font-headline-lg text-[32px] md:text-[48px] font-semibold leading-[1.2] text-text-high-emphasis mb-6">
+                        Machine Learning Projects</h2>
+                    <p class="text-[18px] leading-[1.6] text-text-medium-emphasis">
                         Classical ML models trained on structured, tabular data — covering healthcare
                         diagnostics, agriculture, and natural language processing.
                     </p>
                 </div>
-
-                <div class="project-grid">
-
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Card 1: Diabetic Prediction System -->
-                    <article class="project-card project-card--cyan" data-reveal>
-                        <div class="project-card__top">
-                            <div class="project-card__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2s6 7.2 6 11.5A6 6 0 0 1 6 13.5C6 9.2 12 2 12 2Z" />
-                                    <path d="M9.5 15.5c.4 1 1.4 1.8 2.5 1.8" />
+                    <article
+                        class="glass-card rounded-xl p-[24px] md:p-[40px] flex flex-col hover:border-primary-container transition-colors group">
+                        <div class="flex items-center justify-between mb-8">
+                            <div aria-hidden="true"
+                                class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+                                    <path d="M12 2s6 7.2 6 11.5A6 6 0 0 1 6 13.5C6 9.2 12 2 12 2Z"></path>
+                                    <path d="M9.5 15.5c.4 1 1.4 1.8 2.5 1.8"></path>
                                 </svg>
                             </div>
-                            <span class="badge badge--status">Completed</span>
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-primary-container border border-glass-border">Completed</span>
                         </div>
-                        <h3 class="project-card__title">Diabetic Prediction System</h3>
-                        <p class="project-card__desc">
+                        <h3 class="font-headline-sm text-[24px] font-semibold text-text-high-emphasis mb-4">Diabetic
+                            Prediction System</h3>
+                        <p class="text-text-medium-emphasis mb-8 flex-grow">
                             A classification model that predicts a patient's likelihood of diabetes from
                             diagnostic measurements like glucose, BMI, and age. Deployed as a simple web
                             app with instant risk scoring.
                         </p>
-                        <div class="project-card__stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Flask</span>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Python</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Scikit-learn</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Pandas</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Flask</span>
                         </div>
-                        <a href="/diabetes_prediction">
-                            <button class="btn btn--card" data-ripple>
+                        <a class="mt-auto" href="/diabetes_prediction">
+                            <button
+                                class="w-full inline-flex items-center justify-center gap-2 bg-transparent border border-glass-border hover:border-primary-container text-text-high-emphasis hover:text-primary-container px-4 py-2.5 rounded-lg font-medium transition-colors">
                                 View Project
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14M13 5l7 7-7 7" />
+                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
                                 </svg>
                             </button>
                         </a>
                     </article>
-
                     <!-- Card 3: Crop Recommendation System -->
-                    <article class="project-card project-card--green" data-reveal>
-                        <div class="project-card__top">
-                            <div class="project-card__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22c0-6 4-8 8-8 0 6-4 8-8 8Z" />
-                                    <path d="M12 22c0-8-4-11-8-13 0 8 3 12 8 13Z" />
-                                    <path d="M12 22V9" />
+                    <article
+                        class="glass-card rounded-xl p-[24px] md:p-[40px] flex flex-col hover:border-tertiary-container transition-colors group">
+                        <div class="flex items-center justify-between mb-8">
+                            <div aria-hidden="true"
+                                class="w-12 h-12 rounded-lg bg-tertiary-container/10 flex items-center justify-center text-tertiary-container group-hover:bg-tertiary-container group-hover:text-on-tertiary-container transition-colors">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+                                    <path d="M12 22c0-6 4-8 8-8 0 6-4 8-8 8Z"></path>
+                                    <path d="M12 22c0-8-4-11-8-13 0 8 3 12 8 13Z"></path>
+                                    <path d="M12 22V9"></path>
                                 </svg>
                             </div>
-                            <span class="badge badge--status">Completed</span>
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-tertiary-container border border-glass-border">Completed</span>
                         </div>
-                        <h3 class="project-card__title">Crop Recommendation System</h3>
-                        <p class="project-card__desc">
+                        <h3 class="font-headline-sm text-[24px] font-semibold text-text-high-emphasis mb-4">Crop
+                            Recommendation System</h3>
+                        <p class="text-text-medium-emphasis mb-8 flex-grow">
                             Recommends the most suitable crop to plant based on soil nutrients (N-P-K),
                             rainfall, temperature, and humidity — helping farmers plan seasonal yield.
                         </p>
-                        <div class="project-card__stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Flask</span>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Python</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Scikit-learn</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Pandas</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Flask</span>
                         </div>
-                        <a href="/crop_recommendation">
-                            <button class="btn btn--card" data-ripple>
+                        <a class="mt-auto" href="/crop_recommendation">
+                            <button
+                                class="w-full inline-flex items-center justify-center gap-2 bg-transparent border border-glass-border hover:border-tertiary-container text-text-high-emphasis hover:text-tertiary-container px-4 py-2.5 rounded-lg font-medium transition-colors">
                                 View Project
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14M13 5l7 7-7 7" />
+                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
                                 </svg>
                             </button>
                         </a>
                     </article>
-
                     <!-- Card 4: Email Spam Classification -->
-                    <article class="project-card project-card--amber" data-reveal>
-                        <div class="project-card__top">
-                            <div class="project-card__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                                    <path d="m3 7 9 6 9-6" />
-                                    <path d="M17 14.5 19 17" stroke-width="2.4" />
+                    <article
+                        class="glass-card rounded-xl p-[24px] md:p-[40px] flex flex-col hover:border-secondary transition-colors group">
+                        <div class="flex items-center justify-between mb-8">
+                            <div aria-hidden="true"
+                                class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+                                    <rect height="14" rx="2" width="18" x="3" y="5"></rect>
+                                    <path d="m3 7 9 6 9-6"></path>
+                                    <path d="M17 14.5 19 17" stroke-width="2.4"></path>
                                 </svg>
                             </div>
-                            <span class="badge badge--status">Completed</span>
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-secondary border border-glass-border">Completed</span>
                         </div>
-                        <h3 class="project-card__title">Email Spam Classification</h3>
-                        <p class="project-card__desc">
+                        <h3 class="font-headline-sm text-[24px] font-semibold text-text-high-emphasis mb-4">Email Spam
+                            Classification</h3>
+                        <p class="text-text-medium-emphasis mb-8 flex-grow">
                             An NLP text classifier that separates spam from legitimate email using
                             TF-IDF vectorization and a Naive Bayes model, tuned for high precision.
                         </p>
-                        <div class="project-card__stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">NLTK</span>
-                            <span class="tech-tag">Flask</span>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Python</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Scikit-learn</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">NLTK</span>
+                            <span
+                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Flask</span>
                         </div>
-                        <a href="/email_classification">
-                            <button class="btn btn--card" data-ripple>
+                        <a class="mt-auto" href="/email_classification">
+                            <button
+                                class="w-full inline-flex items-center justify-center gap-2 bg-transparent border border-glass-border hover:border-secondary text-text-high-emphasis hover:text-secondary px-4 py-2.5 rounded-lg font-medium transition-colors">
                                 View Project
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14M13 5l7 7-7 7" />
+                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
                                 </svg>
                             </button>
                         </a>
                     </article>
-
                 </div>
             </div>
         </section>
     </main>
-
     <!-- ============================ FOOTER ============================ -->
-    <footer class="footer">
-        <div class="container footer__inner">
-            <div class="footer__brand">
-                <span class="footer__brand-name">AI Projects</span>
-                <span class="footer__copy">&copy; <span data-year>2026</span> All rights reserved.</span>
+    <footer class="py-12 border-t border-glass-border bg-surface-container-lowest">
+        <div class="max-w-[1200px] mx-auto px-[24px] flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
+                <span class="font-headline-sm text-[20px] font-semibold text-text-high-emphasis">AI Projects</span>
+                <span class="hidden md:inline text-glass-border">|</span>
+                <span class="text-text-medium-emphasis text-sm">© <span data-year="">2026</span> All rights
+                    reserved.</span>
             </div>
-
-            <div class="footer__socials">
-                <a href="https://github.com/kvkdev-ml" class="footer__social" aria-label="GitHub profile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
+            <div class="flex items-center gap-4">
+                <a aria-label="GitHub profile"
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary-container/10 text-text-medium-emphasis hover:text-primary-container transition-colors"
+                    href="https://github.com/kvkdev-ml">
+                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="20">
                         <path
-                            d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
+                            d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21">
+                        </path>
                     </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/vishal-kumar-95b269390" class="footer__social" aria-label="LinkedIn profile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5 5 0 0 1 16 8Z" />
-                        <rect x="2" y="9" width="4" height="12" />
-                        <circle cx="4" cy="4" r="2" />
+                <a aria-label="LinkedIn profile"
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary-container/10 text-text-medium-emphasis hover:text-primary-container transition-colors"
+                    href="https://www.linkedin.com/in/vishal-kumar-95b269390">
+                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewbox="0 0 24 24" width="20">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5 5 0 0 1 16 8Z"></path>
+                        <rect height="12" width="4" x="2" y="9"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
                     </svg>
                 </a>
             </div>
         </div>
     </footer>
-
-    <script src="../static/script.js"></script>
 </body>
 
 </html>
