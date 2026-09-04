@@ -162,18 +162,22 @@
         <div class="max-w-container-max mx-auto flex items-center justify-between px-margin-desktop h-full">
             <div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">AURA AI</div>
             <div class="hidden md:flex items-center gap-8">
-                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md"
-                    href="/projects/ML">Projects</a>
+                <a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="/projects/ML">ML
+                    Projects</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
                     href="/download_resume">Resume</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md"
                     href="/">Home</a>
             </div>
             <div class="flex items-center gap-4">
-                <button
-                    class="text-on-surface-variant hover:text-primary transition-colors px-4 py-2 font-label-sm text-label-sm">GitHub</button>
-                <button
-                    class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-sm text-label-sm active:scale-95 duration-200 transition-all">Connect</button>
+                <a href="https://github.com/kvkdev-ml" target="_blank">
+                    <button
+                        class="text-on-surface-variant hover:text-primary transition-colors px-4 py-2 font-label-sm text-label-sm">GitHub</button>
+                </a>
+                <a href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">
+                    <button
+                        class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-sm text-label-sm active:scale-95 duration-200 transition-all">Linked IN</button>
+                </a>
             </div>
         </div>
     </nav>
@@ -313,11 +317,19 @@ void main() {
                     </div>
                     <div
                         class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-white/5 font-mono-code text-mono-code">
-                        <span class="text-secondary">NumPy</span>
+                        <span class="text-secondary">Pandas</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-white/5 font-mono-code text-mono-code">
+                        <span class="text-secondary">Imbalanced Learn</span>
                     </div>
                     <div
                         class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-white/5 font-mono-code text-mono-code">
                         <span class="text-tertiary">Scikit-learn</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-white/5 font-mono-code text-mono-code">
+                        <span class="text-secondary">Flask</span>
                     </div>
                 </div>
             </div>
@@ -344,56 +356,49 @@ void main() {
                         <div class="space-y-2">
                             <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Nitrogen
                                 (N)</label>
-                            <input
-                                id="nitrogen"
+                            <input id="nitrogen"
                                 class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
                                 placeholder="Ratio of Nitrogen content" type="number" />
                         </div>
                         <div class="space-y-2">
                             <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Phosphorus
                                 (P)</label>
-                            <input
-                                id="phosphorus"
+                            <input id="phosphorus"
                                 class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
                                 placeholder="Ratio of Phosphorus content" type="number" />
                         </div>
                         <div class="space-y-2">
                             <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Potassium
                                 (K)</label>
-                            <input
-                                id="potassium"
+                            <input id="potassium"
                                 class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
                                 placeholder="Ratio of Potassium content" type="number" />
                         </div>
                         <div class="space-y-2">
                             <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Temperature
                                 (°C)</label>
-                            <input
-                                id="temperature"
+                            <input id="temperature"
                                 class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
                                 placeholder="Ambient temperature" type="number" />
                         </div>
                         <div class="space-y-2">
                             <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Humidity
                                 (%)</label>
-                            <input
-                                id="humidity"
+                            <input id="humidity"
                                 class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
                                 placeholder="Relative humidity" type="number" />
                         </div>
                         <div class="space-y-2">
                             <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Soil
                                 pH</label>
-                            <input
-                                id="ph"
+                            <input id="ph"
                                 class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
                                 placeholder="Soil acidity/alkalinity" step="0.1" type="number" />
                         </div>
                         <div class="md:col-span-2 space-y-2">
                             <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1">Rainfall
                                 (mm)</label>
-                            <input
-                                id="rainfall"
+                            <input id="rainfall"
                                 class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline-variant font-body-md text-body-md"
                                 placeholder="Average annual rainfall" type="number" />
                         </div>
@@ -587,19 +592,17 @@ void main() {
         <div
             class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter">
             <div class="flex flex-col items-center md:items-start gap-2">
-                <div class="font-headline-md text-headline-md text-on-surface">AURA AI</div>
-                <p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 AURA AI Portfolio. Built with
+                <div class="font-headline-md text-headline-md text-on-surface">KVK</div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">KVK Portfolio. Built with
                     Neural Precision.</p>
             </div>
             <div class="flex flex-wrap justify-center gap-8">
                 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
-                    href="#">Back to Projects</a>
+                    href="/projects/ML">Back to Projects</a>
                 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
-                    href="#">View GitHub</a>
+                    href="https://github.com/kvkdev-ml" target="_blank">View GitHub</a>
                 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
-                    href="#">Live Demo</a>
-                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-all duration-200 hover:underline decoration-tertiary underline-offset-4"
-                    href="#">Privacy Policy</a>
+                    href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">Linked IN</a>
             </div>
         </div>
     </footer>
