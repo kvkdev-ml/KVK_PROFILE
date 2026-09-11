@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="en" style="">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -7,705 +7,609 @@
     <title>KVK | Architecting Intelligent Systems</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet">
-    <script id="tailwind-config">
+    <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
-                        "tertiary": "#acedff",
-                        "tertiary-container": "#4cd7f6",
-                        "surface": "#131313",
-                        "on-error": "#690005",
-                        "on-primary-container": "#385283",
-                        "inverse-on-surface": "#313030",
-                        "surface-container-low": "#1c1b1b",
-                        "on-tertiary-fixed-variant": "#004e5c",
-                        "surface-container-high": "#2a2a2a",
-                        "secondary-fixed": "#f0dbff",
-                        "on-secondary": "#40215e",
-                        "glass-bg": "rgba(255, 255, 255, 0.03)",
-                        "glass-border": "rgba(255, 255, 255, 0.1)",
-                        "inverse-surface": "#e5e2e1",
-                        "secondary-fixed-dim": "#ddb7ff",
-                        "outline": "#8e909a",
-                        "inverse-primary": "#455e90",
-                        "surface-bright": "#3a3939",
-                        "on-background": "#e5e2e1",
-                        "primary": "#d8e2ff",
-                        "outline-variant": "#44474f",
-                        "surface-container-lowest": "#0e0e0e",
-                        "on-surface-variant": "#c4c6d0",
-                        "text-high-emphasis": "#e5e2e1",
-                        "surface-container": "#201f1f",
-                        "on-primary-fixed": "#001a42",
-                        "on-tertiary-container": "#005b6b",
-                        "on-primary": "#122f5f",
-                        "error": "#ffb4ab",
-                        "surface-container-highest": "#353534",
-                        "on-tertiary": "#003640",
-                        "surface-dim": "#131313",
-                        "error-container": "#93000a",
-                        "secondary": "#ddb7ff",
-                        "primary-fixed": "#d8e2ff",
-                        "text-medium-emphasis": "#c2c6d6",
-                        "on-tertiary-fixed": "#001f26",
-                        "tertiary-fixed": "#acedff",
-                        "on-surface": "#e5e2e1",
-                        "tertiary-fixed-dim": "#4cd7f6",
-                        "on-secondary-fixed-variant": "#583876",
-                        "on-secondary-container": "#cba6ed",
-                        "on-primary-fixed-variant": "#2c4677",
-                        "primary-fixed-dim": "#adc6ff",
-                        "secondary-container": "#583876",
-                        "background": "#131313",
-                        "on-secondary-fixed": "#2a0848",
-                        "surface-variant": "#353534",
-                        "on-error-container": "#ffdad6",
-                        "surface-tint": "#adc6ff",
-                        "primary-container": "#adc6ff"
+                    colors: {
+                        cream: '#f9f6ee',
+                        pastelYellow: '#fde047',
+                        pastelMint: '#86efac',
+                        pastelPink: '#f472b6',
+                        pastelPeach: '#ffedd5',
+                        pastelBlue: '#bae6fd',
+                        charcoal: '#18181b',
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
                     },
-                    "spacing": {
-                        "margin-desktop": "40px",
-                        "section-gap": "120px",
-                        "gutter": "24px",
-                        "card-padding-lg": "40px",
-                        "margin-mobile": "20px",
-                        "card-padding-sm": "24px",
-                        "container-max": "1200px"
-                    },
-                    "fontFamily": {
-                        "body-lg": ["Inter"],
-                        "headline-xl": ["Sora"],
-                        "headline-md": ["Sora"],
-                        "headline-xl-mobile": ["Sora"],
-                        "label-md": ["Inter"],
-                        "headline-lg": ["Sora"],
-                        "headline-sm": ["Sora"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "headline-xl-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "label-md": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "600" }],
-                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
-                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    boxShadow: {
+                        brutal: '4px 4px 0px #000',
+                        'brutal-lg': '6px 6px 0px #000',
+                        'brutal-xl': '8px 8px 0px #000',
+                        'brutal-sm': '2px 2px 0px #000',
                     }
                 }
             }
         }
     </script>
     <style>
-        body {
-            background-color: #050505;
-            color: #e5e2e1;
-            overflow-x: hidden;
-        }
-
-        .glass-card {
-            backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-8px) scale(1.01);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .neon-blue:hover {
-            box-shadow: 0 20px 40px -10px rgba(173, 198, 255, 0.15);
-        }
-
-        .neon-purple:hover {
-            box-shadow: 0 20px 40px -10px rgba(221, 183, 255, 0.15);
-        }
-
-        .neon-cyan:hover {
-            box-shadow: 0 20px 40px -10px rgba(76, 215, 246, 0.15);
-        }
-
-        .light-leak {
+        .tape-strip {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.35;
-            pointer-events: none;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            width: 70px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);
+            z-index: 20;
         }
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        .tape-strip-left {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            transform: rotate(-3deg);
+            width: 60px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px dashed rgba(0, 0, 0, 0.25);
+            z-index: 20;
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .circular-progress {
-            --size: 120px;
-            --thickness: 8px;
-            --percent: 0;
-            width: var(--size);
-            height: var(--size);
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: radial-gradient(closest-side, #131313 75%, transparent 0 99.9%, #131313 0),
-                conic-gradient(var(--tw-color-primary) calc(var(--percent) * 1%), #2a2a2a 0);
-            transition: --percent 1s ease-in-out;
-        }
-
-        @property --percent {
-            syntax: '<number>';
-            inherits: false;
-            initial-value: 0;
+        .tape-strip-right {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            transform: rotate(2deg);
+            width: 60px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px dashed rgba(0, 0, 0, 0.25);
+            z-index: 20;
         }
     </style>
 </head>
 
-<body class="font-body-md text-body-md bg-background text-on-background">
-    <!-- Background Shader -->
-    <div class="fixed inset-0 z-[-2] pointer-events-none"></div>
-    <!-- Decorative Blobs -->
-    <div class="light-leak bg-[#adc6ff] top-[-10%] left-[-10%]"></div>
-    <div class="light-leak bg-[#ddb7ff] bottom-[-10%] right-[-10%]"></div>
-    <div class="light-leak bg-[#4cd7f6] top-[40%] right-[10%] opacity-20"></div>
+<body class="bg-cream text-charcoal font-sans antialiased min-h-screen selection:bg-pastelYellow selection:text-black">
+
     <!-- Top Navigation Bar -->
-    <nav
-        class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1200px] rounded-full border border-white/10 bg-surface/30 bg-white/5 backdrop-blur-xl shadow-[0_0_30px_rgba(173,198,255,0.1)] flex justify-between items-center px-8 py-3 z-50">
-        <div class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">K Vishal Kumar</div>
-        <div class="hidden md:flex items-center space-x-8">
-            <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-all duration-300 hover:scale-105"
-                href="#home">Home</a>
-            <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 hover:scale-105"
-                href="#about">About</a>
-            <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 hover:scale-105"
-                href="#projects">Projects</a>
-            <a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 hover:scale-105"
-                href="#contact">Contact</a>
-        </div>
-        <a href="/download_resume" target="_blank">
-            <button
-                class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-md text-label-md font-bold hover:scale-105 active:scale-95 transition-all duration-200">
-                Download Resume
-            </button>
-        </a>
-    </nav>
-    <main class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop pt-40 overflow-hidden">
-        <!-- 1. Hero Section -->
-        <section class="flex flex-col mb-section-gap relative reveal active" id="home">
-            <div
-                class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/20 blur-[120px] pointer-events-none">
+    <header class="sticky top-4 z-50 px-4 md:px-8 max-w-7xl mx-auto">
+        <nav
+            class="bg-white border-2 border-black rounded-full px-6 py-3 shadow-brutal flex items-center justify-between">
+            <a href="#home"
+                class="font-heading font-extrabold text-xl md:text-2xl tracking-tight flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-pastelYellow border-2 border-black"></span>
+                KVK
+            </a>
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#home"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-pastelYellow font-bold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">Home</a>
+                <a href="#about"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelPeach font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">About</a>
+                <a href="#projects"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelMint font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">Projects</a>
+                <a href="#skills"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelBlue font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">Arsenal</a>
+                <a href="#contact"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelPink font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">Contact</a>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full text-left md:text-left">
-                <div class="order-2 md:order-1 flex flex-col items-center md:items-start">
+            <div class="flex items-center gap-2">
+                <a href="/download_resume" target="_blank"
+                    class="px-5 py-2 rounded-full border-2 border-black bg-pastelPink font-bold text-sm shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                    Resume ↓
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 pt-12 pb-24 space-y-24">
+        <!-- Hero Section -->
+        <section id="home" class="pt-8 md:pt-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border-2 border-black bg-white shadow-brutal-sm text-xs font-extrabold uppercase tracking-wider">
+                        <span class="px-2 py-0.5 rounded-full bg-pastelPink border border-black text-[10px]">NEW</span>
+                        AI Architect × Systems Engineer
+                    </div>
                     <h1
-                        class="font-headline-xl text-headline-xl mb-6 tracking-tighter bg-gradient-to-br from-primary via-white to-[#ddb7ff] bg-clip-text text-transparent drop-shadow-sm md:font-headline-xl font-headline-xl-mobile md:text-headline-xl text-headline-xl-mobile text-center md:text-left">
-                        K Vishal Kumar
+                        class="text-4xl sm:text-6xl md:text-7xl font-heading font-extrabold tracking-tight leading-[1.05]">
+                        Architecting <span class="relative inline-block">Intelligent<span
+                                class="absolute -bottom-1 left-0 w-full h-3 bg-pastelYellow/70 -z-10 rounded"></span></span>
+                        Systems.
                     </h1>
-                    <p
-                        class="font-headline-md text-headline-md text-on-surface-variant max-w-2xl leading-tight font-medium md:font-headline-md text-center md:text-left">
-                        Architecting Intelligent Systems. <br>
-                        <span class="text-primary">Engineering the Future of AI.</span>
+                    <p class="text-lg md:text-xl text-zinc-700 font-medium max-w-xl leading-relaxed">
+                        I bridge the gap between raw research and high-performance production AI. Building resilient RAG
+                        pipelines, LLM orchestration layers, and custom ML engines.
                     </p>
-                    <div class="mt-12 flex space-x-4">
-                        <div class="animate-float">
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#projects"
+                            class="px-7 py-3.5 rounded-2xl border-2 border-black bg-pastelPink font-bold text-base shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center gap-2">
+                            Explore Projects <span>→</span>
+                        </a>
+                        <a href="#about"
+                            class="px-7 py-3.5 rounded-2xl border-2 border-black bg-white font-bold text-base shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                            About Me
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Staggered Pastel Sticky Cards -->
+                <div class="lg:col-span-5 relative min-h-[460px] flex items-center justify-center">
+                    <!-- Top Yellow Card -->
+                    <div
+                        class="w-72 bg-pastelYellow border-2 border-black rounded-2xl p-6 shadow-brutal-lg absolute top-0 right-4 rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <div class="tape-strip"></div>
+                        <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider mb-2">
+                            <span>↑ PRODUCTION • 01</span>
                             <span
-                                class="material-symbols-outlined text-4xl text-primary opacity-50">keyboard_double_arrow_down</span>
+                                class="px-2 py-0.5 rounded-full bg-white border border-black text-[10px]">ACTIVE</span>
+                        </div>
+                        <div class="text-5xl font-heading font-black tracking-tight my-2">99.7%</div>
+                        <p class="text-xs font-bold text-zinc-800">Inference precision achieved across deep NLP &
+                            detection models</p>
+                    </div>
+
+                    <!-- Middle Mint Card -->
+                    <div
+                        class="w-72 bg-pastelMint border-2 border-black rounded-2xl p-6 shadow-brutal-lg absolute top-36 left-0 -rotate-3 hover:rotate-0 transition-transform duration-300 z-10">
+                        <div class="tape-strip-left"></div>
+                        <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider mb-2">
+                            <span>↑ VELOCITY • 02</span>
+                            <span class="px-2 py-0.5 rounded-full bg-white border border-black text-[10px]">RAG</span>
+                        </div>
+                        <div class="text-5xl font-heading font-black tracking-tight my-2">&lt;24ms</div>
+                        <p class="text-xs font-bold text-zinc-800">Ultra-fast vector search & hybrid semantic retrieval
+                            latency</p>
+                    </div>
+
+                    <!-- Bottom Pink Card -->
+                    <div
+                        class="w-72 bg-pastelPink border-2 border-black rounded-2xl p-6 shadow-brutal-lg absolute bottom-0 right-8 rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <div class="tape-strip-right"></div>
+                        <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider mb-2">
+                            <span>↑ DEPLOYMENTS • 03</span>
+                            <span class="px-2 py-0.5 rounded-full bg-white border border-black text-[10px]">STACK</span>
+                        </div>
+                        <div class="text-5xl font-heading font-black tracking-tight my-2">25+</div>
+                        <p class="text-xs font-bold text-zinc-800">Trained & deployed ML/GenAI models running on cloud
+                            infrastructure</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client / Stack Marquee Bar -->
+            <div
+                class="mt-16 bg-white border-2 border-black rounded-2xl p-5 shadow-brutal flex flex-wrap items-center justify-between gap-6">
+                <div class="text-xs font-extrabold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-black"></span>
+                    Core Stack & Technologies →
+                </div>
+                <div class="flex flex-wrap items-center gap-4 md:gap-8 font-heading font-bold text-lg text-zinc-800">
+                    <span class="px-3 py-1 bg-pastelPeach border border-black rounded-lg">Python</span>
+                    <span class="px-3 py-1 bg-pastelYellow border border-black rounded-lg">LangChain</span>
+                    <span class="px-3 py-1 bg-pastelMint border border-black rounded-lg">Pinecone</span>
+                    <span class="px-3 py-1 bg-pastelBlue border border-black rounded-lg">PyTorch</span>
+                    <span class="px-3 py-1 bg-pastelPink border border-black rounded-lg">Flask APIs</span>
+                    <span class="px-3 py-1 bg-white border border-black rounded-lg">Scikit-learn</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Philosophy Bento -->
+        <section id="about" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span
+                    class="px-3 py-1 rounded-full border-2 border-black bg-pastelYellow text-xs font-extrabold uppercase">Philosophy</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-black">Engineered for Precision</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Large Bio Card -->
+                <div
+                    class="md:col-span-7 bg-white border-2 border-black rounded-3xl p-8 md:p-10 shadow-brutal space-y-6 relative">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-pastelYellow border-2 border-black flex items-center justify-center font-bold text-xl shadow-brutal-sm">
+                            KV
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl">K Vishal Kumar</h3>
+                            <p class="text-sm font-semibold text-zinc-600">Backend AI Engineer</p>
+                        </div>
+                    </div>
+                    <p class="text-zinc-700 leading-relaxed text-base md:text-lg">
+                        I architect intelligent backends that bridge high-level model abstractions with robust,
+                        production-grade servers. With specialized focus in <strong
+                            class="bg-pastelYellow px-1 border border-black rounded">LLM orchestration</strong>, <strong
+                            class="bg-pastelMint px-1 border border-black rounded">RAG pipelines</strong>, and <strong
+                            class="bg-pastelPink px-1 border border-black rounded">predictive modeling</strong>, I
+                        ensure every neural tensor deployment contributes measurable business value.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t-2 border-black">
+                        <div>
+                            <div class="text-3xl font-heading font-black">10+</div>
+                            <div class="text-xs font-bold uppercase text-zinc-600">Completed Projects</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-heading font-black">3+</div>
+                            <div class="text-xs font-bold uppercase text-zinc-600">Years Experience</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-heading font-black">100%</div>
+                            <div class="text-xs font-bold uppercase text-zinc-600">Uptime Reliability</div>
                         </div>
                     </div>
                 </div>
-                <div class="order-1 md:order-2 flex justify-center md:justify-end">
-                    <div class="relative group">
-                        <div
-                            class="absolute inset-0 bg-primary/20 blur-2xl group-hover:bg-primary/30 transition-all duration-500 rounded-xl">
+
+                <!-- Bento Card: Core Skills -->
+                <div
+                    class="md:col-span-5 bg-pastelBlue/40 border-2 border-black rounded-3xl p-8 shadow-brutal flex flex-col justify-between space-y-6">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-zinc-700">Competencies</span>
+                        <h3 class="text-2xl font-heading font-black mt-1">Core Competencies</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1">
+                                <span>Backend AI & API Architecture</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full h-4 bg-white border-2 border-black rounded-full overflow-hidden">
+                                <div class="bg-pastelYellow h-full border-r-2 border-black" style="width: 95%"></div>
+                            </div>
                         </div>
-                        <div
-                            class="relative w-48 h-48 md:w-64 md:h-64 border-2 border-white/10 glass-card overflow-hidden flex items-center justify-center shadow-[0_0_30px_rgba(173,198,255,0.2)] rounded-xl">
-                            <img src="{{url_for('static',filename='kvk.jpeg')}}" alt="K Vishal Kumar Profile"
-                                class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-500 rounded-xl">
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1">
+                                <span>GenAI, Agents & RAG Frameworks</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full h-4 bg-white border-2 border-black rounded-full overflow-hidden">
+                                <div class="bg-pastelMint h-full border-r-2 border-black" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1">
+                                <span>Machine Learning & Deep Learning</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="w-full h-4 bg-white border-2 border-black rounded-full overflow-hidden">
+                                <div class="bg-pastelPink h-full border-r-2 border-black" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1">
+                                <span>Computer Vision & NLP</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full h-4 bg-white border-2 border-black rounded-full overflow-hidden">
+                                <div class="bg-pastelPeach h-full border-r-2 border-black" style="width: 85%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- 2. About & Skills Bento -->
-        <section class="mb-section-gap grid grid-cols-1 md:grid-cols-12 gap-8 reveal active" id="about">
-            <!-- About Me -->
-            <div class="md:col-span-7 glass-card p-10 rounded-xl relative overflow-hidden"
-                style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
-                <h2 class="font-headline-lg text-headline-md text-on-surface mb-6 flex items-center gap-4">
-                    <span class="material-symbols-outlined text-primary">person</span>
-                    About Me
-                </h2>
-                <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                    I am a dedicated Backend AI Engineer focused on architecting intelligent systems that bridge the gap
-                    between raw data and actionable insights. With a deep mastery in <span
-                        class="text-primary font-semibold">LLM orchestration</span> and <span
-                        class="text-secondary font-semibold">Generative AI</span>, I build scalable infrastructures
-                    using Flask and modern RAG (Retrieval-Augmented Generation) pipelines.
-                    <br><br>
-                    My philosophy revolves around precision engineering and performance optimization, ensuring that
-                    every model deployed contributes meaningfully to the user experience while maintaining
-                    enterprise-grade reliability.
-                </p>
+
+        <!-- Projects Grid Section -->
+        <section id="projects" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span
+                        class="px-3 py-1 rounded-full border-2 border-black bg-pastelMint text-xs font-extrabold uppercase">Featured
+                        Work</span>
+                    <h2 class="text-3xl md:text-5xl font-heading font-black mt-2">Applied Systems & Models</h2>
+                </div>
+                <div class="flex gap-3">
+                    <a href="/projects/ML"
+                        class="px-5 py-2.5 rounded-full border-2 border-black bg-pastelYellow font-bold text-sm shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                        View All ML Projects →
+                    </a>
+                    <a href="/projects/genai"
+                        class="px-5 py-2.5 rounded-full border-2 border-black bg-pastelPink font-bold text-sm shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                        View All GenAI Projects →
+                    </a>
+                </div>
             </div>
-            <!-- Core Skills (Circular Indicators) -->
-            <div class="md:col-span-5 glass-card p-10 rounded-xl">
-                <h2 class="font-headline-lg text-headline-md text-on-surface mb-8">Core Skills</h2>
-                <div class="grid grid-cols-2 gap-y-10">
-                    <div class="flex flex-col items-center gap-4 group">
-                        <div class="circular-progress" data-percent="95" style="--percent: 95">
-                            <span class="font-label-md text-label-md font-bold">95%</span>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Machine Learning Card -->
+                <div
+                    class="bg-pastelYellow/30 border-2 border-black rounded-3xl p-8 md:p-10 shadow-brutal-lg flex flex-col justify-between relative group hover:-translate-y-1 transition-all">
+                    <div class="tape-strip-left"></div>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="px-3 py-1 rounded-full bg-pastelYellow border-2 border-black font-extrabold text-xs">TRADITIONAL
+                                ML</span>
+                            <span class="text-xs font-bold text-zinc-600">4 Core Models</span>
                         </div>
-                        <span
-                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">Backend
-                            Dev</span>
+                        <h3 class="text-3xl font-heading font-black">Applied Machine Learning Suite</h3>
+                        <p class="text-zinc-700 font-medium">
+                            Clinical diagnostics, agricultural intelligence, and security classification trained on
+                            tabular telemetry using Scikit-Learn ensembles.
+                        </p>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <div class="p-3 bg-white border-2 border-black rounded-xl shadow-brutal-sm">
+                                <div class="font-bold text-sm">Diabetic Prediction</div>
+                                <div class="text-xs text-zinc-500">Classification • 94.2%</div>
+                            </div>
+                            <div class="p-3 bg-white border-2 border-black rounded-xl shadow-brutal-sm">
+                                <div class="font-bold text-sm">SmartAgra Advisor</div>
+                                <div class="text-xs text-zinc-500">Random Forest • 98.4%</div>
+                            </div>
+                            <div class="p-3 bg-white border-2 border-black rounded-xl shadow-brutal-sm">
+                                <div class="font-bold text-sm">Neural Spam Shield</div>
+                                <div class="text-xs text-zinc-500">NLP TF-IDF • 99.7%</div>
+                            </div>
+                            <div class="p-3 bg-white border-2 border-black rounded-xl shadow-brutal-sm">
+                                <div class="font-bold text-sm">Heart Disease Risk</div>
+                                <div class="text-xs text-zinc-500">Ensemble • Deployed</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center gap-4 group">
-                        <div class="circular-progress" data-percent="90" style="--percent: 90">
-                            <span class="font-label-md text-label-md font-bold">90%</span>
-                        </div>
-                        <span
-                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">ML
-                            / DL</span>
+                    <div class="pt-8 mt-6 border-t-2 border-black">
+                        <a href="/projects/ML"
+                            class="w-full py-3.5 px-6 rounded-xl bg-black text-white font-bold flex items-center justify-between hover:bg-zinc-800 transition-colors shadow-brutal">
+                            <span>Explore ML Directory</span>
+                            <span>→</span>
+                        </a>
                     </div>
-                    <div class="flex flex-col items-center gap-4 group">
-                        <div class="circular-progress" data-percent="85" style="--percent: 85">
-                            <span class="font-label-md text-label-md font-bold">85%</span>
+                </div>
+
+                <!-- GenAI Card -->
+                <div
+                    class="bg-pastelMint/30 border-2 border-black rounded-3xl p-8 md:p-10 shadow-brutal-lg flex flex-col justify-between relative group hover:-translate-y-1 transition-all">
+                    <div class="tape-strip-right"></div>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="px-3 py-1 rounded-full bg-pastelMint border-2 border-black font-extrabold text-xs">GENERATIVE
+                                AI</span>
+                            <span class="text-xs font-bold text-zinc-600">Autonomous Agents</span>
                         </div>
-                        <span
-                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">GenAI
-                            / RAG</span>
+                        <h3 class="text-3xl font-heading font-black">LLM & RAG Systems</h3>
+                        <p class="text-zinc-700 font-medium">
+                            Modern Generative AI architectures leveraging vector embedding spaces, multi-turn reasoning
+                            agents, and automated semantic code transformation.
+                        </p>
+                        <div class="space-y-3 pt-2">
+                            <div
+                                class="p-4 bg-white border-2 border-black rounded-xl shadow-brutal-sm flex items-center justify-between">
+                                <div>
+                                    <div class="font-bold text-base">Rosetta AI — Code Morpher</div>
+                                    <div class="text-xs text-zinc-600">Cross-language AST parsing & semantic translation
+                                    </div>
+                                </div>
+                                <span
+                                    class="px-2.5 py-1 rounded-full bg-pastelMint border border-black text-xs font-bold">Live</span>
+                            </div>
+                            <div
+                                class="p-4 bg-white border-2 border-black rounded-xl shadow-brutal-sm flex items-center justify-between">
+                                <div>
+                                    <div class="font-bold text-base">AYUR-AI Agent</div>
+                                    <div class="text-xs text-zinc-600">Ayurvedic botanical retrieval agent with RAG
+                                    </div>
+                                </div>
+                                <span
+                                    class="px-2.5 py-1 rounded-full bg-pastelYellow border border-black text-xs font-bold">RAG</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center gap-4 group">
-                        <div class="circular-progress" data-percent="88" style="--percent: 88">
-                            <span class="font-label-md text-label-md font-bold">88%</span>
-                        </div>
+                    <div class="pt-8 mt-6 border-t-2 border-black">
+                        <a href="/projects/genai"
+                            class="w-full py-3.5 px-6 rounded-xl bg-black text-white font-bold flex items-center justify-between hover:bg-zinc-800 transition-colors shadow-brutal">
+                            <span>Explore GenAI Directory</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Arsenal / Stack -->
+        <section id="skills" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span
+                    class="px-3 py-1 rounded-full border-2 border-black bg-pastelBlue text-xs font-extrabold uppercase">Capabilities</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-black">Technical Arsenal</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Box 1 -->
+                <div class="bg-white border-2 border-black rounded-2xl p-6 shadow-brutal space-y-4">
+                    <div class="flex items-center gap-2">
                         <span
-                            class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">Computer
+                            class="w-8 h-8 rounded-lg bg-pastelYellow border-2 border-black flex items-center justify-center font-bold text-sm">01</span>
+                        <h3 class="font-heading font-bold text-xl">Core Languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Python</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">JavaScript</span>
+                        <span class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">SQL</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">HTML5/CSS3</span>
+                    </div>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="bg-white border-2 border-black rounded-2xl p-6 shadow-brutal space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="w-8 h-8 rounded-lg bg-pastelMint border-2 border-black flex items-center justify-center font-bold text-sm">02</span>
+                        <h3 class="font-heading font-bold text-xl">AI & Intelligence</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Scikit-learn</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">LangChain</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Pinecone</span>
+                        <span class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Gemini
+                            API</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">OpenCV</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Pandas</span><span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">ChromaDB</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Skrub</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Imbalanced Learn</span>
+                    </div>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="bg-white border-2 border-black rounded-2xl p-6 shadow-brutal space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="w-8 h-8 rounded-lg bg-pastelPink border-2 border-black flex items-center justify-center font-bold text-sm">03</span>
+                        <h3 class="font-heading font-bold text-xl">Infrastructure</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Flask
+                            APIs</span>
+                        <span class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">RESTful
+                            API</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Supabase</span>
+                        <span class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Ollama /
+                            Local LLMs</span>
+                        <span class="px-3 py-1 rounded-full bg-cream border-2 border-black text-xs font-bold">Git &
+                            CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span
+                    class="px-3 py-1 rounded-full border-2 border-black bg-pastelPeach text-xs font-extrabold uppercase">History</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-black">Professional Timeline</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div
+                    class="bg-white border-2 border-black rounded-2xl p-6 md:p-8 shadow-brutal flex flex-col md:flex-row justify-between gap-4">
+                    <div class="space-y-2">
+                        <div
+                            class="inline-block px-3 py-0.5 rounded-full bg-pastelYellow border border-black text-xs font-bold">
+                            2026: April – 2026: July</div>
+                        <h3 class="text-xl font-heading font-extrabold">Backend AI Engineer</h3>
+                        <p class="text-zinc-700 text-sm max-w-2xl">
+                            Leading the development of a proprietary RAG framework for enterprise documentation,
+                            reducing response latency by 40% and improving accuracy using custom LangChain wrappers and
+                            Pinecone vector stores.
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="px-3 py-1 rounded-lg border-2 border-black bg-cream font-bold text-xs">Enterprise
+                            AI</span>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white border-2 border-black rounded-2xl p-6 md:p-8 shadow-brutal flex flex-col md:flex-row justify-between gap-4">
+                    <div class="space-y-2">
+                        <div
+                            class="inline-block px-3 py-0.5 rounded-full bg-pastelMint border border-black text-xs font-bold">
+                            2025: June – 2025: July</div>
+                        <h3 class="text-xl font-heading font-extrabold">Python AIML Intern @ CTTC Bhubaneshwar</h3>
+                        <p class="text-zinc-700 text-sm max-w-2xl">
+                            Architected biometric facial recognition system utilizing OpenCV edge analysis and modular
+                            Python Flask REST services.
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="px-3 py-1 rounded-lg border-2 border-black bg-cream font-bold text-xs">Computer
                             Vision</span>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- 3. Statistics Section -->
-        <section class="mb-section-gap grid grid-cols-2 md:grid-cols-5 gap-6 reveal active">
-            <div class="glass-card p-6 rounded-lg text-center">
-                <div class="font-headline-lg text-headline-md text-primary counter" data-target="10"
-                    data-started="true">10+</div>
-                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Projects
-                </div>
-            </div>
-            <div class="glass-card p-6 rounded-lg text-center"
-                style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <div class="font-headline-lg text-headline-md text-secondary counter" data-target="25"
-                    data-started="true">25+</div>
-                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">ML
-                    Models</div>
-            </div>
-            <div class="glass-card p-6 rounded-lg text-center">
-                <div class="font-headline-lg text-headline-md text-tertiary counter" data-target="10"
-                    data-started="true">10+</div>
-                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Tech
-                    Stack</div>
-            </div>
-            <div class="glass-card p-6 rounded-lg text-center"
-                style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <div class="font-headline-lg text-headline-md text-primary-container counter" data-target="5"
-                    data-started="true">5</div>
-                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Repos
-                </div>
-            </div>
-            <div class="glass-card p-6 rounded-lg text-center col-span-2 md:col-span-1">
-                <div class="font-headline-lg text-headline-md text-on-surface counter" data-target="3"
-                    data-started="true">3</div>
-                <div class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-widest">Years
-                    Exp</div>
-            </div>
-        </section>
-        <!-- 4. Projects Grid Section -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-section-gap reveal active" id="projects">
-            <!-- ML Projects Card -->
-            <div class="glass-card neon-blue p-10 rounded-xl flex flex-col h-full group" id="ml-card"
-                style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); border: 1px solid rgba(255, 255, 255, 0.1);">
+
                 <div
-                    class="w-12 h-12 rounded-lg bg-[#adc6ff]/10 flex items-center justify-center mb-8 border border-[#adc6ff]/20">
-                    <span class="material-symbols-outlined text-[#adc6ff]">analytics</span>
-                </div>
-                <h3 class="font-headline-sm text-headline-sm mb-4">Machine Learning Projects</h3>
-                <p class="text-on-surface-variant mb-8 font-body-md text-body-md opacity-80">Traditional Machine
-                    Learning applications built using Scikit-learn and Flask.</p>
-                <ul class="space-y-4 mb-auto">
-                    <li class="flex items-center space-x-3 text-on-surface/90">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#adc6ff]"></span>
-                        <span class="font-label-md text-label-md">Diabetic Prediction</span>
-                    </li>
-                    <li class="flex items-center space-x-3 text-on-surface/90">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#adc6ff]"></span>
-                        <span class="font-label-md text-label-md">Heart Disease Prediction</span>
-                    </li>
-                    <li class="flex items-center space-x-3 text-on-surface/90">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#adc6ff]"></span>
-                        <span class="font-label-md text-label-md">Crop Recommendation</span>
-                    </li>
-                    <li class="flex items-center space-x-3 text-on-surface/90">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#adc6ff]"></span>
-                        <span class="font-label-md text-label-md">Email Spam Classification</span>
-                    </li>
-                </ul>
-                <a class="mt-12 flex items-center justify-between group/btn text-[#adc6ff] font-bold font-label-md text-label-md"
-                    href="/projects/ML">
-                    <span class="">Explore ML Projects</span>
-                    <span
-                        class="material-symbols-outlined transition-transform group-hover/btn:translate-x-2">arrow_forward</span>
-                </a>
-            </div>
-            <!-- GenAI Projects Card -->
-            <div class="glass-card neon-cyan p-10 rounded-xl flex flex-col h-full group" id="genai-card"
-                style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <div
-                    class="w-12 h-12 rounded-lg bg-[#4cd7f6]/10 flex items-center justify-center mb-8 border border-[#4cd7f6]/20">
-                    <span class="material-symbols-outlined text-[#4cd7f6]">psychology</span>
-                </div>
-                <h3 class="font-headline-sm text-headline-sm mb-4">Generative AI Projects</h3>
-                <p class="text-on-surface-variant mb-8 font-body-md text-body-md opacity-80">Modern LLM-powered
-                    applications using RAG, Vector Databases, and AI Agents.</p>
-                <ul class="space-y-4 mb-auto">
-                    <li class="flex items-center space-x-3 text-on-surface/90">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#4cd7f6]"></span>
-                        <span class="font-label-md text-label-md">AI Code Morpher</span>
-                    </li>
-                    <li class="flex items-center space-x-3 text-on-surface/90">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#4cd7f6]"></span>
-                        <span class="font-label-md text-label-md">Ayurvedic RAG Assistant</span>
-                    </li>
-                </ul>
-                <a class="mt-12 flex items-center justify-between group/btn text-[#4cd7f6] font-bold font-label-md text-label-md"
-                    href="/projects/genai">
-                    <span class="">Explore GenAI Projects</span>
-                    <span
-                        class="material-symbols-outlined transition-transform group-hover/btn:translate-x-2">arrow_forward</span>
-                </a>
-            </div>
-        </section>
-        <!-- 5. Tech Stack -->
-        <section class="mb-section-gap reveal active">
-            <h2 class="font-headline-lg text-headline-md text-on-surface mb-12 text-center">Technical Arsenal</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Languages & Core -->
-                <div class="glass-card p-8 rounded-xl"
-                    style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); border: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h3 class="font-headline-sm text-headline-sm text-primary mb-6 flex items-center gap-3">
-                        <span class="material-symbols-outlined">code</span>
-                        Core Languages
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">Python</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">JavaScript</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">HTML5</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">CSS3</span>
+                    class="bg-white border-2 border-black rounded-2xl p-6 md:p-8 shadow-brutal flex flex-col md:flex-row justify-between gap-4">
+                    <div class="space-y-2">
+                        <div
+                            class="inline-block px-3 py-0.5 rounded-full bg-pastelPink border border-black text-xs font-bold">
+                            2024: June – 2024: July</div>
+                        <h3 class="text-xl font-heading font-extrabold">Python & SQL Engineering Intern @ GIET
+                            University</h3>
+                        <p class="text-zinc-700 text-sm max-w-2xl">
+                            Engineered relational database management backend for automated hospitality workflows using
+                            Python and MySQL.
+                        </p>
                     </div>
-                </div>
-                <!-- AI & ML -->
-                <div class="glass-card p-8 rounded-xl">
-                    <h3 class="font-headline-sm text-headline-sm text-secondary mb-6 flex items-center gap-3">
-                        <span class="material-symbols-outlined">psychology</span>
-                        Intelligence
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Scikit-learn</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">TensorFlow</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Keras</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">OpenCV</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">LangChain</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Pinecone</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Google
-                            Gemini</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Skrub</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Pandas</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Numpy</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-md text-label-md">Matplotlib</span>
-                    </div>
-                </div>
-                <!-- Backend & DevOps -->
-                <div class="glass-card p-8 rounded-xl">
-                    <h3 class="font-headline-sm text-headline-sm text-tertiary mb-6 flex items-center gap-3">
-                        <span class="material-symbols-outlined">lan</span>
-                        Infrastructure
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Flask</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">REST
-                            APIs</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">RAG</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Git</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">VS
-                            Code</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Agents</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Chabots</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Supabase</span>
-                        <span
-                            class="px-4 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-md text-label-md">Local
-                            LLM's/Ollama</span>
+                    <div class="flex items-center">
+                        <span class="px-3 py-1 rounded-lg border-2 border-black bg-cream font-bold text-xs">Database
+                            Systems</span>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- 6. Experience Timeline -->
-        <section class="mb-section-gap reveal active">
-            <h2 class="font-headline-lg text-headline-md text-on-surface mb-16 text-center">Professional Timeline</h2>
-            <div class="max-w-4xl mx-auto relative px-6">
-                <!-- Vertical Line -->
-                <div
-                    class="absolute left-[31px] top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-transparent">
-                </div>
-                <div class="space-y-12">
-                    <!-- Timeline Item 1 -->
-                    <div class="relative pl-16 group">
-                        <div
-                            class="absolute left-0 top-1 w-16 h-16 rounded-full bg-surface border border-white/10 flex items-center justify-center z-10 transition-colors group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(173,198,255,0.4)]">
-                            <span class="material-symbols-outlined text-primary">work</span>
-                        </div>
-                        <div class="glass-card p-8 rounded-xl">
-                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-2">
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface">Backend Artificial
-                                    Intelligence Engineer</h3>
-                                <span
-                                    class="px-4 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-white/5">2026:April
-                                    - 2026:July</span>
-                            </div>
-                            <p class="font-body-md text-body-md text-on-surface-variant">Leading the development of a
-                                proprietary RAG framework for enterprise documentation, reducing response latency by 40%
-                                and improving accuracy using custom LangChain wrappers and Pinecone vector stores.</p>
-                        </div>
-                    </div>
-                    <!-- Timeline Item 2 -->
-                    <div class="relative pl-16 group">
-                        <div
-                            class="absolute left-0 top-1 w-16 h-16 rounded-full bg-surface border border-white/10 flex items-center justify-center z-10 transition-colors group-hover:border-secondary group-hover:shadow-[0_0_15px_rgba(221,183,255,0.4)]">
-                            <span class="material-symbols-outlined text-secondary">work</span>
-                        </div>
-                        <div class="glass-card p-8 rounded-xl">
-                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-2">
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface">Python AIML Intern @ CTTC
-                                    Bhubaneshwar</h3>
-                                <span
-                                    class="px-4 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-white/5">2025
-                                    June- 2025 July</span>
-                            </div>
-                            <p class="font-body-md text-body-md text-on-surface-variant">Architected Facial Recognition
-                                System using OpenCV and Python Flask API's.</p>
-                        </div>
-                    </div>
-                    <div class="relative pl-16 group">
-                        <div
-                            class="absolute left-0 top-1 w-16 h-16 rounded-full bg-surface border border-white/10 flex items-center justify-center z-10 transition-colors group-hover:border-secondary group-hover:shadow-[0_0_15px_rgba(221,183,255,0.4)]">
-                            <span class="material-symbols-outlined text-secondary">work</span>
-                        </div>
-                        <div class="glass-card p-8 rounded-xl">
-                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-2">
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface">Python Programming for
-                                    MySQL Intern @ GIET University Gunupur</h3>
-                                <span
-                                    class="px-4 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-white/5">2024
-                                    June - 2024 July</span>
-                            </div>
-                            <p class="font-body-md text-body-md text-on-surface-variant">Architected a Hotel Management
-                                System Using SQL and Python.</p>
-                        </div>
-                    </div>
-                </div>
+
+        <!-- Contact Section -->
+        <section id="contact"
+            class="bg-pastelPeach border-2 border-black rounded-3xl p-8 md:p-14 shadow-brutal-lg text-center space-y-8 relative">
+            <div class="tape-strip"></div>
+            <div class="max-w-xl mx-auto space-y-3">
+                <span
+                    class="px-3 py-1 rounded-full border-2 border-black bg-white text-xs font-extrabold uppercase">Let's
+                    Connect</span>
+                <h2 class="text-3xl md:text-5xl font-heading font-black">Ready to build intelligent systems together?
+                </h2>
+                <p class="text-zinc-700 font-medium">Feel free to reach out for collaborations, engineering
+                    opportunities, or AI consultations.</p>
             </div>
-        </section>
-        <!-- 7. Contact Section -->
-        <section class="mb-section-gap reveal active" id="contact">
-            <h2 class="font-headline-lg text-headline-md text-on-surface mb-12 text-center">Get In Touch</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <a class="glass-card p-8 flex flex-col items-center gap-4 text-center group"
-                    href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">
-                    <div
-                        class="w-16 h-16 rounded-full bg-on-surface/5 flex items-center justify-center group-hover:bg-secondary/20 transition-all">
-                        <span class="material-symbols-outlined text-secondary scale-125">share</span>
-                    </div>
-                    <span class="font-headline-sm text-headline-sm text-on-surface">LinkedIn</span>
-                    <span class="font-label-md text-label-md text-on-surface-variant"></span>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank"
+                    class="px-6 py-3 rounded-2xl border-2 border-black bg-white font-bold text-sm shadow-brutal hover:bg-pastelYellow transition-all">
+                    LinkedIn Profile ↗
                 </a>
-                <a class="glass-card p-8 flex flex-col items-center gap-4 text-center group"
-                    href="https://github.com/kvkdev-ml" target="_blank">
-                    <div
-                        class="w-16 h-16 rounded-full bg-on-surface/5 flex items-center justify-center group-hover:bg-tertiary/20 transition-all">
-                        <span class="material-symbols-outlined text-tertiary scale-125">hub</span>
-                    </div>
-                    <span class="font-headline-sm text-headline-sm text-on-surface">GitHub</span>
-                    <span class="font-label-md text-label-md text-on-surface-variant"></span>
+                <a href="https://github.com/kvkdev-ml" target="_blank"
+                    class="px-6 py-3 rounded-2xl border-2 border-black bg-white font-bold text-sm shadow-brutal hover:bg-pastelMint transition-all">
+                    GitHub Repositories ↗
                 </a>
-                <a class="glass-card p-8 flex flex-col items-center gap-4 text-center group" href="/download_resume"
-                    target="_blank">
-                    <span class="font-headline-sm text-headline-sm text-on-surface">Download Resume</span>
-                    <span class="font-label-md text-label-md text-on-surface-variant">Click to know more about me</span>
+                <a href="mailto:kvkwork05@gmail.com"
+                    class="px-6 py-3 rounded-2xl border-2 border-black bg-black text-white font-bold text-sm shadow-brutal hover:bg-zinc-800 transition-all">
+                    kvkwork05@gmail.com
+                </a>
+                <a href="/download_resume" target="_blank"
+                    class="px-6 py-3 rounded-2xl border-2 border-black bg-pastelPink font-bold text-sm shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                    Download Resume ↓
                 </a>
             </div>
         </section>
     </main>
+
     <!-- Footer -->
-    <footer
-        class="border-t border-white/5 mt-section-gap w-full max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center py-12 px-margin-mobile md:px-margin-desktop bg-transparent">
-        <div class="font-headline-sm text-headline-sm text-on-surface mb-6 md:mb-0">KVK</div>
-        <div class="flex flex-col items-center md:items-end">
-            <div class="flex space-x-8 mb-4">
-                <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors"
-                    href="https://github.com/kvkdev-ml" target="_blank">GitHub</a>
-                <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors"
-                    href="https://www.linkedin.com/in/vishal-kumar-95b269390" target="_blank">LinkedIn</a>
-                <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors"
-                    href="">kvkwork05@gmail.com</a>
+    <footer class="border-t-2 border-black bg-white py-10 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <span class="w-4 h-4 rounded-full bg-pastelYellow border-2 border-black"></span>
+                <span class="font-heading font-extrabold text-lg">K Vishal Kumar</span>
+                <span class="text-zinc-500 text-sm">© 2026. All rights reserved.</span>
             </div>
-            <p class="text-tertiary-container font-body-md text-body-md opacity-60"> KVK. Engineered for
-                Performance.</p>
+            <div class="flex items-center gap-6 text-sm font-bold">
+                <a href="#home" class="hover:underline">Back to top ↑</a>
+                <a href="/projects/ML" class="hover:underline">ML Projects</a>
+                <a href="/projects/genai" class="hover:underline">GenAI</a>
+                <a href="https://github.com/kvkdev-ml" target="_blank" class="hover:underline">GitHub</a>
+            </div>
         </div>
     </footer>
-    <script>
-        // Mouse Parallax for cards
-        const cards = document.querySelectorAll('.glass-card');
-
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-
-                // Dynamic border glow effect
-                const xPct = (x / rect.width) * 100;
-                const yPct = (y / rect.height) * 100;
-                card.style.borderImage = `radial-gradient(circle at ${xPct}% ${yPct}%, rgba(255,255,255,0.4), transparent) 1`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
-                card.style.borderImage = 'none';
-                card.style.border = '1px solid rgba(255, 255, 255, 0.1)';
-            });
-        });
-
-        // Reveal Animation on Scroll
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            const triggerBottom = window.innerHeight * 0.85;
-            revealElements.forEach(el => {
-                const elTop = el.getBoundingClientRect().top;
-                if (elTop < triggerBottom) {
-                    el.classList.add('active');
-                    // Trigger counters if they exist in this element
-                    const counters = el.querySelectorAll('.counter');
-                    counters.forEach(counter => {
-                        if (!counter.dataset.started) {
-                            animateCounter(counter);
-                            counter.dataset.started = "true";
-                        }
-                    });
-                }
-            });
-        };
-
-        // Counters Animation
-        function animateCounter(el) {
-            const target = +el.getAttribute('data-target');
-            const duration = 2000;
-            const startTime = performance.now();
-
-            const update = (currentTime) => {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const easedProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-                el.innerText = Math.floor(easedProgress * target) + (target > 5 ? '+' : '');
-
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
-            };
-            requestAnimationFrame(update);
-        }
-
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
-    </script>
-
-
 </body>
 
 </html>

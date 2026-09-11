@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -9,360 +8,254 @@
     <meta
         content="A portfolio of applied Machine Learning projects: diabetes and heart disease prediction, crop recommendation, spam detection, and sentiment analysis."
         name="description" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@400;500;600;700&amp;display=swap"
-        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+    <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
-                        "tertiary": "#acedff",
-                        "tertiary-container": "#4cd7f6",
-                        "surface": "#131313",
-                        "on-error": "#690005",
-                        "on-primary-container": "#385283",
-                        "inverse-on-surface": "#313030",
-                        "surface-container-low": "#1c1b1b",
-                        "on-tertiary-fixed-variant": "#004e5c",
-                        "surface-container-high": "#2a2a2a",
-                        "secondary-fixed": "#f0dbff",
-                        "on-secondary": "#40215e",
-                        "glass-bg": "rgba(255, 255, 255, 0.03)",
-                        "glass-border": "rgba(255, 255, 255, 0.1)",
-                        "inverse-surface": "#e5e2e1",
-                        "secondary-fixed-dim": "#ddb7ff",
-                        "outline": "#8e909a",
-                        "inverse-primary": "#455e90",
-                        "surface-bright": "#3a3939",
-                        "on-background": "#e5e2e1",
-                        "primary": "#d8e2ff",
-                        "outline-variant": "#44474f",
-                        "surface-container-lowest": "#0e0e0e",
-                        "on-surface-variant": "#c4c6d0",
-                        "text-high-emphasis": "#e5e2e1",
-                        "surface-container": "#201f1f",
-                        "on-primary-fixed": "#001a42",
-                        "on-tertiary-container": "#005b6b",
-                        "on-primary": "#122f5f",
-                        "error": "#ffb4ab",
-                        "surface-container-highest": "#353534",
-                        "on-tertiary": "#003640",
-                        "surface-dim": "#131313",
-                        "error-container": "#93000a",
-                        "secondary": "#ddb7ff",
-                        "primary-fixed": "#d8e2ff",
-                        "text-medium-emphasis": "#c2c6d6",
-                        "on-tertiary-fixed": "#001f26",
-                        "tertiary-fixed": "#acedff",
-                        "on-surface": "#e5e2e1",
-                        "tertiary-fixed-dim": "#4cd7f6",
-                        "on-secondary-fixed-variant": "#583876",
-                        "on-secondary-container": "#cba6ed",
-                        "on-primary-fixed-variant": "#2c4677",
-                        "primary-fixed-dim": "#adc6ff",
-                        "secondary-container": "#583876",
-                        "background": "#131313",
-                        "on-secondary-fixed": "#2a0848",
-                        "surface-variant": "#353534",
-                        "on-error-container": "#ffdad6",
-                        "surface-tint": "#adc6ff",
-                        "primary-container": "#adc6ff"
+                    colors: {
+                        cream: '#f9f6ee',
+                        pastelYellow: '#fde047',
+                        pastelMint: '#86efac',
+                        pastelPink: '#f472b6',
+                        pastelPeach: '#ffedd5',
+                        pastelBlue: '#bae6fd',
+                        charcoal: '#18181b',
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
                     },
-                    "fontFamily": {
-                        "body-lg": ["Inter", "sans-serif"],
-                        "headline-xl": ["Sora", "sans-serif"],
-                        "headline-md": ["Sora", "sans-serif"],
-                        "headline-xl-mobile": ["Sora", "sans-serif"],
-                        "label-md": ["Inter", "sans-serif"],
-                        "headline-lg": ["Sora", "sans-serif"],
-                        "headline-sm": ["Sora", "sans-serif"],
-                        "body-md": ["Inter", "sans-serif"]
+                    boxShadow: {
+                        brutal: '4px 4px 0px #000',
+                        'brutal-lg': '6px 6px 0px #000',
+                        'brutal-sm': '2px 2px 0px #000',
                     }
                 }
             }
         }
     </script>
     <style>
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        .tape-strip {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            width: 70px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px dashed rgba(0, 0, 0, 0.3);
+            z-index: 20;
         }
     </style>
 </head>
 
-<body
-    class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container relative min-h-screen">
-    <!-- Decorative animated background: gradient wash + floating glow orbs -->
-    <div aria-hidden="true" class="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-container/10 rounded-full blur-[120px]">
-        </div>
-        <div
-            class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-container/10 rounded-full blur-[150px]">
-        </div>
-        <div class="absolute top-[40%] left-[60%] w-[30%] h-[30%] bg-tertiary-container/10 rounded-full blur-[100px]">
-        </div>
-    </div>
-    <!-- ============================ NAVBAR ============================ -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-x-0 border-t-0 border-b-glass-border">
-        <div class="max-w-[1200px] mx-auto px-[24px] h-[72px] flex items-center justify-between">
-            <a class="flex items-center gap-2 font-headline-sm text-[20px] font-semibold text-text-high-emphasis tracking-tight hover:text-primary-container transition-colors"
-                href="index.html#top">
-                <span aria-hidden="true">🤖</span>
-                AI Projects
+<body class="bg-cream text-charcoal font-sans antialiased min-h-screen selection:bg-pastelYellow selection:text-black">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-4 z-50 px-4 md:px-8 max-w-7xl mx-auto">
+        <nav
+            class="bg-white border-2 border-black rounded-full px-6 py-3 shadow-brutal flex items-center justify-between">
+            <a href="/" class="font-heading font-extrabold text-xl md:text-2xl tracking-tight flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-pastelYellow border-2 border-black"></span>
+                🤖 AI Projects
             </a>
-            <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-8">
-                <a class="text-text-medium-emphasis hover:text-primary-container transition-colors font-medium"
-                    href="/">Home</a>
-                <a class="text-primary-container font-medium" href="/projects/ML">ML Projects</a>
-                <a class="text-text-medium-emphasis hover:text-primary-container transition-colors font-medium"
-                    href="/projects/genai">GenAI Projects</a>
-            </nav>
-            <button aria-expanded="false" aria-label="Toggle navigation menu"
-                class="md:hidden flex flex-col justify-center gap-[6px] w-8 h-8 text-text-high-emphasis">
-                <span class="block w-full h-[2px] bg-current rounded-full"></span>
-                <span class="block w-full h-[2px] bg-current rounded-full"></span>
-                <span class="block w-full h-[2px] bg-current rounded-full"></span>
-            </button>
-        </div>
+            <div class="hidden md:flex items-center gap-3">
+                <a href="/"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelPeach font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">Home</a>
+                <a href="/projects/ML"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-pastelYellow font-bold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">ML
+                    Projects</a>
+                <a href="/projects/genai"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelMint font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">GenAI
+                    Projects</a>
+            </div>
+            <a href="/download_resume" target="_blank"
+                class="px-5 py-2 rounded-full border-2 border-black bg-pastelPink font-bold text-sm shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                Resume ↓
+            </a>
+        </nav>
     </header>
-    <main class="pt-[104px]">
-        <!-- ============================ HERO ============================ -->
-        <section class="py-[120px]" id="top">
-            <div class="max-w-[1200px] mx-auto px-[24px]">
-                <p class="text-secondary font-label-md uppercase tracking-wider mb-4">Applied ML &amp; Deep Learning
-                    Portfolio</p>
-                <h1
-                    class="font-headline-xl text-[40px] md:text-[64px] font-bold leading-[1.1] tracking-[-0.02em] text-text-high-emphasis mb-6">
-                    AI &amp; Machine Learning<br />
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container via-secondary to-tertiary-container">Projects</span>
-                </h1>
-                <p class="max-w-2xl text-[18px] leading-[1.6] text-text-medium-emphasis mb-10">
-                    A collection of end-to-end AI applications — from classical Machine Learning
-                    models trained on structured health and agricultural data, to Deep Learning
-                    systems built for computer vision and image classification. Each project is
-                    built, trained, and deployed as a working application.
-                </p>
-                <div class="mb-16">
-                    <a class="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-primary text-on-primary-container px-6 py-3 rounded-lg font-medium transition-colors"
-                        href="#ml-projects">
-                        Explore Projects
-                        <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
-                            <path d="M12 5v14M19 12l-7 7-7-7"></path>
-                        </svg>
-                    </a>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 pt-12 pb-24 space-y-16">
+        <!-- Hero Header -->
+        <section
+            class="bg-white border-2 border-black rounded-3xl p-8 md:p-14 shadow-brutal-lg relative overflow-hidden">
+            <div class="tape-strip"></div>
+            <div class="max-w-3xl space-y-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border-2 border-black bg-pastelYellow text-xs font-extrabold uppercase shadow-brutal-sm">
+                    Applied ML & Deep Learning Portfolio
                 </div>
-                <div class="flex flex-wrap items-center gap-8 md:gap-16 pt-8 border-t border-glass-border">
-                    <div>
-                        <span
-                            class="block font-headline-md text-[32px] font-semibold text-text-high-emphasis mb-1">5</span>
-                        <span class="text-text-medium-emphasis font-label-md">ML Models</span>
+                <h1 class="text-4xl sm:text-6xl font-heading font-black tracking-tight leading-[1.1]">
+                    AI & Machine Learning <span
+                        class="bg-pastelMint px-2 border-2 border-black rounded-xl inline-block">Projects.</span>
+                </h1>
+                <p class="text-lg text-zinc-700 font-medium leading-relaxed max-w-2xl">
+                    A collection of end-to-end AI applications — from classical Machine Learning models trained on
+                    structured health and agricultural data, to Deep Learning inference pipelines.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <div class="px-4 py-2 bg-pastelPeach border-2 border-black rounded-xl shadow-brutal-sm">
+                        <span class="font-heading font-black text-2xl">5</span>
+                        <span class="text-xs font-bold uppercase block text-zinc-700">ML Models</span>
                     </div>
-                    <div>
-                        <span
-                            class="block font-headline-md text-[32px] font-semibold text-text-high-emphasis mb-1">3</span>
-                        <span class="text-text-medium-emphasis font-label-md">DL Models</span>
+                    <div class="px-4 py-2 bg-pastelBlue border-2 border-black rounded-xl shadow-brutal-sm">
+                        <span class="font-heading font-black text-2xl">3</span>
+                        <span class="text-xs font-bold uppercase block text-zinc-700">DL Models</span>
                     </div>
-                    <div>
-                        <span
-                            class="block font-headline-md text-[32px] font-semibold text-text-high-emphasis mb-1">100%</span>
-                        <span class="text-text-medium-emphasis font-label-md">Deployed</span>
+                    <div class="px-4 py-2 bg-pastelMint border-2 border-black rounded-xl shadow-brutal-sm">
+                        <span class="font-heading font-black text-2xl">100%</span>
+                        <span class="text-xs font-bold uppercase block text-zinc-700">Deployed</span>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ====================== ML PROJECTS SECTION ====================== -->
-        <section class="py-[120px]" id="ml-projects">
-            <div class="max-w-[1200px] mx-auto px-[24px]">
-                <div class="mb-16 text-center max-w-2xl mx-auto">
-                    <p class="text-tertiary-container font-label-md uppercase tracking-wider mb-4">Page 01</p>
-                    <h2
-                        class="font-headline-lg text-[32px] md:text-[48px] font-semibold leading-[1.2] text-text-high-emphasis mb-6">
-                        Machine Learning Projects</h2>
-                    <p class="text-[18px] leading-[1.6] text-text-medium-emphasis">
-                        Classical ML models trained on structured, tabular data — covering healthcare
-                        diagnostics, agriculture, and natural language processing.
-                    </p>
+
+        <!-- Project Cards Grid -->
+        <section class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="px-3 py-1 rounded-full border-2 border-black bg-pastelYellow text-xs font-extrabold uppercase">Page
+                        01</span>
+                    <h2 class="text-3xl font-heading font-black">Machine Learning Projects</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Card 1: Diabetic Prediction System -->
-                    <article
-                        class="glass-card rounded-xl p-[24px] md:p-[40px] flex flex-col hover:border-primary-container transition-colors group">
-                        <div class="flex items-center justify-between mb-8">
-                            <div aria-hidden="true"
-                                class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
-                                    <path d="M12 2s6 7.2 6 11.5A6 6 0 0 1 6 13.5C6 9.2 12 2 12 2Z"></path>
-                                    <path d="M9.5 15.5c.4 1 1.4 1.8 2.5 1.8"></path>
-                                </svg>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Diabetes -->
+                <article
+                    class="bg-white border-2 border-black rounded-3xl p-8 shadow-brutal hover:-translate-y-1 transition-all flex flex-col justify-between relative group">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-pastelPink border-2 border-black flex items-center justify-center font-bold text-xl shadow-brutal-sm">
+                                🩸
                             </div>
                             <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-primary-container border border-glass-border">Completed</span>
+                                class="px-3 py-1 rounded-full bg-pastelYellow border-2 border-black text-xs font-bold">Completed</span>
                         </div>
-                        <h3 class="font-headline-sm text-[24px] font-semibold text-text-high-emphasis mb-4">Diabetic
-                            Prediction System</h3>
-                        <p class="text-text-medium-emphasis mb-8 flex-grow">
-                            A classification model that predicts a patient's likelihood of diabetes from
-                            diagnostic measurements like glucose, BMI, and age. Deployed as a simple web
-                            app with instant risk scoring.
+                        <h3 class="text-2xl font-heading font-black group-hover:text-pastelPink transition-colors">
+                            Diabetic Prediction System</h3>
+                        <p class="text-sm font-medium text-zinc-600 leading-relaxed">
+                            A diagnostic classification model predicting patient diabetes probability from diagnostic
+                            measurements with real-time risk classification.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
+                        <div class="flex flex-wrap gap-2">
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Python</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Python</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Scikit-learn</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Scikit-learn</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Pandas</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Pandas</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Flask</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Flask</span>
                         </div>
-                        <a class="mt-auto" href="/diabetes_prediction">
-                            <button
-                                class="w-full inline-flex items-center justify-center gap-2 bg-transparent border border-glass-border hover:border-primary-container text-text-high-emphasis hover:text-primary-container px-4 py-2.5 rounded-lg font-medium transition-colors">
-                                View Project
-                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
-                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
+                    </div>
+                    <div class="pt-8 mt-6 border-t-2 border-black">
+                        <a href="/diabetes_prediction"
+                            class="w-full py-3 px-5 rounded-xl border-2 border-black bg-pastelYellow font-bold text-sm shadow-brutal hover:bg-pastelPink transition-all flex items-center justify-between">
+                            <span>Launch Live System</span>
+                            <span>→</span>
                         </a>
-                    </article>
-                    <!-- Card 3: Crop Recommendation System -->
-                    <article
-                        class="glass-card rounded-xl p-[24px] md:p-[40px] flex flex-col hover:border-tertiary-container transition-colors group">
-                        <div class="flex items-center justify-between mb-8">
-                            <div aria-hidden="true"
-                                class="w-12 h-12 rounded-lg bg-tertiary-container/10 flex items-center justify-center text-tertiary-container group-hover:bg-tertiary-container group-hover:text-on-tertiary-container transition-colors">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
-                                    <path d="M12 22c0-6 4-8 8-8 0 6-4 8-8 8Z"></path>
-                                    <path d="M12 22c0-8-4-11-8-13 0 8 3 12 8 13Z"></path>
-                                    <path d="M12 22V9"></path>
-                                </svg>
+                    </div>
+                </article>
+
+                <!-- Card 2: Crop -->
+                <article
+                    class="bg-white border-2 border-black rounded-3xl p-8 shadow-brutal hover:-translate-y-1 transition-all flex flex-col justify-between relative group">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-pastelMint border-2 border-black flex items-center justify-center font-bold text-xl shadow-brutal-sm">
+                                🌱
                             </div>
                             <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-tertiary-container border border-glass-border">Completed</span>
+                                class="px-3 py-1 rounded-full bg-pastelYellow border-2 border-black text-xs font-bold">Completed</span>
                         </div>
-                        <h3 class="font-headline-sm text-[24px] font-semibold text-text-high-emphasis mb-4">Crop
-                            Recommendation System</h3>
-                        <p class="text-text-medium-emphasis mb-8 flex-grow">
-                            Recommends the most suitable crop to plant based on soil nutrients (N-P-K),
-                            rainfall, temperature, and humidity — helping farmers plan seasonal yield.
+                        <h3 class="text-2xl font-heading font-black group-hover:text-pastelMint transition-colors">
+                            SmartAgra Crop Advisor</h3>
+                        <p class="text-sm font-medium text-zinc-600 leading-relaxed">
+                            Recommends the optimal agricultural crop to sow based on soil NPK ratios, rainfall metrics,
+                            temperature, and humidity sensors.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
+                        <div class="flex flex-wrap gap-2">
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Python</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Python</span>
+                            <span class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Random
+                                Forest</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Scikit-learn</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">NumPy</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Pandas</span>
-                            <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Flask</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Flask</span>
                         </div>
-                        <a class="mt-auto" href="/crop_recommendation">
-                            <button
-                                class="w-full inline-flex items-center justify-center gap-2 bg-transparent border border-glass-border hover:border-tertiary-container text-text-high-emphasis hover:text-tertiary-container px-4 py-2.5 rounded-lg font-medium transition-colors">
-                                View Project
-                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
-                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
+                    </div>
+                    <div class="pt-8 mt-6 border-t-2 border-black">
+                        <a href="/crop_recommendation"
+                            class="w-full py-3 px-5 rounded-xl border-2 border-black bg-pastelMint font-bold text-sm shadow-brutal hover:bg-pastelYellow transition-all flex items-center justify-between">
+                            <span>Launch Live System</span>
+                            <span>→</span>
                         </a>
-                    </article>
-                    <!-- Card 4: Email Spam Classification -->
-                    <article
-                        class="glass-card rounded-xl p-[24px] md:p-[40px] flex flex-col hover:border-secondary transition-colors group">
-                        <div class="flex items-center justify-between mb-8">
-                            <div aria-hidden="true"
-                                class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
-                                    <rect height="14" rx="2" width="18" x="3" y="5"></rect>
-                                    <path d="m3 7 9 6 9-6"></path>
-                                    <path d="M17 14.5 19 17" stroke-width="2.4"></path>
-                                </svg>
+                    </div>
+                </article>
+
+                <!-- Card 3: Email Spam -->
+                <article
+                    class="bg-white border-2 border-black rounded-3xl p-8 shadow-brutal hover:-translate-y-1 transition-all flex flex-col justify-between relative group">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-pastelBlue border-2 border-black flex items-center justify-center font-bold text-xl shadow-brutal-sm">
+                                🛡️
                             </div>
                             <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-secondary border border-glass-border">Completed</span>
+                                class="px-3 py-1 rounded-full bg-pastelYellow border-2 border-black text-xs font-bold">Completed</span>
                         </div>
-                        <h3 class="font-headline-sm text-[24px] font-semibold text-text-high-emphasis mb-4">Email Spam
-                            Classification</h3>
-                        <p class="text-text-medium-emphasis mb-8 flex-grow">
-                            An NLP text classifier that separates spam from legitimate email using
-                            TF-IDF vectorization and a Naive Bayes model, tuned for high precision.
+                        <h3 class="text-2xl font-heading font-black group-hover:text-pastelBlue transition-colors">
+                            Neural Spam Shield</h3>
+                        <p class="text-sm font-medium text-zinc-600 leading-relaxed">
+                            An NLP text classifier separating phishing and spam threats from authentic communications
+                            using TF-IDF tokenization and Linear SVM.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
+                        <div class="flex flex-wrap gap-2">
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Python</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Python</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Scikit-learn</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">NLTK</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">NLTK</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">TF-IDF</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container text-text-medium-emphasis border border-glass-border">Flask</span>
+                                class="px-2.5 py-1 bg-cream border border-black rounded-lg text-xs font-bold">Flask</span>
                         </div>
-                        <a class="mt-auto" href="/email_classification">
-                            <button
-                                class="w-full inline-flex items-center justify-center gap-2 bg-transparent border border-glass-border hover:border-secondary text-text-high-emphasis hover:text-secondary px-4 py-2.5 rounded-lg font-medium transition-colors">
-                                View Project
-                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
-                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
+                    </div>
+                    <div class="pt-8 mt-6 border-t-2 border-black">
+                        <a href="/email_classification"
+                            class="w-full py-3 px-5 rounded-xl border-2 border-black bg-pastelBlue font-bold text-sm shadow-brutal hover:bg-pastelPink transition-all flex items-center justify-between">
+                            <span>Launch Live System</span>
+                            <span>→</span>
                         </a>
-                    </article>
-                </div>
+                    </div>
+                </article>
             </div>
         </section>
     </main>
-    <!-- ============================ FOOTER ============================ -->
-    <footer class="py-12 border-t border-glass-border bg-surface-container-lowest">
-        <div class="max-w-[1200px] mx-auto px-[24px] flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
-                <span class="font-headline-sm text-[20px] font-semibold text-text-high-emphasis">AI Projects</span>
-                <span class="hidden md:inline text-glass-border">|</span>
-                <span class="text-text-medium-emphasis text-sm">© <span data-year="">2026</span> All rights
-                    reserved.</span>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-black bg-white py-10 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <span class="w-4 h-4 rounded-full bg-pastelYellow border-2 border-black"></span>
+                <span class="font-heading font-extrabold text-lg">AI Projects Directory</span>
+                <span class="text-zinc-500 text-sm">© 2026. All rights reserved.</span>
             </div>
-            <div class="flex items-center gap-4">
-                <a aria-label="GitHub profile"
-                    class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary-container/10 text-text-medium-emphasis hover:text-primary-container transition-colors"
-                    href="https://github.com/kvkdev-ml">
-                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="20">
-                        <path
-                            d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21">
-                        </path>
-                    </svg>
-                </a>
-                <a aria-label="LinkedIn profile"
-                    class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-primary-container/10 text-text-medium-emphasis hover:text-primary-container transition-colors"
-                    href="https://www.linkedin.com/in/vishal-kumar-95b269390">
-                    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24" width="20">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5 5 0 0 1 16 8Z"></path>
-                        <rect height="12" width="4" x="2" y="9"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                </a>
+            <div class="flex items-center gap-6 text-sm font-bold">
+                <a href="/" class="hover:underline">Home</a>
+                <a href="/projects/genai" class="hover:underline">GenAI Projects</a>
+                <a href="https://github.com/kvkdev-ml" target="_blank" class="hover:underline">GitHub</a>
             </div>
         </div>
     </footer>

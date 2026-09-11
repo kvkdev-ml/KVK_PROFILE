@@ -1,325 +1,247 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AI Projects — Generative AI Portfolio</title>
     <meta
-        content="A portfolio of applied Generative AI projects: diabetes and heart disease prediction, crop recommendation, spam detection, and sentiment analysis."
+        content="A portfolio of applied Generative AI projects: code analysis and conversion, RAG pipelines, and conversational agents."
         name="description" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@400;600;700&amp;display=swap"
-        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+    <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
-                        "tertiary": "#acedff",
-                        "tertiary-container": "#4cd7f6",
-                        "surface": "#131313",
-                        "on-error": "#690005",
-                        "on-primary-container": "#385283",
-                        "inverse-on-surface": "#313030",
-                        "surface-container-low": "#1c1b1b",
-                        "on-tertiary-fixed-variant": "#004e5c",
-                        "surface-container-high": "#2a2a2a",
-                        "secondary-fixed": "#f0dbff",
-                        "on-secondary": "#40215e",
-                        "glass-bg": "rgba(255, 255, 255, 0.03)",
-                        "glass-border": "rgba(255, 255, 255, 0.1)",
-                        "inverse-surface": "#e5e2e1",
-                        "secondary-fixed-dim": "#ddb7ff",
-                        "outline": "#8e909a",
-                        "inverse-primary": "#455e90",
-                        "surface-bright": "#3a3939",
-                        "on-background": "#e5e2e1",
-                        "primary": "#d8e2ff",
-                        "outline-variant": "#44474f",
-                        "surface-container-lowest": "#0e0e0e",
-                        "on-surface-variant": "#c4c6d0",
-                        "text-high-emphasis": "#e5e2e1",
-                        "surface-container": "#201f1f",
-                        "on-primary-fixed": "#001a42",
-                        "on-tertiary-container": "#005b6b",
-                        "on-primary": "#122f5f",
-                        "error": "#ffb4ab",
-                        "surface-container-highest": "#353534",
-                        "on-tertiary": "#003640",
-                        "surface-dim": "#131313",
-                        "error-container": "#93000a",
-                        "secondary": "#ddb7ff",
-                        "primary-fixed": "#d8e2ff",
-                        "text-medium-emphasis": "#c2c6d6",
-                        "on-tertiary-fixed": "#001f26",
-                        "tertiary-fixed": "#acedff",
-                        "on-surface": "#e5e2e1",
-                        "tertiary-fixed-dim": "#4cd7f6",
-                        "on-secondary-fixed-variant": "#583876",
-                        "on-secondary-container": "#cba6ed",
-                        "on-primary-fixed-variant": "#2c4677",
-                        "primary-fixed-dim": "#adc6ff",
-                        "secondary-container": "#583876",
-                        "background": "#131313",
-                        "on-secondary-fixed": "#2a0848",
-                        "surface-variant": "#353534",
-                        "on-error-container": "#ffdad6",
-                        "surface-tint": "#adc6ff",
-                        "primary-container": "#adc6ff"
+                    colors: {
+                        cream: '#f9f6ee',
+                        pastelYellow: '#fde047',
+                        pastelMint: '#86efac',
+                        pastelPink: '#f472b6',
+                        pastelPeach: '#ffedd5',
+                        pastelBlue: '#bae6fd',
+                        charcoal: '#18181b',
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
                     },
-                    "spacing": {
-                        "margin-desktop": "40px",
-                        "section-gap": "120px",
-                        "gutter": "24px",
-                        "card-padding-lg": "40px",
-                        "margin-mobile": "20px",
-                        "card-padding-sm": "24px",
-                        "container-max": "1200px"
-                    },
-                    "fontFamily": {
-                        "body-lg": ["Inter"],
-                        "headline-xl": ["Sora"],
-                        "headline-md": ["Sora"],
-                        "headline-xl-mobile": ["Sora"],
-                        "label-md": ["Inter"],
-                        "headline-lg": ["Sora"],
-                        "headline-sm": ["Sora"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "headline-xl-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "label-md": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "600" }],
-                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
-                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    boxShadow: {
+                        brutal: '4px 4px 0px #000',
+                        'brutal-lg': '6px 6px 0px #000',
+                        'brutal-sm': '2px 2px 0px #000',
                     }
-                },
-            },
+                }
+            }
         }
     </script>
+    <style>
+        .tape-strip {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            width: 70px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px dashed rgba(0, 0, 0, 0.3);
+            z-index: 20;
+        }
+
+        .tape-corner {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            transform: rotate(3deg);
+            width: 50px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px dashed rgba(0, 0, 0, 0.3);
+            z-index: 20;
+        }
+    </style>
 </head>
 
-<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
-    <!-- Decorative animated background: gradient wash + floating glow orbs -->
-    <div aria-hidden="true" class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <span
-            class="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary-container/20 blur-[120px]"></span>
-        <span
-            class="absolute bottom-[-20%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-secondary-container/20 blur-[100px]"></span>
-        <span
-            class="absolute top-[40%] left-[60%] w-[30vw] h-[30vw] rounded-full bg-tertiary-container/10 blur-[80px]"></span>
-    </div>
-    <!-- ============================ NAVBAR ============================ -->
-    <header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-md border-b border-glass-border"
-        data-navbar="">
-        <div class="container mx-auto max-w-container-max px-gutter h-20 flex items-center justify-between">
-            <a class="text-xl font-headline-sm font-bold text-text-high-emphasis flex items-center gap-2"
-                href="index.html#top">
-                <span aria-hidden="true">🤖</span>
-                AI Projects
+<body class="bg-cream text-charcoal font-sans antialiased min-h-screen selection:bg-pastelMint selection:text-black">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-4 z-50 px-4 md:px-8 max-w-7xl mx-auto">
+        <nav
+            class="bg-white border-2 border-black rounded-full px-6 py-3 shadow-brutal flex items-center justify-between">
+            <a href="/" class="font-heading font-extrabold text-xl md:text-2xl tracking-tight flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-pastelMint border-2 border-black"></span>
+                ✨ GenAI Projects
             </a>
-            <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-8" data-nav-links="">
-                <a class="font-label-md text-text-medium-emphasis hover:text-primary-container transition-colors"
-                    href="/">Home</a>
-                <a class="font-label-md text-text-medium-emphasis hover:text-primary-container transition-colors"
-                    href="/projects/ML">ML Projects</a>
-                <a class="font-label-md text-primary-container transition-colors" href="/projects/genai">GenAI
+            <div class="hidden md:flex items-center gap-3">
+                <a href="/"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelPeach font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">Home</a>
+                <a href="/projects/ML"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-white hover:bg-pastelYellow font-semibold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">ML
                     Projects</a>
-            </nav>
-            <button aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden flex flex-col gap-1.5"
-                data-nav-toggle="">
-                <span class="w-6 h-0.5 bg-text-high-emphasis block"></span>
-                <span class="w-6 h-0.5 bg-text-high-emphasis block"></span>
-                <span class="w-6 h-0.5 bg-text-high-emphasis block"></span>
-            </button>
-        </div>
+                <a href="/projects/genai"
+                    class="px-4 py-1.5 rounded-full border-2 border-black bg-pastelMint font-bold text-sm shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all">GenAI
+                    Projects</a>
+            </div>
+            <a href="/download_resume" target="_blank"
+                class="px-5 py-2 rounded-full border-2 border-black bg-pastelPink font-bold text-sm shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                Resume ↓
+            </a>
+        </nav>
     </header>
-    <main>
-        <!-- ============================ HERO ============================ -->
-        <section class="pt-40 pb-section-gap relative" id="top">
-            <div class="container mx-auto max-w-4xl px-gutter text-center">
-                <p
-                    class="font-label-md text-secondary-container tracking-wider uppercase mb-6 inline-block px-4 py-1.5 rounded-full bg-secondary-container/10 border border-secondary-container/20">
-                    Applied ML &amp; Deep Learning Portfolio</p>
-                <h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-text-high-emphasis mb-8">
-                    AI &amp; Generative AI<br />
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container via-tertiary-container to-secondary-container">Projects</span>
-                </h1>
-                <div class="mb-16">
-                    <a class="inline-flex items-center gap-2 px-8 py-4 bg-primary-container text-on-primary-container rounded-lg font-label-md hover:bg-primary transition-colors shadow-[0_0_15px_rgba(173,198,255,0.3)]"
-                        href="#ml-projects">
-                        Explore Projects
-                        <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
-                            <path d="M12 5v14M19 12l-7 7-7-7"></path>
-                        </svg>
-                    </a>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 pt-12 pb-24 space-y-16">
+        <!-- Hero Header -->
+        <section
+            class="bg-white border-2 border-black rounded-3xl p-8 md:p-14 shadow-brutal-lg relative overflow-hidden">
+            <div class="tape-strip"></div>
+            <div class="max-w-3xl space-y-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border-2 border-black bg-pastelMint text-xs font-extrabold uppercase shadow-brutal-sm">
+                    Autonomous Agents & LLM Architectures
                 </div>
-                <div class="flex justify-center gap-8">
-                    <div
-                        class="flex flex-col items-center p-6 rounded-xl bg-glass-bg border border-glass-border backdrop-blur-sm min-w-[160px] shadow-[0_0_20px_rgba(76,215,246,0.1)]">
-                        <span class="text-headline-md font-headline-md text-tertiary-container mb-2">100%</span>
-                        <span class="font-label-md text-text-medium-emphasis">Deployed</span>
+                <h1 class="text-4xl sm:text-6xl font-heading font-black tracking-tight leading-[1.1]">
+                    AI & Generative AI <span
+                        class="bg-pastelPink px-2 border-2 border-black rounded-xl inline-block">Projects.</span>
+                </h1>
+                <p class="text-lg text-zinc-700 font-medium leading-relaxed max-w-2xl">
+                    High-performance GenAI applications combining LLM orchestration, vector search indexing, structured
+                    agentic toolchains, and interactive code transformation engines.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <div class="px-4 py-2 bg-pastelYellow border-2 border-black rounded-xl shadow-brutal-sm">
+                        <span class="font-heading font-black text-2xl">RAG</span>
+                        <span class="text-xs font-bold uppercase block text-zinc-700">Vector Search</span>
+                    </div>
+                    <div class="px-4 py-2 bg-pastelMint border-2 border-black rounded-xl shadow-brutal-sm">
+                        <span class="font-heading font-black text-2xl">LLM</span>
+                        <span class="text-xs font-bold uppercase block text-zinc-700">Agents & Tool Calling</span>
+                    </div>
+                    <div class="px-4 py-2 bg-pastelPeach border-2 border-black rounded-xl shadow-brutal-sm">
+                        <span class="font-heading font-black text-2xl">100%</span>
+                        <span class="text-xs font-bold uppercase block text-zinc-700">Live Deployed</span>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ====================== ML PROJECTS SECTION ====================== -->
-        <section class="py-section-gap" id="ml-projects">
-            <div class="container mx-auto max-w-container-max px-gutter">
-                <div class="text-center mb-16">
-                    <p class="font-label-md text-tertiary-container tracking-wider uppercase mb-4">Page 01</p>
-                    <h2 class="text-headline-md font-headline-md text-text-high-emphasis">Generative AI Projects</h2>
+
+        <!-- Project Cards Grid -->
+        <section class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="px-3 py-1 rounded-full border-2 border-black bg-pastelMint text-xs font-extrabold uppercase">Page
+                        01</span>
+                    <h2 class="text-3xl font-heading font-black">Featured GenAI Systems</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Card 1: AI Code Morpher -->
-                    <article
-                        class="flex flex-col p-8 rounded-xl bg-surface-container border border-glass-border hover:border-primary-container/50 transition-colors group relative overflow-hidden backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-primary-container/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                        </div>
-                        <div class="flex justify-between items-start mb-6 relative z-10">
-                            <div aria-hidden="true"
-                                class="w-12 h-12 rounded-lg bg-primary-container/10 text-primary-container flex items-center justify-center border border-primary-container/20 shadow-[0_0_10px_rgba(173,198,255,0.2)]">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
-                                    <path d="M12 2s6 7.2 6 11.5A6 6 0 0 1 6 13.5C6 9.2 12 2 12 2Z"></path>
-                                    <path d="M9.5 15.5c.4 1 1.4 1.8 2.5 1.8"></path>
-                                </svg>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Card 1: Rosetta AI -->
+                <article
+                    class="bg-pastelMint/20 border-2 border-black rounded-3xl p-8 md:p-10 shadow-brutal-lg hover:-translate-y-1 transition-all flex flex-col justify-between relative group">
+                    <div class="tape-corner"></div>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-pastelMint border-2 border-black flex items-center justify-center font-bold text-2xl shadow-brutal-sm">
+                                🔄
                             </div>
                             <span
-                                class="px-3 py-1 rounded-full text-xs font-medium bg-secondary-container/10 text-secondary-fixed-dim border border-secondary-container/20 shadow-[0_0_8px_rgba(221,183,255,0.15)]">Completed</span>
+                                class="px-3 py-1 rounded-full bg-white border-2 border-black text-xs font-bold shadow-brutal-sm">Production
+                                Live</span>
                         </div>
-                        <h3
-                            class="text-headline-sm font-headline-sm text-text-high-emphasis mb-4 group-hover:text-primary-container transition-colors relative z-10">
-                            AI Code Morpher-Rosetta AI</h3>
-                        <p class="text-body-md text-text-medium-emphasis mb-8 flex-grow relative z-10">
-                            LLM Based Code Analyser and Morpher System which analyses user given code
-                            and transforms the given code into another language
+                        <h3 class="text-3xl font-heading font-black group-hover:text-emerald-700 transition-colors">
+                            AI Code Morpher — Rosetta AI
+                        </h3>
+                        <p class="text-base font-medium text-zinc-700 leading-relaxed">
+                            LLM-powered code analyzer and automated syntax morpher system. Parses syntax trees of source
+                            code in one language and semantically compiles it into idiomatically optimized destination
+                            code in another language.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-8 relative z-10">
+                        <div class="flex flex-wrap gap-2 pt-2">
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">Python</span>
-                            <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">Google
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Python</span>
+                            <span class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Google
                                 GenAI API</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">LLM's</span>
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">LLMs</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">Flask</span>
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Flask</span>
+                            <span
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Vercel</span>
                         </div>
-                        <a class="mt-auto relative z-10 block" href="https://rosetta-ai-six.vercel.app/"
-                            target="_blank">
-                            <button
-                                class="inline-flex items-center gap-2 text-primary-container font-label-md hover:text-primary transition-colors group/btn">
-                                View Project
-                                <svg class="group-hover/btn:translate-x-1 transition-transform" fill="none" height="16"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" viewbox="0 0 24 24" width="16">
-                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
+                    </div>
+                    <div class="pt-8 mt-8 border-t-2 border-black">
+                        <a href="https://rosetta-ai-six.vercel.app/" target="_blank"
+                            class="w-full py-4 px-6 rounded-2xl border-2 border-black bg-pastelYellow font-heading font-bold text-base shadow-brutal hover:bg-pastelMint transition-all flex items-center justify-between">
+                            <span>Launch Rosetta AI</span>
+                            <span>↗</span>
                         </a>
-                    </article>
-                    <!-- Card 2: AYUR-AI -->
-                    <article
-                        class="flex flex-col p-8 rounded-xl bg-surface-container border border-glass-border hover:border-tertiary-container/50 transition-colors group relative overflow-hidden backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-tertiary-container/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                        </div>
-                        <div class="flex justify-between items-start mb-6 relative z-10">
-                            <div aria-hidden="true"
-                                class="w-12 h-12 rounded-lg bg-tertiary-container/10 text-tertiary-container flex items-center justify-center border border-tertiary-container/20 shadow-[0_0_10px_rgba(76,215,246,0.2)]">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
-                                    <rect height="14" rx="2" width="18" x="3" y="5"></rect>
-                                    <path d="m3 7 9 6 9-6"></path>
-                                    <path d="M17 14.5 19 17" stroke-width="2.4"></path>
-                                </svg>
+                    </div>
+                </article>
+
+                <!-- Card 2: AYUR-AI -->
+                <article
+                    class="bg-pastelPink/20 border-2 border-black rounded-3xl p-8 md:p-10 shadow-brutal-lg hover:-translate-y-1 transition-all flex flex-col justify-between relative group">
+                    <div class="tape-corner"></div>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-pastelPink border-2 border-black flex items-center justify-center font-bold text-2xl shadow-brutal-sm">
+                                🌿
                             </div>
                             <span
-                                class="px-3 py-1 rounded-full text-xs font-medium bg-secondary-container/10 text-secondary-fixed-dim border border-secondary-container/20 shadow-[0_0_8px_rgba(221,183,255,0.15)]">Completed</span>
+                                class="px-3 py-1 rounded-full bg-white border-2 border-black text-xs font-bold shadow-brutal-sm">RAG
+                                Engine</span>
                         </div>
-                        <h3
-                            class="text-headline-sm font-headline-sm text-text-high-emphasis mb-4 group-hover:text-tertiary-container transition-colors relative z-10">
-                            AYUR-AI:Personal Ayurvedic AI Agent</h3>
-                        <p class="text-body-md text-text-medium-emphasis mb-8 flex-grow relative z-10">
-                            An NLP text classifier that separates spam from legitimate email using
-                            TF-IDF vectorization and a Naive Bayes model, tuned for high precision.
+                        <h3 class="text-3xl font-heading font-black group-hover:text-pink-700 transition-colors">
+                            AYUR-AI: Personal Ayurvedic Assistant
+                        </h3>
+                        <p class="text-base font-medium text-zinc-700 leading-relaxed">
+                            A specialized healthcare conversational agent grounded on classical Ayurvedic botanical
+                            texts. Uses RAG vector indexing over vetted literature to provide personalized dosage
+                            instructions and ingredient safety analysis.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-8 relative z-10">
+                        <div class="flex flex-wrap gap-2 pt-2">
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">Python</span>
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Python</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">Scikit-learn</span>
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">LangChain</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">NLTK</span>
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Pinecone</span>
+                            <span class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Gemini
+                                API</span>
                             <span
-                                class="px-3 py-1 rounded-md text-xs font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">Flask</span>
+                                class="px-3 py-1 bg-white border border-black rounded-lg text-xs font-bold">Flask</span>
                         </div>
-                        <a class="mt-auto relative z-10 block" href="#">
-                            <button
-                                class="inline-flex items-center gap-2 text-tertiary-container font-label-md hover:text-tertiary transition-colors group/btn">
-                                View Project
-                                <svg class="group-hover/btn:translate-x-1 transition-transform" fill="none" height="16"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" viewbox="0 0 24 24" width="16">
-                                    <path d="M5 12h14M13 5l7 7-7 7"></path>
-                                </svg>
-                            </button>
+                    </div>
+                    <div class="pt-8 mt-8 border-t-2 border-black">
+                        <a href="#"
+                            class="w-full py-4 px-6 rounded-2xl border-2 border-black bg-pastelPink font-heading font-bold text-base shadow-brutal hover:bg-pastelYellow transition-all flex items-center justify-between">
+                            <span>Explore Ayurvedic Assistant</span>
+                            <span>→</span>
                         </a>
-                    </article>
-                </div>
+                    </div>
+                </article>
             </div>
         </section>
     </main>
-    <!-- ============================ FOOTER ============================ -->
-    <footer class="py-8 border-t border-glass-border bg-surface">
-        <div
-            class="container mx-auto max-w-container-max px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
-                <span class="text-headline-sm font-headline-sm text-text-high-emphasis">AI Projects</span>
-                <span class="text-body-md text-text-medium-emphasis">© <span data-year="">2026</span> All rights
-                    reserved.</span>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-black bg-white py-10 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <span class="w-4 h-4 rounded-full bg-pastelMint border-2 border-black"></span>
+                <span class="font-heading font-extrabold text-lg">GenAI Projects Directory</span>
+                <span class="text-zinc-500 text-sm">© 2026. All rights reserved.</span>
             </div>
-            <div class="flex items-center gap-4">
-                <a aria-label="GitHub profile"
-                    class="text-text-medium-emphasis hover:text-primary-container transition-colors w-6 h-6"
-                    href="https://github.com/kvkdev-ml">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24">
-                        <path
-                            d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21">
-                        </path>
-                    </svg>
-                </a>
-                <a aria-label="LinkedIn profile"
-                    class="text-text-medium-emphasis hover:text-primary-container transition-colors w-6 h-6"
-                    href="https://www.linkedin.com/in/vishal-kumar-95b269390">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewbox="0 0 24 24">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5 5 0 0 1 16 8Z"></path>
-                        <rect height="12" width="4" x="2" y="9"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                </a>
+            <div class="flex items-center gap-6 text-sm font-bold">
+                <a href="/" class="hover:underline">Home</a>
+                <a href="/projects/ML" class="hover:underline">ML Projects</a>
+                <a href="https://github.com/kvkdev-ml" target="_blank" class="hover:underline">GitHub</a>
             </div>
         </div>
     </footer>
