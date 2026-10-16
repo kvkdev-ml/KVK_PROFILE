@@ -1,98 +1,150 @@
 # KVK Portfolio
 
-A Flask-powered portfolio for K Vishal Kumar, presenting AI, machine-learning, and generative-AI work. It includes a main portfolio page, project catalogue pages, shared static assets, and a downloadable resume.
+A Flask-powered portfolio for **K. Vishal Kumar**, showcasing work across machine learning and generative AI. The site combines a personal portfolio, dedicated project galleries, contact links, and a downloadable resume.
 
-## Features
+[![Python](https://img.shields.io/badge/Python-3-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-web%20app-black?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 
-- Portfolio page with an introduction, skills, featured projects, and contact links.
-- Separate pages for machine-learning and generative-AI projects.
-- Resume download endpoint.
-- Responsive HTML templates styled with Tailwind CSS and local CSS/JavaScript.
+## Contents
+
+- [Highlights](#highlights)
+- [Live links](#live-links)
+- [Pages and routes](#pages-and-routes)
+- [Technology](#technology)
+- [Run locally](#run-locally)
+- [Deploy](#deploy)
+- [Project layout](#project-layout)
+- [Configuration and notes](#configuration-and-notes)
+- [Contact](#contact)
+
+## Highlights
+
+- Portfolio landing page with an introduction, selected work, skills, career timeline, and contact links.
+- Separate galleries for machine-learning and generative-AI projects.
+- Resume download served by Flask.
+- Responsive page layouts with shared CSS and lightweight, dependency-free browser interactions.
 - Flask-CORS enabled for cross-origin requests.
+- A custom not-found page returned with HTTP `404` for unknown routes.
 
-## Pages
+## Live links
 
-| URL | Page |
+- **Portfolio:** [kvk-profile-nu.vercel.app](https://kvk-profile-nu.vercel.app/)
+- **GitHub:** [kvkdev-ml](https://github.com/kvkdev-ml)
+- **LinkedIn:** [Vishal Kumar](https://www.linkedin.com/in/vishal-kumar-95b269390/)
+- **Email:** [kvkwork05@gmail.com](mailto:kvkwork05@gmail.com)
+
+## Pages and routes
+
+| Route | Description |
 | --- | --- |
-| `/` | Main portfolio |
-| `/KVK` | Main portfolio |
-| `/projects/ML` | Machine-learning projects |
-| `/projects/genai` | Generative-AI projects |
-| `/download_resume` | Downloads the resume PDF |
+| `/` | Main portfolio page |
+| `/KVK` | Alias for the main portfolio page |
+| `/projects/ML` | Machine-learning project gallery |
+| `/projects/genai` | Generative-AI project gallery |
+| `/download_resume` | Downloads the resume as `K Vishal Kumar.pdf` |
+| Any other path | Not-found page with HTTP `404` |
 
-Other paths return the site's not-found page with an HTTP 404 response.
+Project cards may link to independently hosted demos. Those demo destinations are not routes served by this Flask application.
+
+## Technology
+
+| Area | Tools |
+| --- | --- |
+| Server | Python, Flask |
+| Cross-origin requests | Flask-CORS |
+| Production WSGI server | Gunicorn |
+| Templates | Jinja-rendered HTML |
+| Frontend | HTML, CSS, vanilla JavaScript, Tailwind CSS via CDN |
+
+Python dependencies are listed in [`requirements.txt`](./requirements.txt). Tailwind CSS and web fonts are loaded from external CDNs by the templates, so an internet connection is needed to load those assets.
 
 ## Run locally
 
-You need Python and pip installed.
+### Prerequisites
 
-1. Open a terminal in this project directory.
-2. (Optional) Create and activate a virtual environment:
+- Python 3
+- `pip`
+
+### Setup
+
+Run these commands from the project directory.
+
+1. Create a virtual environment:
 
    ```bash
    python -m venv .venv
    ```
 
-   On Windows:
+2. Activate it:
+
+   **Windows PowerShell**
 
    ```powershell
    .\.venv\Scripts\Activate.ps1
    ```
 
-   On macOS or Linux:
+   **macOS / Linux**
 
    ```bash
    source .venv/bin/activate
    ```
 
-3. Install the dependencies:
+3. Install dependencies:
 
    ```bash
-   pip install -r requirements.txt
+   python -m pip install -r requirements.txt
    ```
 
-4. Start the development server:
+4. Start the Flask development server:
 
    ```bash
    python app.py
    ```
 
-5. Visit [http://127.0.0.1:5000](http://127.0.0.1:5000).
+5. Open [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
-The development server runs with Flask debug mode enabled. Do not use it as a production server.
+The development server runs with debug mode enabled. It is intended only for local development; use a production WSGI server when deploying.
 
-## Production
+## Deploy
 
-The requirements include Gunicorn. From the project directory, start the app with:
+The project includes Gunicorn. For a platform that supplies a `PORT` environment variable, a typical start command is:
 
 ```bash
-gunicorn app:app
+gunicorn --bind 0.0.0.0:${PORT:-8000} app:app
 ```
 
-Configure your hosting platform to run this command and expose the port it provides.
+Configure the hosting platform to install dependencies from `requirements.txt` and use its assigned port. The resume PDF is read from the app's `static` directory, so include that file in the deployed application.
 
-## Project structure
+## Project layout
 
 ```text
-.
-├── app.py                  # Flask application and page routes
-├── requirements.txt        # Python dependencies
-├── readme.md
+KVK_PROFILE/
+├── app.py                         # Flask app and page/download routes
+├── readme.md                      # Project documentation
+├── requirements.txt               # Python dependencies
 ├── static/
-│   ├── image.png           # Portfolio image
-│   ├── K Vishal Kumar Resume.pdf
-│   ├── script.js           # Shared browser interactions
-│   └── style.css           # Shared styles
+│   ├── K Vishal Kumar Resume.pdf  # Downloadable resume
+│   ├── script.js                  # Shared browser interactions
+│   └── style.css                  # Shared styles
 └── templates/
-    ├── portfolio.html      # Main portfolio page
-    ├── ml.html             # Machine-learning projects
-    ├── genai.html          # Generative-AI projects
-    ├── crop.html            # Crop-advisor page template
-    └── error.html          # Not-found / under-construction page
+    ├── error.html                 # Not-found / under-construction page
+    ├── genai.html                 # Generative-AI project gallery
+    ├── ml.html                    # Machine-learning project gallery
+    └── portfolio.html             # Main portfolio page
 ```
 
-The Flask routes currently serve the main portfolio, ML, and GenAI templates listed above. Some links shown within the project catalogue refer to separate demo pages or services and are not routes implemented by this Flask app.
+## Configuration and notes
 
-## Dependencies
+- No environment variables or database are required for the current app.
+- Flask-CORS is enabled globally in `app.py`.
+- The portfolio content and links are maintained in the HTML templates.
+- Keep the resume at `static/K Vishal Kumar Resume.pdf`; the download route uses this exact filename.
+- The app's built-in Flask server is for development only. Do not expose it as the production server.
 
-See [`requirements.txt`](./requirements.txt) for the complete list. The app uses Flask to render pages, Flask-CORS for CORS support, and Gunicorn as a production WSGI server. Scikit-learn and pandas are also listed as project dependencies.
+## Contact
+
+Questions, opportunities, or project feedback are welcome:
+
+- **Email:** [kvkwork05@gmail.com](mailto:kvkwork05@gmail.com)
+- **GitHub:** [kvkdev-ml](https://github.com/kvkdev-ml)
+- **LinkedIn:** [Vishal Kumar](https://www.linkedin.com/in/vishal-kumar-95b269390/)
