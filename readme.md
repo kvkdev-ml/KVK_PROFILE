@@ -85,15 +85,15 @@
 ### ⚡ 04 // CONNECT & COLLABORATE
 
 <p align="center">
-  <a href="https://github.com/YOUR_GITHUB_USERNAME">
+  <a href="https://github.comkvkdev-ml">
     <img src="https://img.shields.io/badge/GITHUB-FOLLOW-A7F3D0?style=for-the-badge&logo=github&logoColor=121212&labelColor=6EE7B7" alt="GitHub" />
   </a>
   &nbsp;
-  <a href="https://linkedin.com/in/YOUR_LINKEDIN_USERNAME">
+  <a href="https://www.linkedin.com/in/vishal-kumar-95b269390">
     <img src="https://img.shields.io/badge/LINKEDIN-CONNECT-BAE6FD?style=for-the-badge&logo=linkedin&logoColor=121212&labelColor=7DD3FC" alt="LinkedIn" />
   </a>
   &nbsp;
-  <a href="mailto:your_email@example.com">
+  <a href="mailto:kvkwork05@gmail.com">
     <img src="https://img.shields.io/badge/EMAIL-COLLABORATE-FED7AA?style=for-the-badge&logo=gmail&logoColor=121212&labelColor=FDBA74" alt="Email" />
   </a>
 </p>
