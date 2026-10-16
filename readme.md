@@ -1,12 +1,6 @@
 # <h1 align="center">Hi there, I'm a Backend & AI Engineer 👋</h1>
 
 <p align="center">
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=24&duration=3000&pause=1000&color=121212&background=A7F3D0&center=true&vCenter=true&width=680&height=55&lines=⚡+Backend+Architect+%26+Generative+AI;🧠+Autonomous+AI+Agents+%26+RAG+Systems;👁️+Real-Time+Computer+Vision+Engines;🔒+Local+LLMs+%26+MCP+Specialist" alt="Pastel Brutalist Typing SVG" />
-  </a>
-</p>
-
-<p align="center">
   <a href="https://github.com/YOUR_GITHUB_USERNAME">
     <img src="https://img.shields.io/badge/FOCUS-GENERATIVE_AI_%26_BACKENDS-FFE4E6?style=for-the-badge&logoColor=121212&labelColor=FBCFE8&color=121212" alt="Focus Badge" />
   </a>
@@ -78,12 +72,12 @@
 ### 📊 03 // GITHUB TELEMETRY & STATS
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&hide_border=false&border_color=121212&border_radius=0&bg_color=FFF7ED&title_color=121212&icon_color=059669&text_color=1F2937" alt="GitHub Stats" width="49%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&hide_border=false&border_color=121212&border_radius=0&bg_color=EFF6FF&title_color=121212&text_color=1F2937" alt="Top Languages" width="47%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=kvkdev-ml&show_icons=true&hide_border=false&border_color=121212&border_radius=0&bg_color=FFF7ED&title_color=121212&icon_color=059669&text_color=1F2937" alt="GitHub Stats" width="49%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kvkdev-ml&layout=compact&hide_border=false&border_color=121212&border_radius=0&bg_color=EFF6FF&title_color=121212&text_color=1F2937" alt="Top Languages" width="47%" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_GITHUB_USERNAME&hide_border=false&border_color=121212&border_radius=0&background=FDF4FF&fire=DB2777&ring=121212&currStreakLabel=121212&currStreakNum=121212&sideNums=121212&sideLabels=121212&dates=4B5563" alt="GitHub Streak" width="97%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=kvkdev-ml&hide_border=false&border_color=121212&border_radius=0&background=FDF4FF&fire=DB2777&ring=121212&currStreakLabel=121212&currStreakNum=121212&sideNums=121212&sideLabels=121212&dates=4B5563" alt="GitHub Streak" width="97%" />
 </p>
 
 ---
