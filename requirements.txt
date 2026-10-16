@@ -1,5 +1,3 @@
 flask
 gunicorn
-scikit-learn
-pandas
 flask-cors
