@@ -73,7 +73,6 @@
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=kvkdev-ml&show_icons=true&hide_border=false&border_color=121212&border_radius=0&bg_color=FFF7ED&title_color=121212&icon_color=059669&text_color=1F2937" alt="GitHub Stats" width="49%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kvkdev-ml&layout=compact&hide_border=false&border_color=121212&border_radius=0&bg_color=EFF6FF&title_color=121212&text_color=1F2937" alt="Top Languages" width="47%" />
 </p>
 
 <p align="center">
