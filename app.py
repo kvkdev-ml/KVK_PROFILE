@@ -19,6 +19,6 @@ def page(path):
     return render_template("error.html"), 404
 @app.route('/download_resume')
 def resume():
-    return send_file(path_or_file=rf'{os.getcwd()}/static/K Vishal kumar Resume.pdf',download_name='K Vishal Kumar.pdf')
+    return send_file(path_or_file=rf'{os.getcwd()}/static/K Vishal Kumar Resume.pdf',download_name='K Vishal Kumar.pdf')
 if __name__=='__main__':
     app.run(debug=True)
